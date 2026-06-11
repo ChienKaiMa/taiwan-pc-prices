@@ -24,6 +24,7 @@ STORES = [
 PRODUCTS = [
     {"name": "Intel Core Ultra 5 245K",  "category": "CPU", "brand": "Intel", "spec": "14C/14T 4.2-5.2GHz Arrow Lake",    "base_price": 9200,  "search": "Ultra 5 245K"},
     {"name": "Intel Core Ultra 7 265K",  "category": "CPU", "brand": "Intel", "spec": "20C/20T 3.9-5.5GHz Arrow Lake",    "base_price": 14800, "search": "265K"},
+    {"name": "Intel Core Ultra 7 270K Plus", "category": "CPU", "brand": "Intel", "spec": "24C/24T 3.7-5.5GHz Arrow Lake Refresh", "base_price": 12500, "search": "270K"},
     {"name": "Intel Core Ultra 9 285K",  "category": "CPU", "brand": "Intel", "spec": "24C/24T 3.7-5.7GHz Arrow Lake",    "base_price": 20500, "search": "285K"},
     {"name": "AMD Ryzen 7 7800X3D",    "category": "CPU", "brand": "AMD",   "spec": "8C/16T 4.2-5.0GHz 3D V-Cache", "base_price": 14700, "search": "7800X3D"},
     #
@@ -690,7 +691,7 @@ def _match_product_by_name(product_name, candidates):
 
     # Known variant suffixes that define a *different* product tier.
     # These should never match unless the target product name also contains them.
-    variant_suffixes = {"kf", "xt", "gre", "xtx", "super", "ultra", "lite", "max", "ti", "ks"}
+    variant_suffixes = {"kf", "xt", "gre", "xtx", "super", "ultra", "lite", "max", "ti", "ks", "plus"}
 
     # For each candidate, compute a match score
     scored = []
