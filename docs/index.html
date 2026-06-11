@@ -277,7 +277,7 @@ function updateStats() {
 }
 
 function updateTable() {
-  let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>建議售價</th><th>規格</th>`;
+  let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>規格</th><th>建議售價</th>`;
   const stores = [...new Set(allData.flatMap(p => Object.keys(p.prices)))];
   stores.forEach(s => html += `<th>${s}</th>`);
   html += `</tr></thead><tbody>`;
@@ -288,7 +288,7 @@ function updateTable() {
     const isSelected = selectedProduct === p.name;
     html += `<tr data-product="${p.name}" class="${isSelected ? 'selected' : ''}" onclick="selectProduct(this.dataset.product)" style="cursor:pointer">`;
     const msrp = p.msrp || 0;
-    html += `<td><span class="category-badge cat-${p.category}">${p.category}</span></td><td><strong>${p.name}</strong></td><td style="font-size:.85rem;font-weight:600;color:#666">${msrp ? 'NT$ ' + msrp.toLocaleString() : '-'}</td><td style="font-size:.8rem;color:#666">${p.spec}</td>`;
+    html += `<td><span class="category-badge cat-${p.category}">${p.category}</span></td><td><strong>${p.name}</strong></td><td style="font-size:.8rem;color:#666">${p.spec}</td><td style="font-size:.85rem;font-weight:600;color:#666">${msrp ? 'NT$ ' + msrp.toLocaleString() : '-'}</td>`;
     stores.forEach(s => {
       const entry = p.prices[s];
       if (!entry || !entry.price) { html += `<td>-</td>`; return; }
