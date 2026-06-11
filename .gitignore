@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+data/prices.db
+data/prices.db-shm
+data/prices.db-wal
+*.log

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台灣電腦零件價格追蹤器</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #1a1a2e; }
+header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 2rem; text-align: center; }
+header h1 { font-size: 1.8rem; margin-bottom: .3rem; }
+header p { opacity: .8; font-size: .95rem; }
+.container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.stat-card { background: #fff; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.stat-card .label { font-size: .85rem; color: #666; margin-bottom: .3rem; }
+.stat-card .value { font-size: 1.6rem; font-weight: 700; color: #0f3460; }
+.stat-card .sub { font-size: .8rem; color: #999; margin-top: .2rem; }
+.controls { background: #fff; border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.controls label { font-weight: 600; font-size: .9rem; color: #444; }
+.controls select, .controls input { padding: .5rem .8rem; border: 1px solid #d0d5dd; border-radius: 8px; font-size: .9rem; background: #fff; }
+.controls button { padding: .5rem 1.2rem; border: none; border-radius: 8px; background: #0f3460; color: #fff; font-weight: 600; cursor: pointer; }
+.controls button:hover { background: #1a4a7a; }
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+.chart-box { background: #fff; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.chart-box h3 { font-size: 1rem; margin-bottom: 1rem; color: #333; }
+.chart-box { min-height: 280px; }
+.chart-box canvas { max-height: 350px; }
+.table-wrap { overflow-x: auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th { background: #f8f9fa; padding: .8rem .6rem; text-align: left; font-weight: 600; color: #555; border-bottom: 2px solid #e0e0e0; }
+td { padding: .7rem .6rem; border-bottom: 1px solid #f0f0f0; }
+tr:hover { background: #f8f9ff; }
+.price { font-weight: 600; }
+.price-min { color: #16a34a; }
+.category-badge { display: inline-block; padding: .15rem .5rem; border-radius: 4px; font-size: .75rem; font-weight: 600; }
+.cat-CPU { background: #dbeafe; color: #1d4ed8; }
+.cat-GPU { background: #fce7f3; color: #be185d; }
+.cat-RAM { background: #d1fae5; color: #047857; }
+.cat-SSD { background: #fef3c7; color: #b45309; }
+.lowest { background: #f0fdf4 !important; }
+tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outline-offset: -2px; }
+.match-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .8rem; margin-bottom: 1rem; }
+.match-card { background: #fff; border-radius: 10px; padding: .9rem 1rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.match-card .store-name { font-size: .85rem; font-weight: 600; color: #333; margin-bottom: .4rem; }
+.match-bar { height: 6px; border-radius: 3px; background: #e0e0e0; margin: .4rem 0; overflow: hidden; display: flex; }
+.match-bar .real-fill { background: #16a34a; height: 100%; transition: width .5s; }
+.match-bar .synth-fill { background: #f59e0b; height: 100%; transition: width .5s; }
+.match-card .counts { font-size: .78rem; color: #666; }
+.match-card .counts .real { color: #16a34a; font-weight: 600; }
+.match-card .counts .synth { color: #b45309; font-weight: 600; }
+.info-box { background: #fff; border-radius: 12px; padding: 0 1.2rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); overflow: hidden; transition: max-height .3s ease; }
+.info-header { display: flex; justify-content: space-between; align-items: center; padding: .9rem 0; cursor: pointer; user-select: none; }
+.info-header h3 { font-size: .9rem; color: #0f3460; }
+.info-header .toggle-icon { font-size: .8rem; color: #999; transition: transform .2s; }
+.info-header.open .toggle-icon { transform: rotate(180deg); }
+.info-body { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+.info-body.open { max-height: 800px; }
+.info-body-inner { padding: 0 0 1rem 0; font-size: .85rem; line-height: 1.6; color: #444; }
+.info-body-inner ul { margin: .3rem 0 .3rem 1.2rem; }
+.info-body-inner li { margin: .2rem 0; }
+.info-body-inner .reason-title { font-weight: 700; color: #0f3460; margin-top: .6rem; }
+@media (max-width: 900px) { .chart-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>🖥️ 台灣電腦零件價格追蹤</h1>
+  <p>多商店即時比價 · 歷史價格走勢</p>
+    <p style="margin-top:.5rem;font-size:.8rem;opacity:.7;background:rgba(255,255,255,.08);display:inline-block;padding:.2rem 1rem;border-radius:20px;">
+      ⚠️ 標示 ❗ 者為模擬價格（商店無資料或無法爬取）· PChome 24h 全為模擬數據
+    </p>
+</header>
+<div class="container">
+  <div class="stats-grid" id="statsGrid"></div>
+
+  <div class="match-stats" id="matchStats"></div>
+
+  <div class="info-box" id="infoBox">
+    <div class="info-header" onclick="toggleInfo()">
+      <h3>❓ 為什麼有些價格是「模擬」的？ — 點擊查看原因</h3>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="info-body">
+      <div class="info-body-inner">
+        <p>當某商店對某產品沒有真實價格資料時，系統會使用<strong>基準價格</strong>加上隨機波動來<strong>模擬</strong>歷史數據，這些價格會標示 <strong>❗</strong>。</p>
+
+        <div class="reason-title">📦 PChome 24h（100% 模擬）</div>
+        <p>PChome 使用 Cloudflare 保護，無法程式爬取。所有價格均為模擬數據。</p>
+
+        <div class="reason-title">🔍 欣亞 Sinya / 原價屋 CoolPC / Autobuy — 搜尋無結果</div>
+        <p>爬蟲使用關鍵字搜尋各商店的 API（如 Sinya JSON API、CoolPC WooCommerce API、Autobuy 類別頁面），若該產品在商店的商品目錄中未被列出，則無結果。</p>
+
+        <div class="reason-title">⚠️ 原價屋 CoolPC — 結果被廣告/開箱文淹沒</div>
+        <p>CoolPC 的 WooCommerce 將部落格文章、促銷活動也視為「商品」，爬蟲會過濾掉標題含【開箱、搶購、雙11、筆電、已截止】等關鍵字的項目。過濾後常常剩下 0 個可匹配的結果。</p>
+
+        <div class="reason-title">❌ 關鍵字匹配不足（≥2 個關鍵字 + 分數 ≥15 才匹配成功）</div>
+        <p>爬蟲從產品名稱中提取關鍵字（排除品牌通用詞如 nvidia、amd、intel、corsair 等），逐一比對候選商品標題。匹配規則為：</p>
+        <ul>
+          <li><strong>至少 2 個關鍵字</strong>出現在標題中（否則跳過） — 例如搜尋 "990 Pro" 時，若商品標題只有 "990" 而沒有 "Pro"，則不匹配。</li>
+          <li><strong>變體懲罰 −60</strong>：若候選商品含有 GRE、XTX、Super、Ultra、Lite、Max、Ti 等後綴，但目標產品沒有，則嚴厲扣分（防止 RX 9070 GRE 匹配 RX 9070）。</li>
+          <li><strong>組合包懲罰 −50</strong>：標題含有搭機、套裝、主機、送、救贖、福利等字眼。</li>
+          <li><strong>完全比對加分 +100</strong>：產品名稱完整出現在標題中時，獲得額外加分。</li>
+          <li><strong>最低分數門檻 ≥15</strong>：2 個純關鍵字匹配 = 20 分，低於 15 分視為匹配失敗。</li>
+        </ul>
+        <p>匹配失敗時，該商店對該產品使用模擬價格。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <label for="productSelect">產品</label>
+    <select id="productSelect" onchange="selectProduct(this.value)"></select>
+    <label for="daysSelect">天數</label>
+    <select id="daysSelect" onchange="updateCharts()">
+      <option value="7">7 天</option>
+      <option value="14">14 天</option>
+      <option value="30" selected>30 天</option>
+      <option value="45">45 天</option>
+    </select>
+    <button onclick="refreshData()">🔄 重新整理</button>
+    <span id="lastUpdated" style="margin-left:auto;font-size:.8rem;color:#999;"></span>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-box"><h3>📊 價格比較 (各商店目前價格)</h3><canvas id="compareChart"></canvas></div>
+    <div class="chart-box"><h3>📈 歷史價格走勢</h3><canvas id="historyChart"></canvas></div>
+  </div>
+
+  <div class="table-wrap" id="priceTable"></div>
+</div>
+
+<script>
+let compareChart = null, historyChart = null;
+let allData = [];
+let selectedProduct = null;
+
+async function refreshData() {
+  try {
+    const r = await fetch('/api/prices');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    allData = await r.json();
+    console.log('Loaded', allData.length, 'products');
+    populateSelect();
+    updateStats();
+    updateTable();
+    updateCharts();
+    updateMatchStats();
+    document.getElementById('lastUpdated').textContent = '更新於 ' + new Date().toLocaleString('zh-TW');
+  } catch (e) {
+    console.error('refreshData failed:', e);
+  }
+}
+
+function toggleInfo() {
+  const header = document.querySelector('.info-header');
+  const body = document.querySelector('.info-body');
+  header.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+function updateMatchStats() {
+  // Compute per-store real vs synthetic counts
+  const storeCounts = {};
+  allData.forEach(p => {
+    Object.entries(p.prices).forEach(([store, data]) => {
+      if (!storeCounts[store]) storeCounts[store] = { total: 0, real: 0, synth: 0 };
+      storeCounts[store].total++;
+      if (data.is_synthetic) {
+        storeCounts[store].synth++;
+      } else {
+        storeCounts[store].real++;
+      }
+    });
+  });
+
+  const totalProducts = allData.length;
+  let html = '';
+  Object.entries(storeCounts).forEach(([store, counts]) => {
+    const pct = counts.total > 0 ? Math.round(counts.real / counts.total * 100) : 0;
+    html += `
+      <div class="match-card">
+        <div class="store-name">${store}</div>
+        <div class="match-bar">
+          <div class="real-fill" style="width:${pct}%"></div>
+          <div class="synth-fill" style="width:${100-pct}%"></div>
+        </div>
+        <div class="counts">
+          <span class="real">${counts.real}/${counts.total}</span> 真實 ·
+          <span class="synth">${counts.synth}/${counts.total}</span> 模擬 ·
+          <strong>${pct}%</strong> 匹配率
+        </div>
+      </div>
+    `;
+  });
+  document.getElementById('matchStats').innerHTML = html;
+}
+
+function populateSelect() {
+  const sel = document.getElementById('productSelect');
+  sel.innerHTML = allData.map(p => `<option value="${p.name}">${p.name}</option>`).join('');
+}
+
+function selectProduct(name) {
+  selectedProduct = name;
+  const sel = document.getElementById('productSelect');
+  for (let i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].value === name) { sel.selectedIndex = i; break; }
+  }
+  document.querySelectorAll('#priceTable tbody tr').forEach(tr => {
+    tr.classList.toggle('selected', tr.dataset.product === name);
+  });
+  updateCharts();
+}
+
+function filterCategory(cat) {
+  const items = allData.filter(p => p.category === cat);
+  const allPrices = items.flatMap(p => Object.values(p.prices).map(v => v.price));
+  const minPrice = Math.min(...allPrices);
+  const cheapest = items.find(p => Object.values(p.prices).some(v => v.price === minPrice));
+  if (cheapest) selectProduct(cheapest.name);
+}
+
+function updateStats() {
+  const stores = new Set(allData.flatMap(p => Object.keys(p.prices))).size;
+  const categories = [...new Set(allData.map(p => p.category))].sort();
+  const categoryLabels = { CPU: '處理器', GPU: '顯示卡', RAM: '記憶體', SSD: '固態硬碟' };
+
+  let html = `
+    <div class="stat-card"><div class="label">追蹤產品</div><div class="value">${allData.length}</div><div class="sub">件零件</div></div>
+    <div class="stat-card"><div class="label">商店數量</div><div class="value">${stores}</div><div class="sub">家商店</div></div>
+  `;
+
+  categories.forEach(cat => {
+    const items = allData.filter(p => p.category === cat);
+    const allPrices = items.flatMap(p => Object.values(p.prices).map(v => v.price));
+    const minPrice = Math.min(...allPrices);
+    const cheapestItem = items.find(p => Object.values(p.prices).some(v => v.price === minPrice));
+    const label = categoryLabels[cat] || cat;
+    html += `
+      <div class="stat-card" style="cursor:pointer" onclick="filterCategory('${cat}')">
+        <div class="label">最便宜 ${label}</div>
+        <div class="value">NT$ ${minPrice.toLocaleString()}</div>
+        <div class="sub">${cheapestItem ? cheapestItem.name : ''}</div>
+      </div>
+    `;
+  });
+
+  document.getElementById('statsGrid').innerHTML = html;
+}
+
+function updateTable() {
+  let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>建議售價</th><th>規格</th>`;
+  const stores = [...new Set(allData.flatMap(p => Object.keys(p.prices)))];
+  stores.forEach(s => html += `<th>${s}</th>`);
+  html += `</tr></thead><tbody>`;
+  allData.forEach(p => {
+    const vals = Object.entries(p.prices);
+    const minPrice = Math.min(...vals.map(v => v[1].price));
+    const isSelected = selectedProduct === p.name;
+    html += `<tr data-product="${p.name}" class="${isSelected ? 'selected' : ''}" onclick="selectProduct(this.dataset.product)" style="cursor:pointer">`;
+    const msrp = p.msrp || 0;
+    html += `<td><span class="category-badge cat-${p.category}">${p.category}</span></td><td><strong>${p.name}</strong></td><td style="font-size:.85rem;font-weight:600;color:#666">${msrp ? 'NT$ ' + msrp.toLocaleString() : '-'}</td><td style="font-size:.8rem;color:#666">${p.spec}</td>`;
+    stores.forEach(s => {
+      const entry = p.prices[s];
+      if (!entry) { html += `<td>-</td>`; return; }
+      const cls = entry.price === minPrice ? 'price price-min' : 'price';
+      const indicator = entry.is_synthetic ? ' ❗' : '';
+      html += `<td class="${cls}">NT$ ${entry.price.toLocaleString()}${indicator}</td>`;
+    });
+    html += `</tr>`;
+  });
+  html += `</tbody></table>`;
+  document.getElementById('priceTable').innerHTML = html;
+}
+
+async function updateCharts() {
+  const product = document.getElementById('productSelect').value;
+  const days = document.getElementById('daysSelect').value;
+  if (!product) return;
+  const r = await fetch(`/api/history?product=${encodeURIComponent(product)}&days=${days}`);
+  const history = await r.json();
+
+  const prodData = allData.find(p => p.name === product);
+  if (!prodData) return;
+
+  updateCompareChart(prodData);
+  updateHistoryChart(history, product);
+}
+
+function updateCompareChart(prodData) {
+  const labels = [];
+  const prices = [];
+  const colors = [];
+  const synFlags = [];
+  const entries = Object.entries(prodData.prices);
+  if (entries.length === 0) { console.warn('No price data for compare chart'); return; }
+  const allVals = entries.map(([,d]) => d.price);
+  const minVal = Math.min(...allVals);
+  entries.forEach(([store, data]) => {
+    labels.push(store);
+    prices.push(data.price);
+    synFlags.push(data.is_synthetic ? 1 : 0);
+    colors.push(data.price === minVal ? '#16a34a' : '#0f3460');
+  });
+
+  const canvas = document.getElementById('compareChart');
+  if (!canvas) { console.error('Canvas #compareChart not found'); return; }
+  if (compareChart) compareChart.destroy();
+  try {
+    compareChart = new Chart(canvas, {
+      type: 'bar',
+      data: { labels, datasets: [{ label: '價格 (NT$)', data: prices, backgroundColor: colors, borderRadius: 6 }] },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                const syn = synFlags[ctx.dataIndex] ? ' ❗(模擬)' : '';
+                return 'NT$ ' + Number(ctx.raw).toLocaleString() + syn;
+              }
+            }
+          }
+        },
+        scales: {
+          y: { beginAtZero: false, ticks: { callback: v => 'NT$ ' + Number(v).toLocaleString() } }
+        }
+      }
+    });
+    console.log('Compare chart created');
+  } catch (e) {
+    console.error('Compare chart error:', e);
+  }
+}
+
+function updateHistoryChart(history, product) {
+  if (!history || history.length === 0) { console.warn('No history data'); return; }
+  const groups = {};
+  const synLookup = {};
+  const dates = [...new Set(history.map(h => h.recorded_at.slice(0, 10)))].sort();
+  history.forEach(h => {
+    if (!groups[h.store]) { groups[h.store] = []; synLookup[h.store] = []; }
+    const dayIdx = dates.indexOf(h.recorded_at.slice(0, 10));
+    groups[h.store][dayIdx] = h.price;
+    synLookup[h.store][dayIdx] = h.is_synthetic ? 1 : 0;
+  });
+  const colors = ['#0f3460', '#e11d48', '#16a34a', '#f59e0b'];
+  const storeKeys = Object.keys(groups);
+  const datasets = storeKeys.map((store, i) => ({
+    label: store,
+    data: dates.map((d, idx) => groups[store][idx] !== undefined ? groups[store][idx] : null),
+    borderColor: colors[i % colors.length],
+    backgroundColor: colors[i % colors.length] + '22',
+    fill: true,
+    tension: .3,
+    pointRadius: 3,
+    spanGaps: true,
+  }));
+
+  const canvas = document.getElementById('historyChart');
+  if (!canvas) { console.error('Canvas #historyChart not found'); return; }
+  if (historyChart) historyChart.destroy();
+  try {
+    historyChart = new Chart(canvas, {
+      type: 'line',
+      data: { labels: dates.map(d => d.slice(5)), datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          tooltip: {
+            callbacks: {
+              afterLabel: ctx => {
+                const storeName = ctx.dataset.label;
+                if (synLookup[storeName] && synLookup[storeName][ctx.dataIndex]) {
+                  return '❗ 模擬價格';
+                }
+                return '';
+              },
+              label: ctx => ctx.dataset.label + ': NT$ ' + Number(ctx.raw).toLocaleString()
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: '日期' } },
+          y: { ticks: { callback: v => 'NT$ ' + Number(v).toLocaleString() } }
+        }
+      }
+    });
+    console.log('History chart created for', product, '—', dates.length, 'days,', datasets.length, 'stores');
+  } catch (e) {
+    console.error('History chart error:', e);
+  }
+}
+
+refreshData();
+</script>
+</body>
+</html>
