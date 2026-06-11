@@ -27,13 +27,15 @@ PRODUCTS = [
     {"name": "Intel Core Ultra 7 270K Plus", "category": "CPU", "brand": "Intel", "spec": "24C/24T 3.7-5.5GHz Arrow Lake Refresh", "base_price": 12500, "search": "270K"},
     {"name": "Intel Core Ultra 9 285K",  "category": "CPU", "brand": "Intel", "spec": "24C/24T 3.7-5.7GHz Arrow Lake",    "base_price": 20500, "search": "285K"},
     {"name": "AMD Ryzen 7 7800X3D",    "category": "CPU", "brand": "AMD",   "spec": "8C/16T 4.2-5.0GHz 3D V-Cache", "base_price": 14700, "search": "7800X3D"},
+    {"name": "AMD Ryzen 5 7500F",      "category": "CPU", "brand": "AMD",   "spec": "6C/12T 3.7-5.0GHz Zen 4",     "base_price": 4490,  "search": "7500F"},
+    {"name": "AMD Ryzen 7 7700",       "category": "CPU", "brand": "AMD",   "spec": "8C/16T 3.8-5.3GHz Zen 4",     "base_price": 6890,  "search": "7700"},
     #
     {"name": "NVIDIA RTX 5060",        "category": "GPU", "brand": "NVIDIA", "spec": "8GB GDDR7",                  "base_price": 11990, "search": "RTX 5060"},
     {"name": "NVIDIA RTX 5060 Ti 16GB","category": "GPU", "brand": "NVIDIA", "spec": "16GB GDDR7",                 "base_price": 18490, "search": "5060 Ti"},
     {"name": "NVIDIA RTX 5070",        "category": "GPU", "brand": "NVIDIA", "spec": "12GB GDDR7",                 "base_price": 21888, "search": "RTX 5070"},
     {"name": "NVIDIA RTX 5070 Ti",     "category": "GPU", "brand": "NVIDIA", "spec": "16GB GDDR7",                 "base_price": 31888, "search": "RTX 5070 Ti"},
     {"name": "NVIDIA RTX 5080",        "category": "GPU", "brand": "NVIDIA", "spec": "16GB GDDR7",                 "base_price": 44990, "search": "RTX 5080"},
-    {"name": "NVIDIA RTX 5090",        "category": "GPU", "brand": "NVIDIA", "spec": "32GB GDDR7",                 "base_price": 122990,"search": "RTX 5090"},
+    {"name": "NVIDIA RTX 5090",        "category": "GPU", "brand": "NVIDIA", "spec": "32GB GDDR7",                 "base_price": 122990,"search": "5090"},
     {"name": "AMD RX 9070",            "category": "GPU", "brand": "AMD",    "spec": "16GB GDDR6",                 "base_price": 24590, "search": "RX 9070"},
     {"name": "AMD RX 9070 XT",         "category": "GPU", "brand": "AMD",    "spec": "16GB GDDR6",                 "base_price": 24990, "search": "RX 9070 XT"},
     #
@@ -353,64 +355,47 @@ def coolpc_fetch(keyword, max_retries=2):
 # ── Autobuy scraper ───────────────────────────────────────────────
 
 def autobuy_fetch_category(category_id, max_retries=2):
-    """Fetch an Autobuy category page (e.g., cate_2067 for GPUs)
-    and return a list of {title, price} dicts extracted from the
-    JSON-LD structured-data blocks embedded in the HTML."""
-    url = f"https://www.autobuy.tw/3c/cate_{category_id}"
+    """Fetch an Autobuy category product list via the internal order_by
+    API endpoint (ajax_prod_cate_order_by_{category_id}_0), which returns
+    JSON with name, price, and stock count for every product.
+
+    Products with Stock == 0 (out of stock) are filtered out.
+    Returns a list of {title, price} dicts."""
+    url = f"https://www.autobuy.tw/ajax_prod_cate_order_by_{category_id}_0"
+    headers = {**_HEADERS,
+               "Content-Type": "application/json",
+               "X-Requested-With": "XMLHttpRequest",
+               "Referer": f"https://www.autobuy.tw/3c/cate_{category_id}"}
     for attempt in range(max_retries):
         try:
-            resp = requests.get(url, headers=_HEADERS, timeout=30)
+            resp = requests.post(url, headers=headers, timeout=30)
             if resp.status_code != 200:
                 print(f"  [Autobuy] HTTP {resp.status_code} for category {category_id}")
                 return []
-            html = resp.text
+            data = resp.json()
         except Exception as e:
             print(f"  [Autobuy] attempt {attempt + 1} failed: {e}")
             time.sleep(2)
             continue
 
         items = []
-
-        # Extract JSON-LD blocks ( <script type="application/ld+json">...{"@type":"Product"}... </script> )
-        ld_pattern = re.compile(
-            r'<script\b[^>]*type="application/ld\+json"[^>]*>(.*?)</script>',
-            re.IGNORECASE | re.DOTALL,
-        )
-        for match in ld_pattern.finditer(html):
-            raw = match.group(1).strip()
-            try:
-                data = json.loads(raw)
-            except json.JSONDecodeError:
+        for p in data.get("Products", []):
+            name = p.get("name", "")
+            price = p.get("price")
+            stock = p.get("Stock", 0)
+            if not name or not price:
                 continue
-
-            # data can be a single dict or a list of dicts
-            blocks = data if isinstance(data, list) else [data]
-            for block in blocks:
-                if not isinstance(block, dict):
-                    continue
-                if block.get("@type") != "Product":
-                    continue
-                name = block.get("name", "")
-                offers = block.get("offers", {})
-                if isinstance(offers, dict):
-                    price_str = offers.get("price", "")
-                elif isinstance(offers, list):
-                    price_str = offers[0].get("price", "") if offers else ""
-                else:
-                    price_str = ""
-
-                if not name or not price_str:
-                    continue
-                try:
-                    price = int(float(price_str))
-                except (ValueError, TypeError):
-                    continue
-                if price <= 0:
-                    continue
-                items.append({"title": name.strip(), "price": price})
+            try:
+                price = int(float(price))
+            except (ValueError, TypeError):
+                continue
+            if price <= 0:
+                continue
+            if int(stock) == 0:
+                continue
+            items.append({"title": name.strip(), "price": price})
 
         if items:
-            # Deduplicate by normalized title
             seen = set()
             unique = []
             for it in items:

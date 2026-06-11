@@ -9,7 +9,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
 from price_tracker.database import DB
-from price_tracker.scraper import scrape_real_prices, generate_price, PRODUCTS, STORES
+from price_tracker.scraper import scrape_real_prices, PRODUCTS, STORES
 
 PORT = int(os.environ.get("PORT", 8080))
 STATIC_DIR = os.path.join(os.path.dirname(__file__), "web", "templates")
@@ -21,14 +21,22 @@ STATIC_DIR = os.path.join(os.path.dirname(__file__), "web", "templates")
 SCRAPE_INTERVAL = 6 * 3600          # 6 hours in seconds
 SCRAPE_JITTER = 30 * 60             # ±30 minutes
 
+_scrape_lock = threading.Lock()
+_scrape_running = False
+
 def _record_prices():
     """Scrape real prices and record a new snapshot for every product+store."""
+    global _scrape_running
+    with _scrape_lock:
+        _scrape_running = True
     print("[scheduler] Starting price scrape...")
     t0 = time.time()
     try:
         real = scrape_real_prices()
     except Exception as exc:
         print(f"[scheduler] Scrape failed: {exc}")
+        with _scrape_lock:
+            _scrape_running = False
         return
     elapsed = time.time() - t0
     print(f"[scheduler] Scrape done in {elapsed:.0f}s, recording snapshots...")
@@ -41,22 +49,20 @@ def _record_prices():
         for prod in PRODUCTS:
             pid = db.upsert_product(prod["name"], prod["category"], prod.get("brand", ""), prod.get("spec", ""), msrp=prod.get("base_price", 0))
             for store in STORES:
-                sid = db.upsert_store(store["name"], store.get("url", ""))
                 real_price = real.get(store["name"], {}).get(prod["name"])
-                if real_price is not None:
-                    price = real_price
-                    synthetic = 0
-                else:
-                    price = generate_price(prod["base_price"], store["name"])
-                    synthetic = 1
-                db.record_price(pid, sid, price, now.isoformat(), synthetic)
+                if real_price is None:
+                    continue  # skip — no real price available
+                sid = db.upsert_store(store["name"], store.get("url", ""))
+                db.record_price(pid, sid, real_price, now.isoformat(), 0)
                 total += 1
         db.commit()
-        print(f"[scheduler] Recorded {total} snapshots at {now.isoformat()}")
+        print(f"[scheduler] Recorded {total} real snapshots at {now.isoformat()}")
     except Exception as exc:
         print(f"[scheduler] DB write failed: {exc}")
     finally:
         db.close()
+        with _scrape_lock:
+            _scrape_running = False
 
 
 def _scheduler_loop():
@@ -100,6 +106,10 @@ class PriceServer(BaseHTTPRequestHandler):
             self._send_json(_db.get_all_products())
         elif path == "/api/stores":
             self._send_json(_db.get_stores())
+        elif path == "/api/scrape-status":
+            with _scrape_lock:
+                running = _scrape_running
+            self._send_json({"running": running})
         elif path == "/api/scrape":
             # Manually trigger a scrape (runs in background)
             threading.Thread(target=_record_prices, daemon=True).start()
