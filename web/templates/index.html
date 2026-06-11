@@ -69,7 +69,7 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
   <h1>🖥️ 台灣電腦零件價格追蹤</h1>
   <p>多商店即時比價 · 歷史價格走勢</p>
     <p style="margin-top:.5rem;font-size:.8rem;opacity:.7;background:rgba(255,255,255,.08);display:inline-block;padding:.2rem 1rem;border-radius:20px;">
-      ⚠️ 標示 ❗ 者為模擬價格（商店無資料或無法爬取）· PChome 24h 全為模擬數據
+      ⚠️ 標示 ❗ 者為模擬價格（商店無資料或無法爬取）
     </p>
 </header>
 <div class="container">
@@ -86,8 +86,8 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
       <div class="info-body-inner">
         <p>當某商店對某產品沒有真實價格資料時，系統會使用<strong>基準價格</strong>加上隨機波動來<strong>模擬</strong>歷史數據，這些價格會標示 <strong>❗</strong>。</p>
 
-        <div class="reason-title">📦 PChome 24h（100% 模擬）</div>
-        <p>PChome 使用 Cloudflare 保護，無法程式爬取。所有價格均為模擬數據。</p>
+        <div class="reason-title">🚫 PChome 24h（已排除）</div>
+        <p>PChome 使用 Cloudflare 保護且無公開 API，無法程式爬取。已從追蹤列表中排除，不產生模擬數據。</p>
 
         <div class="reason-title">🔍 欣亞 Sinya / 原價屋 CoolPC / Autobuy — 搜尋無結果</div>
         <p>爬蟲使用關鍵字搜尋各商店的 API（如 Sinya JSON API、CoolPC WooCommerce API、Autobuy 類別頁面），若該產品在商店的商品目錄中未被列出，則無結果。</p>

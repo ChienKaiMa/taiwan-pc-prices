@@ -8,11 +8,13 @@ from datetime import datetime, timedelta
 import requests
 
 # ── Store definitions ──────────────────────────────────────────────
+# PChome 24h is excluded because it uses Cloudflare anti-bot protection
+# and lacks a public API or category-page listing — scraping individual
+# product pages at scale is not feasible.  All prices would be synthetic.
 STORES = [
     {"name": "原價屋 CoolPC", "url": "https://www.coolpc.com.tw"},
     {"name": "欣亞 Sinya", "url": "https://www.sinya.com.tw"},
     {"name": "Autobuy", "url": "https://www.autobuy.tw"},
-    {"name": "PChome 24h", "url": "https://24h.pchome.com.tw"},
 ]
 
 # ── Product list ──────────────────────────────────────────────────
