@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>台灣電腦零件價格追蹤器</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%96%A5%EF%B8%8F</text></svg>">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -149,22 +150,30 @@ let compareChart = null, historyChart = null;
 let allData = [];
 let selectedProduct = null;
 
-async function loadPrices() {
-  try {
-    const r = await fetch('/api/prices');
-    if (r.ok) return await r.json();
-  } catch {}
-  const r = await fetch('data/prices.json');
+const isGitHubPages = window.location.hostname.includes('github.io');
+
+async function loadPrices(bustCache = false) {
+  if (!isGitHubPages) {
+    try {
+      const r = await fetch('/api/prices');
+      if (r.ok) return await r.json();
+    } catch {}
+  }
+  const url = bustCache ? 'data/prices.json?t=' + Date.now() : 'data/prices.json';
+  const r = await fetch(url);
   if (r.ok) return await r.json();
   throw new Error('Cannot load prices');
 }
 
-async function loadHistory(product, days) {
-  try {
-    const r = await fetch(`/api/history?product=${encodeURIComponent(product)}&days=${days}`);
-    if (r.ok) return await r.json();
-  } catch {}
-  const r = await fetch('data/history.json');
+async function loadHistory(product, days, bustCache = false) {
+  if (!isGitHubPages) {
+    try {
+      const r = await fetch(`/api/history?product=${encodeURIComponent(product)}&days=${days}`);
+      if (r.ok) return await r.json();
+    } catch {}
+  }
+  const url = bustCache ? 'data/history.json?t=' + Date.now() : 'data/history.json';
+  const r = await fetch(url);
   if (r.ok) {
     const allHistory = await r.json();
     return (allHistory[product] || []).filter(h => {
@@ -177,7 +186,7 @@ async function loadHistory(product, days) {
 
 async function refreshData() {
   try {
-    allData = await loadPrices();
+    allData = await loadPrices(true);
     console.log('Loaded', allData.length, 'products');
     populateSelect();
     updateStats();
@@ -308,11 +317,14 @@ function updateTable() {
   document.getElementById('priceTable').innerHTML = html;
 }
 
+let _bustCache = false;
+
 async function updateCharts() {
   const product = document.getElementById('productSelect').value;
   const days = document.getElementById('daysSelect').value;
   if (!product) return;
-  const history = await loadHistory(product, days);
+  const history = await loadHistory(product, days, _bustCache);
+  _bustCache = false;
   if (!history) return;
 
   const prodData = allData.find(p => p.name === product);
@@ -417,6 +429,7 @@ function updateHistoryChart(history, product) {
 }
 
 async function checkScrapeStatus() {
+  if (isGitHubPages) return;
   try {
     const r = await fetch('/api/scrape-status');
     const data = await r.json();
