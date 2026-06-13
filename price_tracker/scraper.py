@@ -22,13 +22,13 @@ STORES = [
 # per-store APIs (Sinya, CoolPC).  Autobuy is scraped by category page,
 # so we map category → category_id below.
 PRODUCTS = [
-    {"name": "Intel Core Ultra 5 245K",  "category": "CPU", "brand": "Intel", "spec": "14C/14T 4.2-5.2GHz Arrow Lake",    "base_price": 9200,  "search": "Ultra 5 245K"},
-    {"name": "Intel Core Ultra 7 265K",  "category": "CPU", "brand": "Intel", "spec": "20C/20T 3.9-5.5GHz Arrow Lake",    "base_price": 14800, "search": "265K"},
+    {"name": "Intel Core Ultra 5 245K",  "category": "CPU", "brand": "Intel", "spec": "14C/14T 4.2-5.2GHz Arrow Lake",    "base_price": 10400, "search": "Ultra 5 245K"},
+    {"name": "Intel Core Ultra 7 265K",  "category": "CPU", "brand": "Intel", "spec": "20C/20T 3.9-5.5GHz Arrow Lake",    "base_price": 13600, "search": "265K"},
     {"name": "Intel Core Ultra 7 270K Plus", "category": "CPU", "brand": "Intel", "spec": "24C/24T 3.7-5.5GHz Arrow Lake Refresh", "base_price": 12500, "search": "270K"},
-    {"name": "Intel Core Ultra 9 285K",  "category": "CPU", "brand": "Intel", "spec": "24C/24T 3.7-5.7GHz Arrow Lake",    "base_price": 20500, "search": "285K"},
-    {"name": "AMD Ryzen 7 7800X3D",    "category": "CPU", "brand": "AMD",   "spec": "8C/16T 4.2-5.0GHz 3D V-Cache", "base_price": 14700, "search": "7800X3D"},
-    {"name": "AMD Ryzen 5 7500F",      "category": "CPU", "brand": "AMD",   "spec": "6C/12T 3.7-5.0GHz Zen 4",     "base_price": 4490,  "search": "7500F"},
-    {"name": "AMD Ryzen 7 7700",       "category": "CPU", "brand": "AMD",   "spec": "8C/16T 3.8-5.3GHz Zen 4",     "base_price": 6890,  "search": "7700"},
+    {"name": "Intel Core Ultra 9 285K",  "category": "CPU", "brand": "Intel", "spec": "24C/24T 3.7-5.7GHz Arrow Lake",    "base_price": 19800, "search": "285K"},
+    {"name": "AMD Ryzen 7 7800X3D",    "category": "CPU", "brand": "AMD",   "spec": "8C/16T 4.2-5.0GHz 3D V-Cache", "base_price": 14750, "search": "7800X3D"},
+    {"name": "AMD Ryzen 5 7500F",      "category": "CPU", "brand": "AMD",   "spec": "6C/12T 3.7-5.0GHz Zen 4",     "base_price": 5250,  "search": "7500F"},
+    {"name": "AMD Ryzen 7 7700",       "category": "CPU", "brand": "AMD",   "spec": "8C/16T 3.8-5.3GHz Zen 4",     "base_price": 10400, "search": "7700"},
     #
     {"name": "NVIDIA RTX 5060",        "category": "GPU", "brand": "NVIDIA", "spec": "8GB GDDR7",                  "base_price": 10990, "search": "RTX 5060"},
     {"name": "NVIDIA RTX 5060 Ti 16GB","category": "GPU", "brand": "NVIDIA", "spec": "16GB GDDR7",                 "base_price": 13790, "search": "5060 Ti"},
