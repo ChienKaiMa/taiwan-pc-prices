@@ -141,7 +141,10 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
     <div>RTX 5060 Ti / 5060 — <a href="https://www.nvidia.com/zh-tw/geforce/news/geforce-rtx-5060-ti-game-ready-driver/" target="_blank" style="color:#0f3460; text-decoration:none;">NVIDIA 官方新聞稿</a>（NT$13,790 / 10,990）</div>
     <div>RTX 5090 / 5080 / 5070 Ti / 5070 — <a href="https://www.mobile01.com/topicdetail.php?f=298&t=7068386" target="_blank" style="color:#0f3460; text-decoration:none;">Mobile01 網友引述 NVIDIA 台灣定價</a>（NT$71,990 / 35,990 / 26,990 / 19,990）</div>
     <div>RX 9070 XT / 9070 — <a href="https://www.coolaler.com/amd-rx-9070-9070-xt-%E5%8F%B0%E7%81%A3%E5%94%AE%E5%83%B9-%E8%87%B4%E6%95%AC%E5%B0%8D%E6%89%8B-%E9%A6%96%E6%89%B9%E4%B9%9F%E9%87%8F%E5%B0%91/" target="_blank" style="color:#0f3460; text-decoration:none;">滄者極限 台灣首發售價報導</a>（NT$22,990 / 19,990 起）</div>
-    <div style="margin-top:.3rem; color:#bbb;">其他產品建議售價為原廠公布之台灣官方定價或產品發布時之市場參考價</div>
+    <div>Intel Core Ultra 5 245K / 265K / 285K — <a href="https://www.xfastest.com/news/intel/145545" target="_blank" style="color:#0f3460; text-decoration:none;">XFastest 引用原價屋 Intel Arrow Lake 台灣定價</a>（NT$10,400 / 13,600 / 19,800）</div>
+    <div>Core Ultra 7 270K Plus — <a href="https://www.4gamers.com.tw/news/detail/79197/intel-core-ultra-7-270k-plus-promotion-may-2026" target="_blank" style="color:#0f3460; text-decoration:none;">4Gamers 報導</a>（NT$12,500）</div>
+    <div>AMD Ryzen 7 7800X3D / 7500F / 7700 — <a href="https://www.coolpc.com.tw/tw/shop/cpu/" target="_blank" style="color:#0f3460; text-decoration:none;">原價屋 CoolPC 台灣零售定價</a>（NT$14,750 / 5,250 / 10,400）</div>
+    <div style="margin-top:.3rem; color:#bbb;">* CPU/GPU 為台灣官方建議售價，RAM/SSD 為市場參考價，實際售價依各商店標示為準</div>
   </div>
 </div>
 
@@ -293,7 +296,7 @@ function updateStats() {
 }
 
 function updateTable() {
-  let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>規格</th><th>建議售價</th>`;
+  let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>規格</th><th title="CPU/GPU 為官方建議售價；RAM/SSD 為市場參考價">建議售價*</th>`;
   const stores = [...new Set(allData.flatMap(p => Object.keys(p.prices)))];
   stores.forEach(s => html += `<th>${s}</th>`);
   html += `</tr></thead><tbody>`;
