@@ -45,16 +45,40 @@ latest = db.get_latest_by_product()
 with open(os.path.join(DATA_DIR, "prices.json"), "w") as f:
     json.dump(latest, f, ensure_ascii=False, indent=2)
 
-# 4. Generate history.json (all products, last 45 days)
+# 4. Generate history.json — merge with existing, keep last 45 days
 print("Generating history.json...")
+history_path = os.path.join(DATA_DIR, "history.json")
+
 products = db.get_all_products()
-all_history = {}
+new_history = {}
 for p in products:
     h = db.get_price_history(p["name"], 45)
     if h:
-        all_history[p["name"]] = h
-with open(os.path.join(DATA_DIR, "history.json"), "w") as f:
-    json.dump(all_history, f, ensure_ascii=False, indent=2)
+        new_history[p["name"]] = h
+
+# Merge with existing history to preserve past scrapes
+if os.path.exists(history_path):
+    try:
+        with open(history_path) as f:
+            existing = json.load(f)
+        for prod, records in existing.items():
+            if prod not in new_history:
+                new_history[prod] = records
+            else:
+                seen = {(r["store"], r["recorded_at"]) for r in new_history[prod]}
+                for r in records:
+                    key = (r["store"], r["recorded_at"])
+                    if key not in seen:
+                        new_history[prod].append(r)
+                        seen.add(key)
+                # Sort by recorded_at ascending
+                new_history[prod].sort(key=lambda x: x["recorded_at"])
+        print(f"Merged with existing history")
+    except (json.JSONDecodeError, KeyError) as e:
+        print(f"Warning: could not merge existing history: {e}")
+
+with open(history_path, "w") as f:
+    json.dump(new_history, f, ensure_ascii=False, indent=2)
 
 # 5. Copy index.html to docs/
 print("Copying index.html...")
