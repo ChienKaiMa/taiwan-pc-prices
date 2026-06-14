@@ -327,19 +327,38 @@ async function updateVolatilityCards() {
   const stats = {};
   for (const [product, records] of Object.entries(history)) {
     if (!records || records.length < 2) continue;
-    const prices = records.map(r => r.price).filter(p => p > 0);
-    if (prices.length < 2) continue;
-    const min = Math.min(...prices);
-    const max = Math.max(...prices);
-    const avg = prices.reduce((a, b) => a + b, 0) / prices.length;
+    // Group prices by store to compute per-store time-based volatility
+    const byStore = {};
+    records.forEach(r => {
+      if (r.price > 0) {
+        if (!byStore[r.store]) byStore[r.store] = [];
+        byStore[r.store].push(r.price);
+      }
+    });
+    let maxStoreRange = 0, maxStorePct = 0;
+    let allPrices = [];
+    for (const storePrices of Object.values(byStore)) {
+      if (storePrices.length < 2) continue;
+      allPrices = allPrices.concat(storePrices);
+      const mn = Math.min(...storePrices);
+      const mx = Math.max(...storePrices);
+      const rng = mx - mn;
+      const avg = storePrices.reduce((a, b) => a + b, 0) / storePrices.length;
+      if (rng > maxStoreRange) {
+        maxStoreRange = rng;
+        maxStorePct = avg > 0 ? rng / avg * 100 : 0;
+      }
+    }
+    if (allPrices.length < 2) continue;
+    const avgAll = allPrices.reduce((a, b) => a + b, 0) / allPrices.length;
     const msrp = prodMsrp[product] || 0;
     stats[product] = {
-      range: max - min,
-      pct: avg > 0 ? (max - min) / avg * 100 : 0,
-      avgPrice: avg,
+      range: maxStoreRange,
+      pct: maxStorePct,
+      avgPrice: avgAll,
       msrp: msrp,
-      premium: msrp > 0 ? avg - msrp : 0,
-      premiumPct: msrp > 0 ? (avg - msrp) / msrp * 100 : 0,
+      premium: msrp > 0 ? avgAll - msrp : 0,
+      premiumPct: msrp > 0 ? (avgAll - msrp) / msrp * 100 : 0,
     };
   }
 
