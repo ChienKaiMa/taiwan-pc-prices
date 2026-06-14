@@ -195,7 +195,7 @@ async function refreshData() {
     console.log('Loaded', allData.length, 'products');
     populateSelect();
     updateStats();
-    updateVolatilityCards();
+    updateVolatilityCards(true);
     updateTable();
     updateCharts();
     updateMatchStats();
@@ -315,9 +315,10 @@ async function loadFullHistory(bustCache = false) {
 const CATEGORY_LABELS = { CPU: '處理器', GPU: '顯示卡', RAM: '記憶體', SSD: '固態硬碟' };
 const VOLATILITY_THRESHOLD = 500;
 
-async function updateVolatilityCards() {
-  const history = await loadFullHistory(_bustCache);
-  _bustCache = false;
+async function updateVolatilityCards(bustCacheOverride) {
+  const bust = bustCacheOverride !== undefined ? bustCacheOverride : _bustCache;
+  const history = await loadFullHistory(bust);
+  if (bustCacheOverride === undefined) _bustCache = false;
   if (!history) { document.getElementById('volatilityGrid').innerHTML = ''; return; }
   const categories = [...new Set(allData.map(p => p.category))].sort();
   const prodCat = {};
@@ -410,7 +411,7 @@ function updateTable() {
   document.getElementById('priceTable').innerHTML = html;
 }
 
-let _bustCache = false;
+let _bustCache = true;
 
 async function updateCharts() {
   const product = document.getElementById('productSelect').value;
