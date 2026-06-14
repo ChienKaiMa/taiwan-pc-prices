@@ -8,17 +8,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 4790,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 4490,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 4690,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -32,17 +32,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 7190,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 6890,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 6990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -51,22 +51,22 @@
     "name": "AMD Ryzen 7 7800X3D",
     "category": "CPU",
     "brand": "AMD",
-    "spec": "8C/16T 4.2-5.0GHz Zen 4 3D V-Cache",
+    "spec": "8C/16T 4.2-5.0GHz 3D V-Cache",
     "msrp": 14750,
     "prices": {
       "原價屋 CoolPC": {
         "price": 9990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 9990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 9990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -75,22 +75,22 @@
     "name": "Intel Core Ultra 5 245K",
     "category": "CPU",
     "brand": "Intel",
-    "spec": "6P+8E 4.2-5.2GHz Arrow Lake",
+    "spec": "14C/14T 4.2-5.2GHz Arrow Lake",
     "msrp": 10400,
     "prices": {
       "原價屋 CoolPC": {
         "price": 6990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 6990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 6890,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -99,22 +99,22 @@
     "name": "Intel Core Ultra 7 265K",
     "category": "CPU",
     "brand": "Intel",
-    "spec": "8P+12E 3.9-5.5GHz Arrow Lake",
+    "spec": "20C/20T 3.9-5.5GHz Arrow Lake",
     "msrp": 13600,
     "prices": {
       "原價屋 CoolPC": {
         "price": 10200,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 10300,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 9800,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -123,22 +123,22 @@
     "name": "Intel Core Ultra 7 270K Plus",
     "category": "CPU",
     "brand": "Intel",
-    "spec": "8P+12E 4.1-5.6GHz Arrow Lake",
+    "spec": "24C/24T 3.7-5.5GHz Arrow Lake Refresh",
     "msrp": 12500,
     "prices": {
       "原價屋 CoolPC": {
         "price": 12500,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 12500,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 12400,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -147,22 +147,22 @@
     "name": "Intel Core Ultra 9 285K",
     "category": "CPU",
     "brand": "Intel",
-    "spec": "8P+16E 3.7-5.7GHz Arrow Lake",
+    "spec": "24C/24T 3.7-5.7GHz Arrow Lake",
     "msrp": 19800,
     "prices": {
       "原價屋 CoolPC": {
         "price": 18600,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 18600,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 18200,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -171,22 +171,22 @@
     "name": "AMD RX 9070",
     "category": "GPU",
     "brand": "AMD",
-    "spec": "16GB GDDR6 RDNA 4",
-    "msrp": 16990,
+    "spec": "16GB GDDR6",
+    "msrp": 19990,
     "prices": {
       "原價屋 CoolPC": {
         "price": 24590,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 24890,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 24890,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -195,22 +195,22 @@
     "name": "AMD RX 9070 XT",
     "category": "GPU",
     "brand": "AMD",
-    "spec": "16GB GDDR6 RDNA 4",
-    "msrp": 19990,
+    "spec": "16GB GDDR6",
+    "msrp": 22990,
     "prices": {
       "原價屋 CoolPC": {
         "price": 21990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 25590,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 25590,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -219,22 +219,46 @@
     "name": "NVIDIA RTX 5060",
     "category": "GPU",
     "brand": "NVIDIA",
-    "spec": "8GB GDDR7 Blackwell",
-    "msrp": 8990,
+    "spec": "8GB GDDR7",
+    "msrp": 10990,
     "prices": {
       "原價屋 CoolPC": {
         "price": 11988,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 11988,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 11990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
+        "is_synthetic": 0
+      }
+    }
+  },
+  {
+    "name": "NVIDIA RTX 5060 Ti 16GB",
+    "category": "GPU",
+    "brand": "NVIDIA",
+    "spec": "16GB GDDR7",
+    "msrp": 13790,
+    "prices": {
+      "原價屋 CoolPC": {
+        "price": 18490,
+        "date": "2026-06-14T18:31:25.987259",
+        "is_synthetic": 0
+      },
+      "欣亞 Sinya": {
+        "price": 20490,
+        "date": "2026-06-14T18:31:25.987259",
+        "is_synthetic": 0
+      },
+      "Autobuy": {
+        "price": 18490,
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -243,30 +267,22 @@
     "name": "NVIDIA RTX 5060 Ti 8GB",
     "category": "GPU",
     "brand": "NVIDIA",
-    "spec": "8GB GDDR7 Blackwell",
+    "spec": "8GB GDDR7",
     "msrp": 12190,
-    "prices": {}
-  },
-  {
-    "name": "NVIDIA RTX 5060 Ti 16GB",
-    "category": "GPU",
-    "brand": "NVIDIA",
-    "spec": "16GB GDDR7 Blackwell",
-    "msrp": 13790,
     "prices": {
       "原價屋 CoolPC": {
-        "price": 18490,
-        "date": "2026-06-14T11:30:44.819378",
+        "price": 14888,
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
-        "price": 17990,
-        "date": "2026-06-14T11:30:44.819378",
+        "price": 16590,
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
-        "price": 18490,
-        "date": "2026-06-14T11:30:44.819378",
+        "price": 15490,
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -275,22 +291,22 @@
     "name": "NVIDIA RTX 5070",
     "category": "GPU",
     "brand": "NVIDIA",
-    "spec": "12GB GDDR7 Blackwell",
-    "msrp": 18990,
+    "spec": "12GB GDDR7",
+    "msrp": 19990,
     "prices": {
       "原價屋 CoolPC": {
         "price": 21888,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 21888,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 22490,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -299,22 +315,22 @@
     "name": "NVIDIA RTX 5070 Ti",
     "category": "GPU",
     "brand": "NVIDIA",
-    "spec": "16GB GDDR7 Blackwell",
-    "msrp": 24990,
+    "spec": "16GB GDDR7",
+    "msrp": 26990,
     "prices": {
       "原價屋 CoolPC": {
         "price": 25490,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 33990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 25490,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -323,22 +339,22 @@
     "name": "NVIDIA RTX 5080",
     "category": "GPU",
     "brand": "NVIDIA",
-    "spec": "16GB GDDR7 Blackwell",
-    "msrp": 37990,
+    "spec": "16GB GDDR7",
+    "msrp": 35990,
     "prices": {
       "原價屋 CoolPC": {
         "price": 44888,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 44888,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 44990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -347,22 +363,22 @@
     "name": "NVIDIA RTX 5090",
     "category": "GPU",
     "brand": "NVIDIA",
-    "spec": "32GB GDDR7 Blackwell",
+    "spec": "32GB GDDR7",
     "msrp": 71990,
     "prices": {
+      "Autobuy": {
+        "price": 195000,
+        "date": "2026-06-12T03:24:10.061375",
+        "is_synthetic": 0
+      },
       "原價屋 CoolPC": {
         "price": 122990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 104888,
-        "date": "2026-06-14T11:30:44.819378",
-        "is_synthetic": 0
-      },
-      "Autobuy": {
-        "price": 195000,
-        "date": "2026-06-12T03:24:10.061375",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -371,12 +387,12 @@
     "name": "Corsair Vengeance DDR5-6000 32GB",
     "category": "RAM",
     "brand": "Corsair",
-    "spec": "32GB (2x16GB) DDR5-6000 CL36",
-    "msrp": 3299,
+    "spec": "32GB (2x16GB) DDR5-6000 CL30",
+    "msrp": 13490,
     "prices": {
       "原價屋 CoolPC": {
-        "price": 7300,
-        "date": "2026-06-14T11:30:44.819378",
+        "price": 13490,
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -386,16 +402,16 @@
     "category": "RAM",
     "brand": "G.Skill",
     "spec": "32GB (2x16GB) DDR5-6400 CL32",
-    "msrp": 4199,
+    "msrp": 13500,
     "prices": {
       "原價屋 CoolPC": {
         "price": 13990,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 13500,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -405,21 +421,21 @@
     "category": "RAM",
     "brand": "Kingston",
     "spec": "32GB (2x16GB) DDR5-5600 CL36",
-    "msrp": 3299,
+    "msrp": 13800,
     "prices": {
       "原價屋 CoolPC": {
         "price": 13800,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 13800,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
-        "price": 7250,
-        "date": "2026-06-14T11:30:44.819378",
+        "price": 9200,
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -428,17 +444,17 @@
     "name": "Crucial P3 Plus 1TB",
     "category": "SSD",
     "brand": "Crucial",
-    "spec": "1TB PCIe 4.0 NVMe M.2",
-    "msrp": 2599,
+    "spec": "1TB NVMe M.2 PCIe 4.0",
+    "msrp": 2299,
     "prices": {
       "原價屋 CoolPC": {
         "price": 5100,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 4599,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -447,22 +463,22 @@
     "name": "Samsung 990 Pro 1TB",
     "category": "SSD",
     "brand": "Samsung",
-    "spec": "1TB PCIe 4.0 NVMe M.2",
-    "msrp": 3299,
+    "spec": "1TB NVMe M.2 PCIe 4.0",
+    "msrp": 9659,
     "prices": {
       "原價屋 CoolPC": {
         "price": 9659,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 10269,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 9659,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }
@@ -471,17 +487,17 @@
     "name": "WD Black SN850X 1TB",
     "category": "SSD",
     "brand": "WD",
-    "spec": "1TB PCIe 4.0 NVMe M.2",
-    "msrp": 2999,
+    "spec": "1TB NVMe M.2 PCIe 4.0",
+    "msrp": 9999,
     "prices": {
       "原價屋 CoolPC": {
         "price": 9999,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 9650,
-        "date": "2026-06-14T11:30:44.819378",
+        "date": "2026-06-14T18:31:25.987259",
         "is_synthetic": 0
       }
     }

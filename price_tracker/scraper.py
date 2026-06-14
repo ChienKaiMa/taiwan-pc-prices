@@ -31,6 +31,7 @@ PRODUCTS = [
     {"name": "AMD Ryzen 7 7700",       "category": "CPU", "brand": "AMD",   "spec": "8C/16T 3.8-5.3GHz Zen 4",     "base_price": 10400, "search": "7700"},
     #
     {"name": "NVIDIA RTX 5060",        "category": "GPU", "brand": "NVIDIA", "spec": "8GB GDDR7",                  "base_price": 10990, "search": "RTX 5060"},
+    {"name": "NVIDIA RTX 5060 Ti 8GB", "category": "GPU", "brand": "NVIDIA", "spec": "8GB GDDR7",                  "base_price": 12190, "search": "5060 Ti"},
     {"name": "NVIDIA RTX 5060 Ti 16GB","category": "GPU", "brand": "NVIDIA", "spec": "16GB GDDR7",                 "base_price": 13790, "search": "5060 Ti"},
     {"name": "NVIDIA RTX 5070",        "category": "GPU", "brand": "NVIDIA", "spec": "12GB GDDR7",                 "base_price": 19990, "search": "RTX 5070"},
     {"name": "NVIDIA RTX 5070 Ti",     "category": "GPU", "brand": "NVIDIA", "spec": "16GB GDDR7",                 "base_price": 26990, "search": "RTX 5070 Ti"},
@@ -654,6 +655,24 @@ def coolpc_fetch_from_evaluate(max_retries=2):
 
 # ── Product matcher ───────────────────────────────────────────────
 
+def _extract_vram_gb(name):
+    """Extract VRAM capacity in GB from a product/candidate name.
+
+    Returns an int (e.g. 8, 16) or None if not found.
+
+    Handles patterns like '8GB', '16GB', '8G', 'O8G', 'O16G', '-8GB',
+    and also looks for combined tokens like 'rtx5060ti-o8g'.
+    """
+    m = re.search(r'(?<!\d)(\d+)\s*(?:gb|g)\b', name, re.IGNORECASE)
+    if m:
+        return int(m.group(1))
+    # Also check patterns like "o8g", "o16g" (ASUS naming)
+    m = re.search(r'[oO](\d+)[gG]\b', name)
+    if m:
+        return int(m.group(1))
+    return None
+
+
 def _match_product_by_name(product_name, candidates):
     """Given a product name (e.g. 'NVIDIA RTX 5080') and a list of
     {title, price} candidates from a store, find the best match and
@@ -665,8 +684,12 @@ def _match_product_by_name(product_name, candidates):
       3. For GPU chips with many brand variants, pick the cheapest.
       4. Penalize candidates whose model suffix differs from the target
          (e.g. avoid matching 'RX 9070 GRE' when we want 'RX 9070').
+      5. Penalize VRAM mismatch (e.g. 8GB vs 16GB).
     """
     norm_name = _normalize(product_name)
+
+    # Extract VRAM from product name
+    target_vram = _extract_vram_gb(product_name)
 
     # Extract meaningful keywords from the product name
     stopwords = {"nvidia", "amd", "intel", "corsair", "g.skill", "kingston",
@@ -676,7 +699,7 @@ def _match_product_by_name(product_name, candidates):
 
     # Known variant suffixes that define a *different* product tier.
     # These should never match unless the target product name also contains them.
-    variant_suffixes = {"kf", "xt", "gre", "xtx", "super", "ultra", "lite", "max", "ti", "ks", "plus"}
+    variant_suffixes = {"kf", "xt", "gre", "xtx", "super", "ultra", "lite", "max", "ti", "ks"}
 
     # For each candidate, compute a match score
     scored = []
@@ -708,7 +731,14 @@ def _match_product_by_name(product_name, candidates):
             if in_candidate and not in_target:
                 variant_penalty += 60  # heavy: wrong product tier
 
-        score = matches * 10 - bundle_penalty - variant_penalty
+        # Penalise VRAM mismatch (e.g. 8GB vs 16GB)
+        vram_penalty = 0
+        if target_vram is not None:
+            candidate_vram = _extract_vram_gb(c["title"])
+            if candidate_vram is not None and candidate_vram != target_vram:
+                vram_penalty = 80  # heavy: wrong VRAM capacity
+
+        score = matches * 10 - bundle_penalty - variant_penalty - vram_penalty
         # Bonus for exact name match or very high overlap
         if norm_name in c_norm or product_name.lower() in c_norm:
             score += 100
