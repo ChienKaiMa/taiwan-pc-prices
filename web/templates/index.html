@@ -354,17 +354,14 @@ async function updateVolatilityCards() {
 
     items.sort((a, b) => b[1].range - a[1].range);
     const [name, s] = items[0];
+    const msrpNote = s.msrp > 0
+      ? (s.premium > 500 ? `均價高於建議售價 ${s.premiumPct.toFixed(0)}%` : s.premium < -500 ? `均價低於建議售價 ${Math.abs(s.premiumPct).toFixed(0)}%` : `接近建議售價 NT$ ${s.msrp.toLocaleString()}`)
+      : '';
 
     if (s.range >= VOLATILITY_THRESHOLD) {
-      html += `<div class="stat-card"><div class="label">波動最大 ${label}</div><div class="value" style="color:#e11d48">NT$ ${s.range.toLocaleString()}</div><div class="sub">${name}（波動 ${s.pct.toFixed(0)}%）</div></div>`;
+      html += `<div class="stat-card"><div class="label">波動最大 ${label}</div><div class="value" style="color:#e11d48">NT$ ${s.range.toLocaleString()}</div><div class="sub">${name}（波動 ${s.pct.toFixed(0)}%${msrpNote ? ' · ' + msrpNote : ''}）</div></div>`;
     } else {
-      items.sort((a, b) => b[1].premium - a[1].premium);
-      const [pname, ps] = items[0];
-      if (ps.msrp > 0 && ps.premium > 0) {
-        html += `<div class="stat-card"><div class="label">波動最大 ${label}</div><div class="value" style="font-size:1rem;color:#e11d48">高於建議售價 NT$ ${Math.round(ps.premium).toLocaleString()}</div><div class="sub">${pname}（平均溢價 ${ps.premiumPct.toFixed(0)}%）</div></div>`;
-      } else {
-        html += `<div class="stat-card"><div class="label">波動最大 ${label}</div><div class="value" style="font-size:1rem;color:#16a34a">價格平穩</div><div class="sub">${items[0][0]}</div></div>`;
-      }
+      html += `<div class="stat-card"><div class="label">波動最大 ${label}</div><div class="value" style="font-size:1rem;color:#16a34a">價格平穩</div><div class="sub">${name}${msrpNote ? '（' + msrpNote + '）' : ''}</div></div>`;
     }
   });
   document.getElementById('volatilityGrid').innerHTML = html;
