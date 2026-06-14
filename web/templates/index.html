@@ -78,6 +78,8 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
 
   <div class="match-stats" id="matchStats"></div>
 
+  <div class="stats-grid" id="volatilityGrid"></div>
+
   <div class="info-box" id="infoBox">
     <div class="info-header" onclick="toggleInfo()">
       <h3>📋 比價機制說明 — 點擊展開</h3>
@@ -193,6 +195,7 @@ async function refreshData() {
     console.log('Loaded', allData.length, 'products');
     populateSelect();
     updateStats();
+    updateVolatilityCards();
     updateTable();
     updateCharts();
     updateMatchStats();
@@ -294,6 +297,77 @@ function updateStats() {
   });
 
   document.getElementById('statsGrid').innerHTML = html;
+}
+
+async function loadFullHistory(bustCache = false) {
+  if (!isGitHubPages) {
+    try {
+      const r = await fetch('/api/history?days=45');
+      if (r.ok) return await r.json();
+    } catch {}
+  }
+  const url = bustCache ? 'data/history.json?t=' + Date.now() : 'data/history.json';
+  const r = await fetch(url);
+  if (r.ok) return await r.json();
+  return {};
+}
+
+const CATEGORY_LABELS = { CPU: '處理器', GPU: '顯示卡', RAM: '記憶體', SSD: '固態硬碟' };
+const VOLATILITY_THRESHOLD = 500;
+
+async function updateVolatilityCards() {
+  const history = await loadFullHistory(_bustCache);
+  _bustCache = false;
+  if (!history) { document.getElementById('volatilityGrid').innerHTML = ''; return; }
+  const categories = [...new Set(allData.map(p => p.category))].sort();
+  const prodCat = {};
+  const prodMsrp = {};
+  allData.forEach(p => { prodCat[p.name] = p.category; prodMsrp[p.name] = p.msrp || 0; });
+
+  const stats = {};
+  for (const [product, records] of Object.entries(history)) {
+    if (!records || records.length < 2) continue;
+    const prices = records.map(r => r.price).filter(p => p > 0);
+    if (prices.length < 2) continue;
+    const min = Math.min(...prices);
+    const max = Math.max(...prices);
+    const avg = prices.reduce((a, b) => a + b, 0) / prices.length;
+    const msrp = prodMsrp[product] || 0;
+    stats[product] = {
+      range: max - min,
+      pct: avg > 0 ? (max - min) / avg * 100 : 0,
+      avgPrice: avg,
+      msrp: msrp,
+      premium: msrp > 0 ? avg - msrp : 0,
+      premiumPct: msrp > 0 ? (avg - msrp) / msrp * 100 : 0,
+    };
+  }
+
+  let html = '';
+  categories.forEach(cat => {
+    const items = Object.entries(stats).filter(([name]) => prodCat[name] === cat);
+    const label = CATEGORY_LABELS[cat] || cat;
+    if (items.length === 0) {
+      html += `<div class="stat-card"><div class="label">波動最大 ${label}</div><div class="value" style="font-size:1rem;color:#999">尚無資料</div><div class="sub">無足夠歷史記錄</div></div>`;
+      return;
+    }
+
+    items.sort((a, b) => b[1].range - a[1].range);
+    const [name, s] = items[0];
+
+    if (s.range >= VOLATILITY_THRESHOLD) {
+      html += `<div class="stat-card"><div class="label">波動最大 ${label}</div><div class="value" style="color:#e11d48">NT$ ${s.range.toLocaleString()}</div><div class="sub">${name}（波動 ${s.pct.toFixed(0)}%）</div></div>`;
+    } else {
+      items.sort((a, b) => b[1].premium - a[1].premium);
+      const [pname, ps] = items[0];
+      if (ps.msrp > 0 && ps.premium > 0) {
+        html += `<div class="stat-card"><div class="label">波動最大 ${label}</div><div class="value" style="font-size:1rem;color:#e11d48">高於建議售價 NT$ ${Math.round(ps.premium).toLocaleString()}</div><div class="sub">${pname}（平均溢價 ${ps.premiumPct.toFixed(0)}%）</div></div>`;
+      } else {
+        html += `<div class="stat-card"><div class="label">波動最大 ${label}</div><div class="value" style="font-size:1rem;color:#16a34a">價格平穩</div><div class="sub">${items[0][0]}</div></div>`;
+      }
+    }
+  });
+  document.getElementById('volatilityGrid').innerHTML = html;
 }
 
 function updateTable() {
