@@ -154,6 +154,7 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
 let compareChart = null, historyChart = null;
 let allData = [];
 let selectedProduct = null;
+let fullHistoryData = null;
 
 const isGitHubPages = window.location.hostname.includes('github.io');
 
@@ -318,6 +319,7 @@ const VOLATILITY_THRESHOLD = 500;
 async function updateVolatilityCards(bustCacheOverride) {
   const bust = bustCacheOverride !== undefined ? bustCacheOverride : _bustCache;
   const history = await loadFullHistory(bust);
+  fullHistoryData = history;
   if (bustCacheOverride === undefined) _bustCache = false;
   if (!history) { document.getElementById('volatilityGrid').innerHTML = ''; return; }
   const categories = [...new Set(allData.map(p => p.category))].sort();
