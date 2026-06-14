@@ -39,10 +39,34 @@ for prod in PRODUCTS:
         db.record_price(pid, sid, real_price, now.isoformat(), 0)
 db.commit()
 
-# 3. Generate prices.json (same format as /api/prices)
+# 3. Generate prices.json (same format as /api/prices) — merge with existing
 print("Generating prices.json...")
 latest = db.get_latest_by_product()
-with open(os.path.join(DATA_DIR, "prices.json"), "w") as f:
+prices_path = os.path.join(DATA_DIR, "prices.json")
+if os.path.exists(prices_path):
+    try:
+        with open(prices_path) as f:
+            existing = json.load(f)
+        # Build lookup: product_name → {store → entry}
+        merged = {p["name"]: p for p in latest}
+        for old_p in existing:
+            name = old_p["name"]
+            if name not in merged:
+                merged[name] = old_p
+                continue
+            # For each store in old data, keep if new scrape has no data
+            for store, entry in old_p.get("prices", {}).items():
+                if store not in merged[name].get("prices", {}):
+                    merged[name].setdefault("prices", {})[store] = entry
+        latest = list(merged.values())
+        # Update MSRP from PRODUCTS definition
+        msrp_map = {p["name"]: p.get("base_price", 0) for p in PRODUCTS}
+        for p in latest:
+            p["msrp"] = msrp_map.get(p["name"], p.get("msrp", 0))
+        print(f"Merged with existing prices")
+    except (json.JSONDecodeError, KeyError) as e:
+        print(f"Warning: could not merge existing prices: {e}")
+with open(prices_path, "w") as f:
     json.dump(latest, f, ensure_ascii=False, indent=2)
 
 # 4. Generate history.json — merge with existing, keep last 45 days

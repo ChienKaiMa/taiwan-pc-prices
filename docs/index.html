@@ -209,11 +209,12 @@ function toggleInfo() {
   body.classList.toggle('open');
 }
 
+const ALL_STORES = ['原價屋 CoolPC', '欣亞 Sinya', 'Autobuy'];
+
 function updateMatchStats() {
   const totalProducts = allData.length;
-  const storeNames = [...new Set(allData.flatMap(p => Object.keys(p.prices)))];
   const storeCounts = {};
-  storeNames.forEach(s => { storeCounts[s] = 0; });
+  ALL_STORES.forEach(s => { storeCounts[s] = 0; });
   allData.forEach(p => {
     Object.entries(p.prices).forEach(([store, data]) => {
       if (data && data.price && data.is_synthetic === 0) {
@@ -223,7 +224,7 @@ function updateMatchStats() {
   });
 
   let html = '';
-  storeNames.forEach(store => {
+  ALL_STORES.forEach(store => {
     const matched = storeCounts[store] || 0;
     const pct = Math.round(matched / totalProducts * 100);
     html += `
@@ -297,8 +298,7 @@ function updateStats() {
 
 function updateTable() {
   let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>規格</th><th title="CPU/GPU 為官方建議售價；RAM/SSD 為市場參考價">建議售價*</th>`;
-  const stores = [...new Set(allData.flatMap(p => Object.keys(p.prices)))];
-  stores.forEach(s => html += `<th>${s}</th>`);
+  ALL_STORES.forEach(s => html += `<th>${s}</th>`);
   html += `</tr></thead><tbody>`;
   allData.forEach(p => {
     const vals = Object.entries(p.prices).filter(([,v]) => v && v.price);
@@ -308,7 +308,7 @@ function updateTable() {
     html += `<tr data-product="${p.name}" class="${isSelected ? 'selected' : ''}" onclick="selectProduct(this.dataset.product)" style="cursor:pointer">`;
     const msrp = p.msrp || 0;
     html += `<td><span class="category-badge cat-${p.category}">${p.category}</span></td><td><strong>${p.name}</strong></td><td style="font-size:.8rem;color:#666">${p.spec}</td><td style="font-size:.85rem;font-weight:600;color:#666">${msrp ? 'NT$ ' + msrp.toLocaleString() : '-'}</td>`;
-    stores.forEach(s => {
+    ALL_STORES.forEach(s => {
       const entry = p.prices[s];
       if (!entry || !entry.price) { html += `<td>-</td>`; return; }
       const cls = entry.price === minPrice ? 'price price-min' : 'price';
