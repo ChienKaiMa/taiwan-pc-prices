@@ -432,7 +432,7 @@ function getCurrentLow(productName) {
 }
 
 function updateTable() {
-  let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>規格</th><th title="CPU/GPU 為官方建議售價；RAM/SSD 為市場參考價">建議售價*</th><th title="歷史最低價格（根據已記錄的資料）">歷史低價</th>`;
+  let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>規格</th><th title="CPU/GPU 為官方建議售價；RAM/SSD 為市場參考價">建議售價*</th><th title="歷史最低價格（根據已記錄的資料）">歷史低價</th><th>開始追蹤</th>`;
   ALL_STORES.forEach(s => html += `<th>${s}</th>`);
   html += `</tr></thead><tbody>`;
   allData.forEach(p => {
@@ -441,10 +441,12 @@ function updateTable() {
     const minPrice = prices.length ? Math.min(...prices) : 0;
     const isSelected = selectedProduct === p.name;
     const hl = getHistoricalLow(p.name) || getCurrentLow(p.name);
+    const firstDate = getFirstTrackingDate(p.name);
     html += `<tr data-product="${p.name}" class="${isSelected ? 'selected' : ''}" onclick="selectProduct(this.dataset.product)" style="cursor:pointer">`;
     const msrp = p.msrp || 0;
     html += `<td><span class="category-badge cat-${p.category}">${p.category}</span></td><td><strong>${p.name}</strong></td><td style="font-size:.8rem;color:#666">${p.spec}</td><td style="font-size:.85rem;font-weight:600;color:#666">${msrp ? 'NT$ ' + msrp.toLocaleString() : '-'}</td>`;
     html += `<td style="font-size:.85rem">${hl ? '<span class="price-min">NT$ ' + hl.price.toLocaleString() + '</span><div style="font-size:.7rem;color:#999;margin-top:2px">' + hl.store + '</div>' : '-'}</td>`;
+    html += `<td style="font-size:.8rem;color:#888">${firstDate || '-'}</td>`;
     ALL_STORES.forEach(s => {
       const entry = p.prices[s];
       if (!entry || !entry.price) { html += `<td>-</td>`; return; }
