@@ -119,7 +119,7 @@ class DB:
             WHERE ps.id IN (
                 SELECT MAX(id) FROM price_snapshots GROUP BY product_id, store_id
             )
-            ORDER BY p.category, p.name, s.name
+            ORDER BY p.id, s.name
         """).fetchall()
         return [dict(r) for r in rows]
 
@@ -140,7 +140,7 @@ class DB:
         rows = self.conn.execute("""
             SELECT DISTINCT p.name, p.category, p.brand, p.spec, p.msrp
             FROM products p
-            ORDER BY p.category, p.name
+            ORDER BY p.id
         """).fetchall()
         return [dict(r) for r in rows]
 
@@ -159,7 +159,7 @@ class DB:
             WHERE ps.id IN (
                 SELECT MAX(id) FROM price_snapshots GROUP BY product_id, store_id
             )
-            ORDER BY p.category, p.name
+            ORDER BY p.id
         """).fetchall()
         result = {}
         for r in rows:

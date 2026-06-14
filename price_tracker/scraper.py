@@ -849,12 +849,13 @@ def scrape_real_prices():
 
     # Summary
     print("\n" + "=" * 55)
+    active_stores = ["原價屋 CoolPC", "欣亞 Sinya", "Autobuy"]
     total_real = 0
-    total_possible = len(PRODUCTS) * len(results)
-    for store_name in ["原價屋 CoolPC", "欣亞 Sinya", "PChome 24h", "Autobuy"]:
+    total_possible = len(PRODUCTS) * len(active_stores)
+    for store_name in active_stores + ["PChome 24h"]:
         count = len(results[store_name])
         pct = round(count / len(PRODUCTS) * 100)
-        total_real += count
+        total_real += count if store_name != "PChome 24h" else 0
         print(f"  {store_name:20s} {count:>2}/{len(PRODUCTS)} ({pct:>2}%)")
     print(f"  {'TOTAL':20s} {total_real:>2}/{total_possible} ({round(total_real/total_possible*100)}%)")
     print("=" * 55)

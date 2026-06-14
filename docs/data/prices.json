@@ -1,77 +1,5 @@
 [
   {
-    "name": "AMD Ryzen 5 7500F",
-    "category": "CPU",
-    "brand": "AMD",
-    "spec": "6C/12T 3.7-5.0GHz Zen 4",
-    "msrp": 5250,
-    "prices": {
-      "原價屋 CoolPC": {
-        "price": 4790,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      },
-      "欣亞 Sinya": {
-        "price": 4490,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      },
-      "Autobuy": {
-        "price": 4690,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      }
-    }
-  },
-  {
-    "name": "AMD Ryzen 7 7700",
-    "category": "CPU",
-    "brand": "AMD",
-    "spec": "8C/16T 3.8-5.3GHz Zen 4",
-    "msrp": 10400,
-    "prices": {
-      "原價屋 CoolPC": {
-        "price": 7190,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      },
-      "欣亞 Sinya": {
-        "price": 6890,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      },
-      "Autobuy": {
-        "price": 6990,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      }
-    }
-  },
-  {
-    "name": "AMD Ryzen 7 7800X3D",
-    "category": "CPU",
-    "brand": "AMD",
-    "spec": "8C/16T 4.2-5.0GHz 3D V-Cache",
-    "msrp": 14750,
-    "prices": {
-      "原價屋 CoolPC": {
-        "price": 9990,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      },
-      "欣亞 Sinya": {
-        "price": 9990,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      },
-      "Autobuy": {
-        "price": 9990,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      }
-    }
-  },
-  {
     "name": "Intel Core Ultra 5 245K",
     "category": "CPU",
     "brand": "Intel",
@@ -80,17 +8,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 6990,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 6990,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 6890,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -104,17 +32,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 10200,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 10300,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 9800,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -128,17 +56,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 12500,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 12500,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 12400,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -152,65 +80,89 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 18600,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 18600,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 18200,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
   },
   {
-    "name": "AMD RX 9070",
-    "category": "GPU",
+    "name": "AMD Ryzen 7 7800X3D",
+    "category": "CPU",
     "brand": "AMD",
-    "spec": "16GB GDDR6",
-    "msrp": 19990,
+    "spec": "8C/16T 4.2-5.0GHz 3D V-Cache",
+    "msrp": 14750,
     "prices": {
       "原價屋 CoolPC": {
-        "price": 24590,
-        "date": "2026-06-14T18:31:25.987259",
+        "price": 9990,
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
-        "price": 24890,
-        "date": "2026-06-14T18:31:25.987259",
+        "price": 9990,
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
-        "price": 24890,
-        "date": "2026-06-14T18:31:25.987259",
+        "price": 9990,
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
   },
   {
-    "name": "AMD RX 9070 XT",
-    "category": "GPU",
+    "name": "AMD Ryzen 5 7500F",
+    "category": "CPU",
     "brand": "AMD",
-    "spec": "16GB GDDR6",
-    "msrp": 22990,
+    "spec": "6C/12T 3.7-5.0GHz Zen 4",
+    "msrp": 5250,
     "prices": {
       "原價屋 CoolPC": {
-        "price": 21990,
-        "date": "2026-06-14T18:31:25.987259",
+        "price": 4790,
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
-        "price": 25590,
-        "date": "2026-06-14T18:31:25.987259",
+        "price": 4490,
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
-        "price": 25590,
-        "date": "2026-06-14T18:31:25.987259",
+        "price": 4690,
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      }
+    }
+  },
+  {
+    "name": "AMD Ryzen 7 7700",
+    "category": "CPU",
+    "brand": "AMD",
+    "spec": "8C/16T 3.8-5.3GHz Zen 4",
+    "msrp": 10400,
+    "prices": {
+      "原價屋 CoolPC": {
+        "price": 7190,
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      },
+      "欣亞 Sinya": {
+        "price": 6890,
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      },
+      "Autobuy": {
+        "price": 6990,
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -224,41 +176,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 11988,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 11988,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 11990,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      }
-    }
-  },
-  {
-    "name": "NVIDIA RTX 5060 Ti 16GB",
-    "category": "GPU",
-    "brand": "NVIDIA",
-    "spec": "16GB GDDR7",
-    "msrp": 13790,
-    "prices": {
-      "原價屋 CoolPC": {
-        "price": 18490,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      },
-      "欣亞 Sinya": {
-        "price": 20490,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      },
-      "Autobuy": {
-        "price": 18490,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -272,17 +200,41 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 14888,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 16590,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 15490,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      }
+    }
+  },
+  {
+    "name": "NVIDIA RTX 5060 Ti 16GB",
+    "category": "GPU",
+    "brand": "NVIDIA",
+    "spec": "16GB GDDR7",
+    "msrp": 13790,
+    "prices": {
+      "原價屋 CoolPC": {
+        "price": 18490,
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      },
+      "欣亞 Sinya": {
+        "price": 20490,
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      },
+      "Autobuy": {
+        "price": 18490,
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -296,17 +248,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 21888,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 21888,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 22490,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -320,17 +272,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 25490,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 33990,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 25490,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -344,17 +296,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 44888,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 44888,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 44990,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -373,12 +325,60 @@
       },
       "原價屋 CoolPC": {
         "price": 122990,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 104888,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      }
+    }
+  },
+  {
+    "name": "AMD RX 9070",
+    "category": "GPU",
+    "brand": "AMD",
+    "spec": "16GB GDDR6",
+    "msrp": 19990,
+    "prices": {
+      "原價屋 CoolPC": {
+        "price": 24590,
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      },
+      "欣亞 Sinya": {
+        "price": 24890,
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      },
+      "Autobuy": {
+        "price": 24890,
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      }
+    }
+  },
+  {
+    "name": "AMD RX 9070 XT",
+    "category": "GPU",
+    "brand": "AMD",
+    "spec": "16GB GDDR6",
+    "msrp": 22990,
+    "prices": {
+      "原價屋 CoolPC": {
+        "price": 21990,
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      },
+      "欣亞 Sinya": {
+        "price": 25590,
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      },
+      "Autobuy": {
+        "price": 25590,
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -392,7 +392,7 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 13490,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -406,12 +406,12 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 13990,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 13500,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -425,36 +425,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 13800,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 13800,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 9200,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      }
-    }
-  },
-  {
-    "name": "Crucial P3 Plus 1TB",
-    "category": "SSD",
-    "brand": "Crucial",
-    "spec": "1TB NVMe M.2 PCIe 4.0",
-    "msrp": 2299,
-    "prices": {
-      "原價屋 CoolPC": {
-        "price": 5100,
-        "date": "2026-06-14T18:31:25.987259",
-        "is_synthetic": 0
-      },
-      "Autobuy": {
-        "price": 4599,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -468,17 +449,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 9659,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 10269,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "Autobuy": {
         "price": 9659,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }
@@ -492,12 +473,31 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 9999,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       },
       "欣亞 Sinya": {
         "price": 9650,
-        "date": "2026-06-14T18:31:25.987259",
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      }
+    }
+  },
+  {
+    "name": "Crucial P3 Plus 1TB",
+    "category": "SSD",
+    "brand": "Crucial",
+    "spec": "1TB NVMe M.2 PCIe 4.0",
+    "msrp": 2299,
+    "prices": {
+      "原價屋 CoolPC": {
+        "price": 5100,
+        "date": "2026-06-14T18:49:34.981547",
+        "is_synthetic": 0
+      },
+      "Autobuy": {
+        "price": 4599,
+        "date": "2026-06-14T18:49:34.981547",
         "is_synthetic": 0
       }
     }

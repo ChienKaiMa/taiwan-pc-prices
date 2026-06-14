@@ -42,6 +42,10 @@ db.commit()
 # 3. Generate prices.json (same format as /api/prices) — merge with existing
 print("Generating prices.json...")
 latest = db.get_latest_by_product()
+# Re-sort to match PRODUCTS list order (DB sorts alphabetically by name,
+# which e.g. puts "16GB" before "8GB")
+product_order = {p["name"]: i for i, p in enumerate(PRODUCTS)}
+latest.sort(key=lambda p: product_order.get(p["name"], 9999))
 prices_path = os.path.join(DATA_DIR, "prices.json")
 if os.path.exists(prices_path):
     try:
@@ -59,6 +63,8 @@ if os.path.exists(prices_path):
                 if store not in merged[name].get("prices", {}):
                     merged[name].setdefault("prices", {})[store] = entry
         latest = list(merged.values())
+        # Re-sort merged list to match PRODUCTS order
+        latest.sort(key=lambda p: product_order.get(p["name"], 9999))
         # Update MSRP from PRODUCTS definition
         msrp_map = {p["name"]: p.get("base_price", 0) for p in PRODUCTS}
         for p in latest:
@@ -97,6 +103,10 @@ if os.path.exists(history_path):
                         seen.add(key)
                 # Sort by recorded_at ascending
                 new_history[prod].sort(key=lambda x: x["recorded_at"])
+        # Re-sort history dict to match PRODUCTS list order
+        product_order = {p["name"]: i for i, p in enumerate(PRODUCTS)}
+        new_history = dict(sorted(new_history.items(),
+                                  key=lambda kv: product_order.get(kv[0], 9999)))
         print(f"Merged with existing history")
     except (json.JSONDecodeError, KeyError) as e:
         print(f"Warning: could not merge existing history: {e}")
