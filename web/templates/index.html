@@ -392,6 +392,19 @@ async function updateVolatilityCards(bustCacheOverride) {
   document.getElementById('volatilityGrid').innerHTML = html;
 }
 
+function getFirstTrackingDate(productName) {
+  if (!fullHistoryData) return null;
+  const records = fullHistoryData[productName];
+  if (!records || records.length === 0) return null;
+  let earliest = null;
+  records.forEach(r => {
+    if (r.recorded_at && (!earliest || r.recorded_at < earliest)) {
+      earliest = r.recorded_at;
+    }
+  });
+  return earliest ? earliest.slice(0, 10) : null;
+}
+
 function getHistoricalLow(productName) {
   if (!fullHistoryData) return null;
   const records = fullHistoryData[productName];
