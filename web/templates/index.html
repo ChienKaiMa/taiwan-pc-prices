@@ -427,9 +427,11 @@ function updateTable() {
     const prices = vals.map(([,v]) => v.price);
     const minPrice = prices.length ? Math.min(...prices) : 0;
     const isSelected = selectedProduct === p.name;
+    const hl = getHistoricalLow(p.name) || getCurrentLow(p.name);
     html += `<tr data-product="${p.name}" class="${isSelected ? 'selected' : ''}" onclick="selectProduct(this.dataset.product)" style="cursor:pointer">`;
     const msrp = p.msrp || 0;
     html += `<td><span class="category-badge cat-${p.category}">${p.category}</span></td><td><strong>${p.name}</strong></td><td style="font-size:.8rem;color:#666">${p.spec}</td><td style="font-size:.85rem;font-weight:600;color:#666">${msrp ? 'NT$ ' + msrp.toLocaleString() : '-'}</td>`;
+    html += `<td style="font-size:.85rem">${hl ? '<span class="price-min">NT$ ' + hl.price.toLocaleString() + '</span><div style="font-size:.7rem;color:#999;margin-top:2px">' + hl.store + '</div>' : '-'}</td>`;
     ALL_STORES.forEach(s => {
       const entry = p.prices[s];
       if (!entry || !entry.price) { html += `<td>-</td>`; return; }
