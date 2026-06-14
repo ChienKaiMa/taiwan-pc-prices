@@ -196,7 +196,7 @@ async function refreshData() {
     console.log('Loaded', allData.length, 'products');
     populateSelect();
     updateStats();
-    updateVolatilityCards(true);
+    await updateVolatilityCards(true);
     updateTable();
     updateCharts();
     updateMatchStats();
