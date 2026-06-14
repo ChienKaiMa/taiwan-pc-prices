@@ -97,11 +97,19 @@ class PriceServer(BaseHTTPRequestHandler):
             self._send_json(_db.get_latest_by_product())
         elif path == "/api/history":
             product = params.get("product", [None])[0]
-            days = int(params.get("days", [30])[0])
+            days_str = params.get("days", [None])[0]
+            days = int(days_str) if days_str else 45
             if product:
                 self._send_json(_db.get_price_history(product, days))
             else:
-                self._send_error("Missing product parameter")
+                # Return full history for all products (used by volatility grid)
+                all_products = _db.get_all_products()
+                result = {}
+                for p in all_products:
+                    h = _db.get_price_history(p["name"], days)
+                    if h:
+                        result[p["name"]] = h
+                self._send_json(result)
         elif path == "/api/products":
             self._send_json(_db.get_all_products())
         elif path == "/api/stores":
