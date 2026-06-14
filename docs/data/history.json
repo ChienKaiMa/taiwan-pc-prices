@@ -321,6 +321,24 @@
     {
       "store": "Autobuy",
       "price": 4690,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 4790,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 4490,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 4690,
       "recorded_at": "2026-06-14T04:20:42.614267",
       "is_synthetic": 0
     },
@@ -798,6 +816,24 @@
       "store": "欣亞 Sinya",
       "price": 6890,
       "recorded_at": "2026-06-13T23:12:17.558418",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 6990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 7190,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 6890,
+      "recorded_at": "2026-06-14T03:35:34.674908",
       "is_synthetic": 0
     },
     {
@@ -1399,6 +1435,24 @@
     {
       "store": "Autobuy",
       "price": 9990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 9990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 9990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 9990,
       "recorded_at": "2026-06-14T04:20:42.614267",
       "is_synthetic": 0
     },
@@ -1960,6 +2014,24 @@
       "store": "欣亞 Sinya",
       "price": 6990,
       "recorded_at": "2026-06-13T23:12:17.558418",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 6890,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 6990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 6990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
       "is_synthetic": 0
     },
     {
@@ -2531,6 +2603,24 @@
     {
       "store": "Autobuy",
       "price": 9800,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 10200,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 10300,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 9800,
       "recorded_at": "2026-06-14T04:20:42.614267",
       "is_synthetic": 0
     },
@@ -3026,6 +3116,24 @@
       "store": "欣亞 Sinya",
       "price": 12500,
       "recorded_at": "2026-06-13T23:12:17.558418",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 12400,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 12500,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 12500,
+      "recorded_at": "2026-06-14T03:35:34.674908",
       "is_synthetic": 0
     },
     {
@@ -3592,6 +3700,24 @@
       "store": "欣亞 Sinya",
       "price": 18600,
       "recorded_at": "2026-06-13T23:12:17.558418",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 18200,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 18600,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 18600,
+      "recorded_at": "2026-06-14T03:35:34.674908",
       "is_synthetic": 0
     },
     {
@@ -4169,6 +4295,24 @@
     {
       "store": "Autobuy",
       "price": 24890,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 24590,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 24890,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 24890,
       "recorded_at": "2026-06-14T04:20:42.614267",
       "is_synthetic": 0
     },
@@ -4741,6 +4885,24 @@
     {
       "store": "Autobuy",
       "price": 25590,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 21990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 25590,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 25590,
       "recorded_at": "2026-06-14T04:20:42.614267",
       "is_synthetic": 0
     },
@@ -5308,6 +5470,24 @@
       "store": "欣亞 Sinya",
       "price": 11988,
       "recorded_at": "2026-06-13T23:12:17.558418",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 11990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 11988,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 11988,
+      "recorded_at": "2026-06-14T03:35:34.674908",
       "is_synthetic": 0
     },
     {
@@ -5910,6 +6090,24 @@
       "store": "欣亞 Sinya",
       "price": 17990,
       "recorded_at": "2026-06-13T23:12:17.558418",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 18490,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 18490,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 17990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
       "is_synthetic": 0
     },
     {
@@ -6523,6 +6721,24 @@
     {
       "store": "Autobuy",
       "price": 22490,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 21888,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 21888,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 22490,
       "recorded_at": "2026-06-14T04:20:42.614267",
       "is_synthetic": 0
     },
@@ -7131,6 +7347,24 @@
     {
       "store": "Autobuy",
       "price": 25490,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 25490,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 33990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 25490,
       "recorded_at": "2026-06-14T04:20:42.614267",
       "is_synthetic": 0
     },
@@ -7703,6 +7937,24 @@
     {
       "store": "Autobuy",
       "price": 44990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 44888,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 44888,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 44990,
       "recorded_at": "2026-06-14T04:20:42.614267",
       "is_synthetic": 0
     },
@@ -8179,6 +8431,18 @@
     {
       "store": "原價屋 CoolPC",
       "price": 122990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 104888,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 122990,
       "recorded_at": "2026-06-14T04:20:42.614267",
       "is_synthetic": 0
     },
@@ -8440,6 +8704,12 @@
       "store": "原價屋 CoolPC",
       "price": 7300,
       "recorded_at": "2026-06-13T23:12:17.558418",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 7300,
+      "recorded_at": "2026-06-14T03:35:34.674908",
       "is_synthetic": 0
     },
     {
@@ -8820,6 +9090,18 @@
       "store": "原價屋 CoolPC",
       "price": 13990,
       "recorded_at": "2026-06-13T23:12:17.558418",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 13500,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 13990,
+      "recorded_at": "2026-06-14T03:35:34.674908",
       "is_synthetic": 0
     },
     {
@@ -9379,6 +9661,24 @@
     {
       "store": "Autobuy",
       "price": 7250,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 13800,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 13800,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 7250,
       "recorded_at": "2026-06-14T04:20:42.614267",
       "is_synthetic": 0
     },
@@ -9856,6 +10156,18 @@
       "store": "原價屋 CoolPC",
       "price": 5100,
       "recorded_at": "2026-06-13T23:12:17.558418",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 4599,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 5100,
+      "recorded_at": "2026-06-14T03:35:34.674908",
       "is_synthetic": 0
     },
     {
@@ -10379,6 +10691,24 @@
     {
       "store": "Autobuy",
       "price": 9659,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 9659,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 10269,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 9659,
       "recorded_at": "2026-06-14T04:20:42.614267",
       "is_synthetic": 0
     },
@@ -10820,6 +11150,18 @@
       "store": "欣亞 Sinya",
       "price": 9650,
       "recorded_at": "2026-06-13T23:12:17.558418",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 9999,
+      "recorded_at": "2026-06-14T03:35:34.674908",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 9650,
+      "recorded_at": "2026-06-14T03:35:34.674908",
       "is_synthetic": 0
     },
     {
