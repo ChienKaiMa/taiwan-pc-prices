@@ -392,8 +392,34 @@ async function updateVolatilityCards(bustCacheOverride) {
   document.getElementById('volatilityGrid').innerHTML = html;
 }
 
+function getHistoricalLow(productName) {
+  if (!fullHistoryData) return null;
+  const records = fullHistoryData[productName];
+  if (!records || records.length === 0) return null;
+  let minPrice = Infinity, minStore = '';
+  records.forEach(r => {
+    if (r.price > 0 && r.price < minPrice) {
+      minPrice = r.price;
+      minStore = r.store;
+    }
+  });
+  return minPrice < Infinity ? { price: minPrice, store: minStore } : null;
+}
+
+function getCurrentLow(productName) {
+  const p = allData.find(x => x.name === productName);
+  if (!p) return null;
+  const vals = Object.entries(p.prices).filter(([,v]) => v && v.price);
+  if (!vals.length) return null;
+  let minPrice = Infinity, minStore = '';
+  vals.forEach(([store, v]) => {
+    if (v.price < minPrice) { minPrice = v.price; minStore = store; }
+  });
+  return { price: minPrice, store: minStore };
+}
+
 function updateTable() {
-  let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>規格</th><th title="CPU/GPU 為官方建議售價；RAM/SSD 為市場參考價">建議售價*</th>`;
+  let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>規格</th><th title="CPU/GPU 為官方建議售價；RAM/SSD 為市場參考價">建議售價*</th><th title="歷史最低價格（根據已記錄的資料）">歷史低價</th>`;
   ALL_STORES.forEach(s => html += `<th>${s}</th>`);
   html += `</tr></thead><tbody>`;
   allData.forEach(p => {
