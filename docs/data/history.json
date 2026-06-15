@@ -797,6 +797,24 @@
       "price": 6990,
       "recorded_at": "2026-06-15T17:43:14.719961",
       "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 6890,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 6990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 6990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
     }
   ],
   "Intel Core Ultra 7 265K": [
@@ -1597,6 +1615,24 @@
       "price": 10200,
       "recorded_at": "2026-06-15T17:43:14.719961",
       "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 9800,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 10200,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 10200,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
     }
   ],
   "Intel Core Ultra 7 270K Plus": [
@@ -2348,6 +2384,24 @@
       "store": "原價屋 CoolPC",
       "price": 12500,
       "recorded_at": "2026-06-15T17:43:14.719961",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 12400,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 12500,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 12500,
+      "recorded_at": "2026-06-15T20:53:43.483106",
       "is_synthetic": 0
     }
   ],
@@ -3148,6 +3202,24 @@
       "store": "原價屋 CoolPC",
       "price": 18600,
       "recorded_at": "2026-06-15T17:43:14.719961",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 18200,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 18600,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 18600,
+      "recorded_at": "2026-06-15T20:53:43.483106",
       "is_synthetic": 0
     }
   ],
@@ -3961,6 +4033,24 @@
       "price": 9990,
       "recorded_at": "2026-06-15T17:43:14.719961",
       "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 9990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 9990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 9990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
     }
   ],
   "AMD Ryzen 5 7500F": [
@@ -4695,6 +4785,24 @@
       "price": 4790,
       "recorded_at": "2026-06-15T17:43:14.719961",
       "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 4690,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 4790,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 4190,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
     }
   ],
   "AMD Ryzen 7 7700": [
@@ -5428,6 +5536,24 @@
       "store": "原價屋 CoolPC",
       "price": 7190,
       "recorded_at": "2026-06-15T17:43:14.719961",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 6990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 7190,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 6590,
+      "recorded_at": "2026-06-15T20:53:43.483106",
       "is_synthetic": 0
     }
   ],
@@ -6229,6 +6355,24 @@
       "price": 11988,
       "recorded_at": "2026-06-15T17:43:14.719961",
       "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 11990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 11988,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 11988,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
     }
   ],
   "NVIDIA RTX 5060 Ti 8GB": [
@@ -6434,6 +6578,24 @@
       "store": "原價屋 CoolPC",
       "price": 14888,
       "recorded_at": "2026-06-15T17:43:14.719961",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 15490,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 14888,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 16590,
+      "recorded_at": "2026-06-15T20:53:43.483106",
       "is_synthetic": 0
     }
   ],
@@ -7234,6 +7396,24 @@
       "store": "原價屋 CoolPC",
       "price": 18490,
       "recorded_at": "2026-06-15T17:43:14.719961",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 18490,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 18490,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 20490,
+      "recorded_at": "2026-06-15T20:53:43.483106",
       "is_synthetic": 0
     }
   ],
@@ -8047,6 +8227,24 @@
       "price": 21888,
       "recorded_at": "2026-06-15T17:43:14.719961",
       "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 22490,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 21888,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 21888,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
     }
   ],
   "NVIDIA RTX 5070 Ti": [
@@ -8846,6 +9044,24 @@
       "store": "原價屋 CoolPC",
       "price": 25490,
       "recorded_at": "2026-06-15T17:43:14.719961",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 25490,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 25490,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 33990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
       "is_synthetic": 0
     }
   ],
@@ -9647,6 +9863,24 @@
       "price": 44888,
       "recorded_at": "2026-06-15T17:43:14.719961",
       "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 44990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 44888,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 44888,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
     }
   ],
   "NVIDIA RTX 5090": [
@@ -10206,6 +10440,18 @@
       "store": "原價屋 CoolPC",
       "price": 125990,
       "recorded_at": "2026-06-15T17:43:14.719961",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 125990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 104888,
+      "recorded_at": "2026-06-15T20:53:43.483106",
       "is_synthetic": 0
     }
   ],
@@ -11007,6 +11253,24 @@
       "price": 24590,
       "recorded_at": "2026-06-15T17:43:14.719961",
       "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 24890,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 24590,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 24890,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
     }
   ],
   "AMD RX 9070 XT": [
@@ -11807,6 +12071,24 @@
       "price": 21990,
       "recorded_at": "2026-06-15T17:43:14.719961",
       "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 25590,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 21990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 25590,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
     }
   ],
   "Corsair Vengeance DDR5-6000 32GB": [
@@ -12078,6 +12360,12 @@
       "store": "原價屋 CoolPC",
       "price": 13490,
       "recorded_at": "2026-06-15T17:43:14.719961",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 13490,
+      "recorded_at": "2026-06-15T20:53:43.483106",
       "is_synthetic": 0
     }
   ],
@@ -12632,6 +12920,18 @@
       "store": "原價屋 CoolPC",
       "price": 13990,
       "recorded_at": "2026-06-15T17:43:14.719961",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 13500,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 13990,
+      "recorded_at": "2026-06-15T20:53:43.483106",
       "is_synthetic": 0
     }
   ],
@@ -13433,6 +13733,24 @@
       "price": 13800,
       "recorded_at": "2026-06-15T17:43:14.719961",
       "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 9200,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 13800,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 13800,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
     }
   ],
   "Samsung 990 Pro 1TB": [
@@ -14233,6 +14551,24 @@
       "price": 7499,
       "recorded_at": "2026-06-15T17:43:14.719961",
       "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 9659,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 7499,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 10269,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
     }
   ],
   "WD Black SN850X 1TB": [
@@ -14762,6 +15098,18 @@
       "store": "原價屋 CoolPC",
       "price": 9999,
       "recorded_at": "2026-06-15T17:43:14.719961",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 9999,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "欣亞 Sinya",
+      "price": 9650,
+      "recorded_at": "2026-06-15T20:53:43.483106",
       "is_synthetic": 0
     }
   ],
@@ -15316,6 +15664,18 @@
       "store": "原價屋 CoolPC",
       "price": 5100,
       "recorded_at": "2026-06-15T17:43:14.719961",
+      "is_synthetic": 0
+    },
+    {
+      "store": "Autobuy",
+      "price": 4599,
+      "recorded_at": "2026-06-15T20:53:43.483106",
+      "is_synthetic": 0
+    },
+    {
+      "store": "原價屋 CoolPC",
+      "price": 5100,
+      "recorded_at": "2026-06-15T20:53:43.483106",
       "is_synthetic": 0
     }
   ]
