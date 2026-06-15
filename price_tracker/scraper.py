@@ -44,9 +44,11 @@ PRODUCTS = [
     {"name": "G.Skill Trident Z5 DDR5-6400 32GB",  "category": "RAM", "brand": "G.Skill",  "spec": "32GB (2x16GB) DDR5-6400 CL32", "base_price": 13500, "search": "Trident Z5 DDR5-6400"},
     {"name": "Kingston Fury Beast DDR5-5600 32GB", "category": "RAM", "brand": "Kingston", "spec": "32GB (2x16GB) DDR5-5600 CL36", "base_price": 13800, "search": "Fury Beast"},
     #
-    {"name": "Samsung 990 Pro 1TB",   "category": "SSD", "brand": "Samsung", "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 9659, "search": "990 Pro"},
-    {"name": "WD Black SN850X 1TB",   "category": "SSD", "brand": "WD",      "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 9999, "search": "SN850X"},
-    {"name": "Crucial P3 Plus 1TB",   "category": "SSD", "brand": "Crucial", "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 2299, "search": "P3 Plus"},
+    {"name": "Samsung 990 Pro 1TB",     "category": "SSD", "brand": "Samsung",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 9659, "search": "990 Pro"},
+    {"name": "WD Black SN850X 1TB",     "category": "SSD", "brand": "WD",       "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 9999, "search": "SN850X"},
+    {"name": "Kingston KC3000 1TB",     "category": "SSD", "brand": "Kingston", "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 7880, "search": "KC3000"},
+    {"name": "Micron Crucial T500 1TB", "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 7199, "search": "Crucial T500"},
+    {"name": "Crucial P3 Plus 1TB",     "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 2299, "search": "P3 Plus"},
 ]
 
 # Map product category → Autobuy category id
