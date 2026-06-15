@@ -508,7 +508,23 @@
     "brand": "Kingston",
     "spec": "1TB NVMe M.2 PCIe 4.0",
     "msrp": 7880,
-    "prices": {}
+    "prices": {
+      "原價屋 CoolPC": {
+        "price": 7880,
+        "date": "2026-06-16T07:32:51.185030",
+        "is_synthetic": 1
+      },
+      "欣亞 Sinya": {
+        "price": 7880,
+        "date": "2026-06-16T07:32:51.185030",
+        "is_synthetic": 1
+      },
+      "Autobuy": {
+        "price": 7880,
+        "date": "2026-06-16T07:32:51.185030",
+        "is_synthetic": 1
+      }
+    }
   },
   {
     "name": "Micron Crucial T500 1TB",
@@ -516,6 +532,22 @@
     "brand": "Crucial",
     "spec": "1TB NVMe M.2 PCIe 4.0",
     "msrp": 7199,
-    "prices": {}
+    "prices": {
+      "原價屋 CoolPC": {
+        "price": 7199,
+        "date": "2026-06-16T07:32:51.185030",
+        "is_synthetic": 1
+      },
+      "欣亞 Sinya": {
+        "price": 7199,
+        "date": "2026-06-16T07:32:51.185030",
+        "is_synthetic": 1
+      },
+      "Autobuy": {
+        "price": 7199,
+        "date": "2026-06-16T07:32:51.185030",
+        "is_synthetic": 1
+      }
+    }
   }
 ]
