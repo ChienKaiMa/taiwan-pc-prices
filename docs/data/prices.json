@@ -501,5 +501,21 @@
         "is_synthetic": 0
       }
     }
+  },
+  {
+    "name": "Kingston KC3000 1TB",
+    "category": "SSD",
+    "brand": "Kingston",
+    "spec": "1TB NVMe M.2 PCIe 4.0",
+    "msrp": 7880,
+    "prices": {}
+  },
+  {
+    "name": "Micron Crucial T500 1TB",
+    "category": "SSD",
+    "brand": "Crucial",
+    "spec": "1TB NVMe M.2 PCIe 4.0",
+    "msrp": 7199,
+    "prices": {}
   }
 ]
