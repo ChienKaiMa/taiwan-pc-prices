@@ -1,3 +1,4 @@
+import os
 import random
 import math
 import re
@@ -21,35 +22,81 @@ STORES = [
 # Each product may optionally have a "search" keyword used when querying
 # per-store APIs (Sinya, CoolPC).  Autobuy is scraped by category page,
 # so we map category → category_id below.
+#
+# You can either edit PRODUCTS directly below, or put your list in
+# products.json at the project root (simpler — just name + category).
+# Use `python track.py --products products.json` or create track.py
+# which loads it automatically.
+#
+# Products can be a simple dict with just "name" and "category";
+# the scraper fills in missing defaults (search=name, brand inferred
+# from name, etc.).
+
 PRODUCTS = [
-    {"name": "Intel Core Ultra 5 245K",  "category": "CPU", "brand": "Intel", "spec": "14C/14T 4.2-5.2GHz Arrow Lake",    "base_price": 10400, "search": "Ultra 5 245K"},
-    {"name": "Intel Core Ultra 7 265K",  "category": "CPU", "brand": "Intel", "spec": "20C/20T 3.9-5.5GHz Arrow Lake",    "base_price": 13600, "search": "265K"},
-    {"name": "Intel Core Ultra 7 270K Plus", "category": "CPU", "brand": "Intel", "spec": "24C/24T 3.7-5.5GHz Arrow Lake Refresh", "base_price": 12500, "search": "270K"},
-    {"name": "Intel Core Ultra 9 285K",  "category": "CPU", "brand": "Intel", "spec": "24C/24T 3.7-5.7GHz Arrow Lake",    "base_price": 19800, "search": "285K"},
-    {"name": "AMD Ryzen 7 7800X3D",    "category": "CPU", "brand": "AMD",   "spec": "8C/16T 4.2-5.0GHz 3D V-Cache", "base_price": 14750, "search": "7800X3D"},
-    {"name": "AMD Ryzen 5 7500F",      "category": "CPU", "brand": "AMD",   "spec": "6C/12T 3.7-5.0GHz Zen 4",     "base_price": 5250,  "search": "7500F"},
-    {"name": "AMD Ryzen 7 7700",       "category": "CPU", "brand": "AMD",   "spec": "8C/16T 3.8-5.3GHz Zen 4",     "base_price": 10400, "search": "7700"},
-    #
-    {"name": "NVIDIA RTX 5060",        "category": "GPU", "brand": "NVIDIA", "spec": "8GB GDDR7",                  "base_price": 10990, "search": "RTX 5060"},
-    {"name": "NVIDIA RTX 5060 Ti 8GB", "category": "GPU", "brand": "NVIDIA", "spec": "8GB GDDR7",                  "base_price": 12190, "search": "5060 Ti"},
-    {"name": "NVIDIA RTX 5060 Ti 16GB","category": "GPU", "brand": "NVIDIA", "spec": "16GB GDDR7",                 "base_price": 13790, "search": "5060 Ti"},
-    {"name": "NVIDIA RTX 5070",        "category": "GPU", "brand": "NVIDIA", "spec": "12GB GDDR7",                 "base_price": 19990, "search": "RTX 5070"},
-    {"name": "NVIDIA RTX 5070 Ti",     "category": "GPU", "brand": "NVIDIA", "spec": "16GB GDDR7",                 "base_price": 26990, "search": "RTX 5070 Ti"},
-    {"name": "NVIDIA RTX 5080",        "category": "GPU", "brand": "NVIDIA", "spec": "16GB GDDR7",                 "base_price": 35990, "search": "RTX 5080"},
-    {"name": "NVIDIA RTX 5090",        "category": "GPU", "brand": "NVIDIA", "spec": "32GB GDDR7",                 "base_price": 71990, "search": "5090"},
-    {"name": "AMD RX 9070",            "category": "GPU", "brand": "AMD",    "spec": "16GB GDDR6",                 "base_price": 19990, "search": "RX 9070"},
-    {"name": "AMD RX 9070 XT",         "category": "GPU", "brand": "AMD",    "spec": "16GB GDDR6",                 "base_price": 22990, "search": "RX 9070 XT"},
-    #
-    {"name": "Corsair Vengeance DDR5-6000 32GB",   "category": "RAM", "brand": "Corsair", "spec": "32GB (2x16GB) DDR5-6000 CL30",  "base_price": 13490, "search": "Vengeance DDR5-6000"},
-    {"name": "G.Skill Trident Z5 DDR5-6400 32GB",  "category": "RAM", "brand": "G.Skill",  "spec": "32GB (2x16GB) DDR5-6400 CL32", "base_price": 13500, "search": "Trident Z5 DDR5-6400"},
-    {"name": "Kingston Fury Beast DDR5-5600 32GB", "category": "RAM", "brand": "Kingston", "spec": "32GB (2x16GB) DDR5-5600 CL36", "base_price": 13800, "search": "Fury Beast"},
-    #
-    {"name": "Samsung 990 Pro 1TB",     "category": "SSD", "brand": "Samsung",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 9659, "search": "990 Pro"},
-    {"name": "WD Black SN850X 1TB",     "category": "SSD", "brand": "WD",       "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 9999, "search": "SN850X"},
-    {"name": "Kingston KC3000 1TB",     "category": "SSD", "brand": "Kingston", "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 7880, "search": "KC3000"},
-    {"name": "Micron Crucial T500 1TB", "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 7199, "search": "Crucial T500"},
-    {"name": "Micron Crucial P3 Plus 1TB", "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 2299, "search": "P3 Plus"},
+    {"name": "Intel Core Ultra 5 245K",         "category": "CPU", "brand": "Intel",   "spec": "14C/14T 4.2-5.2GHz Arrow Lake",              "base_price": 10400, "search": "Ultra 5 245K"},
+    {"name": "Intel Core Ultra 7 265K",         "category": "CPU", "brand": "Intel",   "spec": "20C/20T 3.9-5.5GHz Arrow Lake",              "base_price": 13600, "search": "265K"},
+    {"name": "Intel Core Ultra 7 270K Plus",    "category": "CPU", "brand": "Intel",   "spec": "24C/24T 3.7-5.5GHz Arrow Lake Refresh",      "base_price": 12500, "search": "270K"},
+    {"name": "Intel Core Ultra 9 285K",         "category": "CPU", "brand": "Intel",   "spec": "24C/24T 3.7-5.7GHz Arrow Lake",              "base_price": 19800, "search": "285K"},
+    {"name": "AMD Ryzen 7 7800X3D",            "category": "CPU", "brand": "AMD",     "spec": "8C/16T 4.2-5.0GHz 3D V-Cache",              "base_price": 14750, "search": "7800X3D"},
+    {"name": "AMD Ryzen 5 7500F",              "category": "CPU", "brand": "AMD",     "spec": "6C/12T 3.7-5.0GHz Zen 4",                   "base_price": 5250,  "search": "7500F"},
+    {"name": "AMD Ryzen 7 7700",               "category": "CPU", "brand": "AMD",     "spec": "8C/16T 3.8-5.3GHz Zen 4",                   "base_price": 10400, "search": "7700"},
+    {"name": "NVIDIA RTX 5060",                "category": "GPU", "brand": "NVIDIA",  "spec": "8GB GDDR7",                                  "base_price": 10990, "search": "RTX 5060"},
+    {"name": "NVIDIA RTX 5060 Ti 8GB",         "category": "GPU", "brand": "NVIDIA",  "spec": "8GB GDDR7",                                  "base_price": 12190, "search": "5060 Ti"},
+    {"name": "NVIDIA RTX 5060 Ti 16GB",        "category": "GPU", "brand": "NVIDIA",  "spec": "16GB GDDR7",                                 "base_price": 13790, "search": "5060 Ti"},
+    {"name": "NVIDIA RTX 5070",                "category": "GPU", "brand": "NVIDIA",  "spec": "12GB GDDR7",                                 "base_price": 19990, "search": "RTX 5070"},
+    {"name": "NVIDIA RTX 5070 Ti",             "category": "GPU", "brand": "NVIDIA",  "spec": "16GB GDDR7",                                 "base_price": 26990, "search": "RTX 5070 Ti"},
+    {"name": "NVIDIA RTX 5080",                "category": "GPU", "brand": "NVIDIA",  "spec": "16GB GDDR7",                                 "base_price": 35990, "search": "RTX 5080"},
+    {"name": "NVIDIA RTX 5090",                "category": "GPU", "brand": "NVIDIA",  "spec": "32GB GDDR7",                                 "base_price": 71990, "search": "5090"},
+    {"name": "AMD RX 9070",                    "category": "GPU", "brand": "AMD",     "spec": "16GB GDDR6",                                 "base_price": 19990, "search": "RX 9070"},
+    {"name": "AMD RX 9070 XT",                 "category": "GPU", "brand": "AMD",     "spec": "16GB GDDR6",                                 "base_price": 22990, "search": "RX 9070 XT"},
+    {"name": "Corsair Vengeance DDR5-6000 32GB",   "category": "RAM", "brand": "Corsair", "spec": "32GB (2x16GB) DDR5-6000 CL30",       "base_price": 13490, "search": "Vengeance DDR5-6000"},
+    {"name": "G.Skill Trident Z5 DDR5-6400 32GB",  "category": "RAM", "brand": "G.Skill",  "spec": "32GB (2x16GB) DDR5-6400 CL32",       "base_price": 13500, "search": "Trident Z5 DDR5-6400"},
+    {"name": "Kingston Fury Beast DDR5-5600 32GB", "category": "RAM", "brand": "Kingston", "spec": "32GB (2x16GB) DDR5-5600 CL36",       "base_price": 13800, "search": "Fury Beast"},
+    {"name": "Samsung 990 Pro 1TB",            "category": "SSD", "brand": "Samsung",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 9659, "search": "990 Pro"},
+    {"name": "WD Black SN850X 1TB",            "category": "SSD", "brand": "WD",       "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 9999, "search": "SN850X"},
+    {"name": "Kingston KC3000 1TB",            "category": "SSD", "brand": "Kingston", "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 7880, "search": "KC3000"},
+    {"name": "Micron Crucial T500 1TB",        "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 7199, "search": "Crucial T500"},
+    {"name": "Micron Crucial P3 Plus 1TB",     "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 2299, "search": "P3 Plus"},
 ]
+
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def load_products(products_path=None):
+    """Load products from a JSON file. Returns a list of product dicts.
+
+    Falls back to the inline PRODUCTS list if the file doesn't exist or
+    isn't given.  Products in the file can be minimal (just name + category);
+    missing fields are filled with sensible defaults (search=name, brand="").
+    """
+    if not products_path:
+        products_path = os.path.join(_PROJECT_ROOT, "products.json")
+    if not os.path.exists(products_path):
+        return list(PRODUCTS)
+    with open(products_path) as f:
+        raw = json.load(f)
+    defaults = {p["name"]: p for p in PRODUCTS}
+    result = []
+    for entry in raw:
+        if isinstance(entry, str):
+            entry = {"name": entry}
+        name = entry["name"]
+        d = defaults.get(name, {})
+        result.append({
+            "name": name,
+            "category": entry.get("category", d.get("category", "")),
+            "brand": entry.get("brand", d.get("brand", "")),
+            "spec": entry.get("spec", d.get("spec", "")),
+            "base_price": entry.get("base_price", d.get("base_price", 0)),
+            "search": entry.get("search", d.get("search", name)),
+        })
+    return result
+
+def filter_products(products, names):
+    """Return only products whose name matches one of the given names (case-insensitive substring)."""
+    if not names:
+        return products
+    lowered = [n.lower() for n in names]
+    return [p for p in products if any(term in p["name"].lower() for term in lowered)]
 
 # Map product category → Autobuy category id
 AUTOBUY_CATEGORY_IDS = {
@@ -767,11 +814,14 @@ def _match_product_by_name(product_name, candidates):
 
 # ── Orchestrator ──────────────────────────────────────────────────
 
-def scrape_real_prices():
+def scrape_real_prices(products=None):
     """Scrape prices from Sinya, CoolPC, and Autobuy.
 
     BigGo is no longer usable (Cloudflare).  PChome is also Cloudflare-blocked
     and will remain synthetic for now.
+
+    Args:
+        products: optional list of product dicts (defaults to PRODUCTS).
 
     Returns:
       {
@@ -794,7 +844,7 @@ def scrape_real_prices():
 
     # ── 1. Sinya: per-product API search ──
     print("\n[Sinya]  Searching all products...")
-    for prod in PRODUCTS:
+    for prod in (products or PRODUCTS):
         kw = prod.get("search", prod["name"])
         print(f"  Searching '{kw}'...", end=" ", flush=True)
         items = sinya_fetch(kw)
@@ -818,7 +868,7 @@ def scrape_real_prices():
         print(f"  Category '{cat}': {count} products")
     time.sleep(0.5)
 
-    for prod in PRODUCTS:
+    for prod in (products or PRODUCTS):
         cat_items = coolpc_inventory.get(prod["category"], [])
         if not cat_items:
             continue
@@ -840,7 +890,7 @@ def scrape_real_prices():
         autobuy_inventory[cat] = items
         time.sleep(0.5)
 
-    for prod in PRODUCTS:
+    for prod in (products or PRODUCTS):
         cat_items = autobuy_inventory.get(prod["category"], [])
         if not cat_items:
             continue
@@ -877,7 +927,7 @@ def generate_price(base_price, store_name, day_offset=0):
 
 # ── Seeding ───────────────────────────────────────────────────────
 
-def seed_demo_data(db, days=45, real_prices=None):
+def seed_demo_data(db, days=45, real_prices=None, products=None):
     """Seed the database with historical data.
 
     If *real_prices* is provided (the dict returned by scrape_real_prices()),
@@ -895,7 +945,7 @@ def seed_demo_data(db, days=45, real_prices=None):
     now = datetime.now()
     total = 0
 
-    for prod in PRODUCTS:
+    for prod in (products or PRODUCTS):
         product_id = db.upsert_product(prod["name"], prod["category"], prod["brand"], prod["spec"], msrp=prod.get("base_price", 0))
         rng = random.Random(f"{prod['name']}-seed")
 

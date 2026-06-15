@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - 'price_tracker/scraper.py'
+      - 'products.json'
 
 jobs:
   scrape:
@@ -23,7 +24,7 @@ jobs:
         run: pip install requests
 
       - name: Generate static data
-        run: python scripts/generate_static.py
+        run: python track.py
 
       - name: Commit and push
         run: |
