@@ -381,12 +381,12 @@ async function updateVolatilityCards(bustCacheOverride) {
       : '';
 
     if (s.range >= VOLATILITY_THRESHOLD) {
-      html += `<div class="stat-card"><div class="label">波動最大 ${label}</div><div class="value" style="color:#e11d48">NT$ ${s.range.toLocaleString()}</div><div class="sub">${name}（波動 ${s.pct.toFixed(0)}%${msrpNote ? ' · ' + msrpNote : ''}）</div></div>`;
+      html += `<div class="stat-card" style="cursor:pointer" onclick="selectProduct('${name}')"><div class="label">波動最大 ${label}</div><div class="value" style="color:#e11d48">NT$ ${s.range.toLocaleString()}</div><div class="sub">${name}（波動 ${s.pct.toFixed(0)}%${msrpNote ? ' · ' + msrpNote : ''}）</div></div>`;
     } else {
       const isOverpriced = s.msrp > 0 && s.premiumPct > 20;
       const statusText = isOverpriced ? '價格偏高' : '價格平穩';
       const statusColor = isOverpriced ? '#d97706' : '#16a34a';
-      html += `<div class="stat-card"><div class="label">波動最大 ${label}</div><div class="value" style="font-size:1rem;color:${statusColor}">${statusText}</div><div class="sub">${name}${msrpNote ? '（' + msrpNote + '）' : ''}</div></div>`;
+      html += `<div class="stat-card" style="cursor:pointer" onclick="selectProduct('${name}')"><div class="label">波動最大 ${label}</div><div class="value" style="font-size:1rem;color:${statusColor}">${statusText}</div><div class="sub">${name}${msrpNote ? '（' + msrpNote + '）' : ''}</div></div>`;
     }
   });
   document.getElementById('volatilityGrid').innerHTML = html;
