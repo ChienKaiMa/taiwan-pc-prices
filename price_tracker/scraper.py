@@ -48,7 +48,7 @@ PRODUCTS = [
     {"name": "WD Black SN850X 1TB",     "category": "SSD", "brand": "WD",       "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 9999, "search": "SN850X"},
     {"name": "Kingston KC3000 1TB",     "category": "SSD", "brand": "Kingston", "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 7880, "search": "KC3000"},
     {"name": "Micron Crucial T500 1TB", "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 7199, "search": "Crucial T500"},
-    {"name": "Crucial P3 Plus 1TB",     "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 2299, "search": "P3 Plus"},
+    {"name": "Micron Crucial P3 Plus 1TB", "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 2299, "search": "P3 Plus"},
 ]
 
 # Map product category → Autobuy category id
