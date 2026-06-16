@@ -90,7 +90,7 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
   <div class="stats-grid" id="volatilityGrid"></div>
 
   <div class="info-box" id="infoBox">
-    <div class="info-header" onclick="toggleInfo()">
+    <div class="info-header" onclick="toggleInfo(this)">
       <h3>📋 比價機制說明 — 點擊展開</h3>
       <span class="toggle-icon">▼</span>
     </div>
@@ -119,6 +119,33 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
     </div>
   </div>
 
+  <div class="info-box" id="msrpInfoBox">
+    <div class="info-header" onclick="toggleInfo(this)">
+      <h3>📌 建議售價來源 — 點擊展開</h3>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="info-body">
+      <div class="info-body-inner">
+        <div class="reason-title">🔖 建議售價（base_price）來源</div>
+        <p>各產品的建議售價基於以下公開資訊，<strong>CPU / GPU 為台灣官方建議售價</strong>，<strong>RAM / SSD 為市場參考價</strong>，實際售價依各商店標示為準：</p>
+        <ul>
+          <li>RTX 5060 Ti / 5060 — <a href="https://www.nvidia.com/zh-tw/geforce/news/geforce-rtx-5060-ti-game-ready-driver/" target="_blank">NVIDIA 官方新聞稿</a>（NT$13,790 / 10,990）</li>
+          <li>RTX 5090 / 5080 / 5070 Ti / 5070 — <a href="https://www.mobile01.com/topicdetail.php?f=298&t=7068386" target="_blank">Mobile01 網友引述 NVIDIA 台灣定價</a>（NT$71,990 / 35,990 / 26,990 / 19,990）</li>
+          <li>RX 9070 XT / 9070 — <a href="https://www.coolaler.com/amd-rx-9070-9070-xt-%E5%8F%B0%E7%81%A3%E5%94%AE%E5%83%B9-%E8%87%B4%E6%95%AC%E5%B0%8D%E6%89%8B-%E9%A6%96%E6%89%B9%E4%B9%9F%E9%87%8F%E5%B0%91/" target="_blank">滄者極限 台灣首發售價報導</a>（NT$22,990 / 19,990 起）</li>
+          <li>RX 9060 XT 8GB / 16GB — <a href="https://www.coolpc.com.tw/tw/shop/gpu/amd-radeon-rx-9060-xt-8-16gb/" target="_blank">原價屋 CoolPC 上市報價</a>（NT$10,490 / 12,490 起）</li>
+          <li>Intel Core Ultra 5 245K / 265K / 285K — <a href="https://www.xfastest.com/news/intel/145545" target="_blank">XFastest 引用原價屋 Intel Arrow Lake 台灣定價</a>（NT$10,400 / 13,600 / 19,800）</li>
+          <li>Core Ultra 7 270K Plus — <a href="https://www.4gamers.com.tw/news/detail/79197/intel-core-ultra-7-270k-plus-promotion-may-2026" target="_blank">4Gamers 報導</a>（NT$12,500）</li>
+          <li>AMD Ryzen 7 7800X3D / 7500F / 7700 — <a href="https://www.coolpc.com.tw/tw/shop/cpu/" target="_blank">原價屋 CoolPC 台灣零售定價</a>（NT$14,750 / 5,250 / 10,400）</li>
+          <li>Corsair Vengeance DDR5-6000 32GB — <a href="https://www.coolpc.com.tw/tw/shop/dram/corsair-d5-ram/" target="_blank">原價屋 2025/04 海盜船 DDR5 促銷報導</a>（NT$3,599，推估自 $2,990~$5,999 產品區間）</li>
+          <li>G.Skill Trident Z5 DDR5-6400 32GB — <a href="https://www.coolpc.com.tw/tw/shop/dram/g-skill-trident-z5-rgb-ddr5-6400-32gb/" target="_blank">原價屋 2023/09 G.SKILL Trident Z5 促銷報導</a>（NT$3,688）</li>
+          <li>Kingston Fury Beast DDR5-5600 32GB — <a href="https://ofeyhong.pixnet.net/blog/posts/12059851482" target="_blank">歐飛先生 記憶體漲價歷史</a>（2025/10 價位 NT$2,500）</li>
+          <li>DDR5 RAM 參考價 — <a href="https://www.tangpc.com.tw/blog/detail/1205" target="_blank">小唐電腦 2025/11 記憶體漲價懶人包</a>（NT$6,500~7,500）</li>
+          <li>SSD 參考價 — <a href="https://www.tangpc.com.tw/blog/detail/1206" target="_blank">小唐電腦 2025/11 SSD 漲價懶人包</a>（NT$2,500~3,950）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <div class="controls">
     <label for="productSelect">產品</label>
     <select id="productSelect" onchange="selectProduct(this.value)"></select>
@@ -142,20 +169,6 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
 
   <div style="margin-top:1.5rem; text-align:center; font-size:.8rem; color:#999; border-top:1px solid #e0e0e0; padding:1.5rem 0;">
     Created by <a href="https://github.com/ChienKaiMa" target="_blank" style="color:#0f3460; text-decoration:none;">ChienKaiMa</a> with <a href="https://github.com/ChienKaiMa/taiwan-pc-prices" target="_blank" style="color:#0f3460; text-decoration:none;">Big Pickle / OpenCode Zen</a>
-  </div>
-  <div style="margin-top:.5rem; text-align:center; font-size:.75rem; color:#aaa; border-top:1px solid #f0f0f0; padding:1rem 0; line-height:1.7;">
-    <div style="font-weight:600; color:#888; margin-bottom:.3rem;">📌 建議售價來源</div>
-    <div>RTX 5060 Ti / 5060 — <a href="https://www.nvidia.com/zh-tw/geforce/news/geforce-rtx-5060-ti-game-ready-driver/" target="_blank" style="color:#0f3460; text-decoration:none;">NVIDIA 官方新聞稿</a>（NT$13,790 / 10,990）</div>
-    <div>RTX 5090 / 5080 / 5070 Ti / 5070 — <a href="https://www.mobile01.com/topicdetail.php?f=298&t=7068386" target="_blank" style="color:#0f3460; text-decoration:none;">Mobile01 網友引述 NVIDIA 台灣定價</a>（NT$71,990 / 35,990 / 26,990 / 19,990）</div>
-    <div>RX 9070 XT / 9070 — <a href="https://www.coolaler.com/amd-rx-9070-9070-xt-%E5%8F%B0%E7%81%A3%E5%94%AE%E5%83%B9-%E8%87%B4%E6%95%AC%E5%B0%8D%E6%89%8B-%E9%A6%96%E6%89%B9%E4%B9%9F%E9%87%8F%E5%B0%91/" target="_blank" style="color:#0f3460; text-decoration:none;">滄者極限 台灣首發售價報導</a>（NT$22,990 / 19,990 起）</div>
-    <div>Intel Core Ultra 5 245K / 265K / 285K — <a href="https://www.xfastest.com/news/intel/145545" target="_blank" style="color:#0f3460; text-decoration:none;">XFastest 引用原價屋 Intel Arrow Lake 台灣定價</a>（NT$10,400 / 13,600 / 19,800）</div>
-    <div>Core Ultra 7 270K Plus — <a href="https://www.4gamers.com.tw/news/detail/79197/intel-core-ultra-7-270k-plus-promotion-may-2026" target="_blank" style="color:#0f3460; text-decoration:none;">4Gamers 報導</a>（NT$12,500）</div>
-    <div>AMD Ryzen 7 7800X3D / 7500F / 7700 — <a href="https://www.coolpc.com.tw/tw/shop/cpu/" target="_blank" style="color:#0f3460; text-decoration:none;">原價屋 CoolPC 台灣零售定價</a>（NT$14,750 / 5,250 / 10,400）</div>
-    <div>Corsair Vengeance DDR5-6000 32GB 參考價 — <a href="https://www.coolpc.com.tw/tw/shop/dram/corsair-d5-ram/" target="_blank" style="color:#0f3460; text-decoration:none;">原價屋 2025/04 海盜船 DDR5 促銷報導</a>（NT$3,599，推估自 $2,990~$5,999 產品區間）</div>
-    <div>G.Skill Trident Z5 DDR5-6400 32GB 參考價 — <a href="https://www.coolpc.com.tw/tw/shop/dram/g-skill-trident-z5-rgb-ddr5-6400-32gb/" target="_blank" style="color:#0f3460; text-decoration:none;">原價屋 2023/09 G.SKILL Trident Z5 促銷報導</a>（NT$3,688）</div>
-    <div>DDR5 RAM 參考價 — <a href="https://www.tangpc.com.tw/blog/detail/1205" target="_blank" style="color:#0f3460; text-decoration:none;">小唐電腦 2025/11 記憶體漲價懶人包：7月 VS 12月價格對比</a>（NT$6,500~7,500）</div>
-    <div>SSD 參考價 — <a href="https://www.tangpc.com.tw/blog/detail/1206" target="_blank" style="color:#0f3460; text-decoration:none;">小唐電腦 2025/11 SSD 漲價懶人包：7月 VS 12月價格對比</a>（NT$2,500~3,950）</div>
-    <div style="margin-top:.3rem; color:#bbb;">* CPU/GPU 為台灣官方建議售價，RAM/SSD 為市場參考價，實際售價依各商店標示為準</div>
   </div>
 </div>
 
@@ -215,11 +228,10 @@ async function refreshData() {
   }
 }
 
-function toggleInfo() {
-  const header = document.querySelector('.info-header');
-  const body = document.querySelector('.info-body');
-  header.classList.toggle('open');
-  body.classList.toggle('open');
+function toggleInfo(el) {
+  const box = el.closest('.info-box');
+  box.querySelector('.info-header').classList.toggle('open');
+  box.querySelector('.info-body').classList.toggle('open');
 }
 
 const ALL_STORES = ['原價屋 CoolPC', '欣亞 Sinya', 'Autobuy'];

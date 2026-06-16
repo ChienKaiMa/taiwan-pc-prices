@@ -15,6 +15,8 @@
   {"name": "NVIDIA RTX 5090",                "category": "GPU"},
   {"name": "AMD RX 9070",                    "category": "GPU"},
   {"name": "AMD RX 9070 XT",                 "category": "GPU"},
+  {"name": "AMD RX 9060 XT 8GB",            "category": "GPU"},
+  {"name": "AMD RX 9060 XT 16GB",           "category": "GPU"},
   {"name": "Corsair Vengeance DDR5-6000 32GB",  "category": "RAM"},
   {"name": "G.Skill Trident Z5 DDR5-6400 32GB", "category": "RAM"},
   {"name": "Kingston Fury Beast DDR5-5600 32GB", "category": "RAM"},

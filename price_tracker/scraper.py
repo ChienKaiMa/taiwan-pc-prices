@@ -49,6 +49,8 @@ PRODUCTS = [
     {"name": "NVIDIA RTX 5090",                "category": "GPU", "brand": "NVIDIA",  "spec": "32GB GDDR7",                                 "base_price": 71990, "search": "5090"},
     {"name": "AMD RX 9070",                    "category": "GPU", "brand": "AMD",     "spec": "16GB GDDR6",                                 "base_price": 19990, "search": "RX 9070"},
     {"name": "AMD RX 9070 XT",                 "category": "GPU", "brand": "AMD",     "spec": "16GB GDDR6",                                 "base_price": 22990, "search": "RX 9070 XT"},
+    {"name": "AMD RX 9060 XT 8GB",           "category": "GPU", "brand": "AMD",     "spec": "8GB GDDR6",                                  "base_price": 10490, "search": "9060 XT"},
+    {"name": "AMD RX 9060 XT 16GB",          "category": "GPU", "brand": "AMD",     "spec": "16GB GDDR6",                                 "base_price": 12490, "search": "9060 XT"},
     {"name": "Corsair Vengeance DDR5-6000 32GB",   "category": "RAM", "brand": "Corsair", "spec": "32GB (2x16GB) DDR5-6000 CL30",       "base_price": 3599, "search": "Vengeance DDR5-6000"},
     {"name": "G.Skill Trident Z5 DDR5-6400 32GB",  "category": "RAM", "brand": "G.Skill",  "spec": "32GB (2x16GB) DDR5-6400 CL32",       "base_price": 3688, "search": "Trident Z5 DDR5-6400"},
     {"name": "Kingston Fury Beast DDR5-5600 32GB", "category": "RAM", "brand": "Kingston", "spec": "32GB (2x16GB) DDR5-5600 CL36",       "base_price": 2500, "search": "Fury Beast"},
