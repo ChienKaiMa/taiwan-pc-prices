@@ -11,7 +11,11 @@
 body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #1a1a2e; }
 header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 2rem; text-align: center; }
 header h1 { font-size: 1.8rem; margin-bottom: .3rem; }
-header p { opacity: .8; font-size: .95rem; }
+header p { opacity: .8; font-size: .95rem; margin-bottom: .6rem; }
+.header-actions { display: flex; justify-content: center; align-items: center; gap: .6rem; }
+.header-actions a { display: inline-flex; align-items: center; gap: .3rem; color: #fff; text-decoration: none; font-size: .85rem; padding: .3rem .7rem; border-radius: 6px; border: 1px solid rgba(255,255,255,.25); transition: background .15s; }
+.header-actions a:hover { background: rgba(255,255,255,.1); }
+.github-icon-svg { width: 18px; height: 18px; fill: currentColor; }
 .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
 .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
 .stat-card { background: #fff; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
@@ -67,6 +71,15 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
 <header>
   <h1>🖥️ 台灣電腦零件價格追蹤</h1>
   <p>多商店即時比價 · 歷史價格走勢</p>
+  <div class="header-actions">
+    <a href="https://github.com/ChienKaiMa/taiwan-pc-prices" target="_blank" title="在 GitHub 上星星這個專案">
+      <svg class="github-icon-svg" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.192L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg>
+      Star
+    </a>
+    <a href="https://github.com/ChienKaiMa/taiwan-pc-prices" target="_blank" title="原始碼">
+      <svg class="github-icon-svg" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+    </a>
+  </div>
 </header>
 <div class="container">
   <div id="scrapeBanner" style="display:none; background:#fef3c7; border:1px solid #f59e0b; border-radius:10px; padding:.8rem 1.2rem; margin-bottom:1rem; font-size:.9rem; color:#92400e; display:flex; align-items:center; gap:.6rem;">
@@ -135,8 +148,6 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
     <a href="https://github.com/ChienKaiMa/taiwan-pc-prices/issues" target="_blank" style="color:#0f3460; text-decoration:none; font-weight:600;">💬 意見回饋</a>
     <span style="margin:0 .8rem;">·</span>
     Created by <a href="https://github.com/ChienKaiMa" target="_blank" style="color:#0f3460; text-decoration:none;">ChienKaiMa</a> with <a href="https://github.com/ChienKaiMa/taiwan-pc-prices" target="_blank" style="color:#0f3460; text-decoration:none;">Big Pickle / OpenCode Zen</a>
-    <span style="margin:0 .4rem;">·</span>
-    <a href="https://github.com/ChienKaiMa/taiwan-pc-prices" target="_blank" style="color:#0f3460; text-decoration:none;">原始碼</a>
   </div>
   <div style="margin-top:.5rem; text-align:center; font-size:.75rem; color:#aaa; border-top:1px solid #f0f0f0; padding:1rem 0; line-height:1.7;">
     <div style="font-weight:600; color:#888; margin-bottom:.3rem;">📌 建議售價來源</div>
