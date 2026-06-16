@@ -1,31 +1,31 @@
-# Taiwan PC Component Price Tracker
+# Taiwan PC Component Price Tracker — 台灣電腦零組件價格追蹤
 
-Scrapes real prices from Taiwan PC stores (CoolPC, Sinya, Autobuy) and serves a live dashboard with automatic price updates.
+自動爬取台灣 PC 通路商（原價屋、欣亞、Autobuy）即時價格，提供即時儀表板與自動排程更新。
 
-## Quick Start
+## 快速開始
 
 ```bash
-# 1. Clone and install
+# 1. 下載並安裝
 git clone <your-repo>
 pip install requests
 
-# 2. Edit product list (just name + category)
+# 2. 編輯產品清單（只需 name + category）
 vim products.json
 
-# 3. Scrape all prices and generate static dashboard
+# 3. 爬取所有價格並產生靜態儀表板
 python track.py
 
-# Or test-scrape specific products:
+# 或只測試特定產品：
 python track.py --scrape "RTX 5070"
 
-# Verify matches and check for anomalies:
+# 驗證比對結果與異常偵測：
 python track.py --verify
 
-# Start web server with live dashboard:
+# 啟動即時伺服器（含自動排程更新）：
 python track.py --server
 ```
 
-## `products.json` Format
+## `products.json` 格式
 
 ```json
 [
@@ -34,50 +34,50 @@ python track.py --server
 ]
 ```
 
-Only `name` and `category` are required. The scraper fills in brand, spec, search keywords, and base_price from built-in defaults. Categories: `CPU`, `GPU`, `RAM`, `SSD`.
+只需填 `name` 和 `category`，其餘欄位（brand、spec、search 關鍵字、base_price）由 scraper 從內建預設值自動補完。分類：`CPU`、`GPU`、`RAM`、`SSD`。
 
-## Automated Price Updates
+## 自動更新
 
-The GitHub Action runs every 6 hours. Prices update ~4x daily with random jitter. Results publish to GitHub Pages.
+GitHub Action 每 6 小時執行一次（隨機 ±30 分鐘），每天約更新 4 次。結果自動發佈到 GitHub Pages。
 
-## Stores Tracked
+## 涵蓋通路
 
-| Store | Status |
+| 通路 | 狀態 |
 |---|---|
-| 原價屋 CoolPC | ✓ (100% match rate) |
+| 原價屋 CoolPC | ✓ (100% 比對率) |
 | 欣亞 Sinya | ✓ (83%) |
 | Autobuy | ✓ (88%) |
-| PChome 24h | ✗ (Cloudflare blocked) |
+| PChome 24h | ✗ (Cloudflare 阻擋，無法爬取) |
 
-## Verification
+## 驗證功能
 
 ```bash
 python track.py --verify
 ```
 
-Checks match rates, flags prices below 75% of MSRP (expected for old-gen CPUs), detects single-record price outliers from history, and shows the store's actual product name (`matched_title`) per product as proof of correct matching.
+檢查比對率、標記低於建議售價 75% 的價格（舊款 CPU 屬於正常）、偵測單筆歷史異常價格，並顯示各店家的實際產品名稱（`matched_title`）作為正確比對的證明。
 
-## Dashboard Features
+## 儀表板功能
 
-- Per-store price columns (all 3 stores always shown)
-- Volatility cards — per-category time-based price fluctuation
-- 歷史低價 (historical low price) column
-- 開始追蹤 (first tracked date) column
-- Cache-busting refresh button
-- Amber "價格偏高" for stable products >20% above MSRP
+- 三欄通路價格（三家店固定顯示）
+- 波動卡片 — 各分類依時間的價格波動幅度
+- 歷史低價欄位
+- 開始追蹤日期欄位
+- Cache-busting 重新整理按鈕
+- 穩定但偏高（>20% 高於 MSRP）顯示琥珀色「價格偏高」
 
-## Project Structure
+## 專案結構
 
 ```
-├── products.json           # Your product list (edit this!)
-├── track.py                # Single entry point
+├── products.json           # 產品清單（使用者編輯）
+├── track.py                # 單一進入點
 ├── price_tracker/
-│   ├── scraper.py          # Scrapers + matcher logic
-│   └── database.py         # SQLite layer
+│   ├── scraper.py          # 爬蟲 + 比對邏輯
+│   └── database.py         # SQLite 資料庫層
 ├── scripts/
-│   └── generate_static.py  # Generate static JSON + index.html
-├── server.py               # Live API server + scheduler
+│   └── generate_static.py  # 產生靜態 JSON + index.html
+├── server.py               # 即時 API 伺服器 + 排程器
 ├── web/templates/
-│   └── index.html          # Dashboard template
-└── docs/                   # GitHub Pages output
+│   └── index.html          # 儀表板樣板
+└── docs/                   # GitHub Pages 輸出目錄
 ```
