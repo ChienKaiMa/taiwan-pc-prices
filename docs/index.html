@@ -338,7 +338,7 @@ async function updateVolatilityCards(bustCacheOverride) {
 
   const stats = {};
   for (const [product, records] of Object.entries(history)) {
-    if (!records || records.length < 2) continue;
+    if (!records || !Array.isArray(records) || records.length < 2) continue;
     // Group prices by store to compute per-store time-based volatility
     const byStore = {};
     records.forEach(r => {
