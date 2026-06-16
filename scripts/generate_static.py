@@ -45,13 +45,15 @@ def generate(products=None, pre_scraped=None):
 
     now = datetime.now()
     for prod in products:
-        pid = db.upsert_product(prod["name"], prod["category"], prod.get("brand", ""), prod.get("spec", ""), msrp=prod.get("base_price", 0))
+        pid = db.upsert_product(prod["name"], prod["category"], prod.get("brand", ""), prod.get("spec", ""), msrp=prod.get("base_price", 0), short_name=prod.get("short_name", ""))
         for store in STORES:
-            real_price = real.get(store["name"], {}).get(prod["name"])
-            if real_price is None:
+            match = real.get(store["name"], {}).get(prod["name"])
+            if match is None:
                 continue
+            price = match["price"]
+            title = match.get("title", "")
             sid = db.upsert_store(store["name"], store.get("url", ""))
-            db.record_price(pid, sid, real_price, now.isoformat(), 0)
+            db.record_price(pid, sid, price, now.isoformat(), 0, title)
     db.commit()
 
     # 3. Generate prices.json (same format as /api/prices) — merge with existing

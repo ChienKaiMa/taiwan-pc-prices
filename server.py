@@ -47,13 +47,15 @@ def _record_prices():
         now = datetime.now()
         total = 0
         for prod in PRODUCTS:
-            pid = db.upsert_product(prod["name"], prod["category"], prod.get("brand", ""), prod.get("spec", ""), msrp=prod.get("base_price", 0))
+            pid = db.upsert_product(prod["name"], prod["category"], prod.get("brand", ""), prod.get("spec", ""), msrp=prod.get("base_price", 0), short_name=prod.get("short_name", ""))
             for store in STORES:
-                real_price = real.get(store["name"], {}).get(prod["name"])
-                if real_price is None:
+                match = real.get(store["name"], {}).get(prod["name"])
+                if match is None:
                     continue  # skip — no real price available
+                price = match["price"]
+                title = match.get("title", "")
                 sid = db.upsert_store(store["name"], store.get("url", ""))
-                db.record_price(pid, sid, real_price, now.isoformat(), 0)
+                db.record_price(pid, sid, price, now.isoformat(), 0, title)
                 total += 1
         db.commit()
         print(f"[scheduler] Recorded {total} real snapshots at {now.isoformat()}")

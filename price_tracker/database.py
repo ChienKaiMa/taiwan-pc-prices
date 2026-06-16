@@ -41,6 +41,7 @@ class DB:
             CREATE TABLE IF NOT EXISTS products (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL UNIQUE,
+                short_name TEXT DEFAULT '',
                 category TEXT NOT NULL,
                 brand TEXT DEFAULT '',
                 spec TEXT DEFAULT '',
@@ -58,6 +59,7 @@ class DB:
                 price INTEGER NOT NULL,
                 is_synthetic INTEGER DEFAULT 0,
                 recorded_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
+                matched_title TEXT DEFAULT '',
                 FOREIGN KEY (product_id) REFERENCES products(id),
                 FOREIGN KEY (store_id) REFERENCES stores(id)
             );
@@ -69,7 +71,9 @@ class DB:
         # Migrate existing DB if columns are missing
         for col_sql in [
             "ALTER TABLE price_snapshots ADD COLUMN is_synthetic INTEGER DEFAULT 0",
+            "ALTER TABLE price_snapshots ADD COLUMN matched_title TEXT DEFAULT ''",
             "ALTER TABLE products ADD COLUMN msrp INTEGER DEFAULT 0",
+            "ALTER TABLE products ADD COLUMN short_name TEXT DEFAULT ''",
         ]:
             try:
                 self.conn.execute(col_sql)
@@ -77,11 +81,11 @@ class DB:
             except Exception:
                 pass  # Column already exists
 
-    def upsert_product(self, name, category, brand="", spec="", msrp=0):
+    def upsert_product(self, name, category, brand="", spec="", msrp=0, short_name=""):
         self.conn.execute(
-            "INSERT INTO products(name, category, brand, spec, msrp) VALUES (?, ?, ?, ?, ?) "
-            "ON CONFLICT(name) DO UPDATE SET category=excluded.category, brand=excluded.brand, spec=excluded.spec, msrp=excluded.msrp",
-            (name, category, brand, spec, msrp),
+            "INSERT INTO products(name, short_name, category, brand, spec, msrp) VALUES (?, ?, ?, ?, ?, ?) "
+            "ON CONFLICT(name) DO UPDATE SET short_name=excluded.short_name, category=excluded.category, brand=excluded.brand, spec=excluded.spec, msrp=excluded.msrp",
+            (name, short_name, category, brand, spec, msrp),
         )
         return self.conn.execute("SELECT id FROM products WHERE name = ?", (name,)).fetchone()["id"]
 
@@ -93,16 +97,16 @@ class DB:
         )
         return self.conn.execute("SELECT id FROM stores WHERE name = ?", (name,)).fetchone()["id"]
 
-    def record_price(self, product_id, store_id, price, recorded_at=None, is_synthetic=0):
+    def record_price(self, product_id, store_id, price, recorded_at=None, is_synthetic=0, matched_title=""):
         if recorded_at:
             self.conn.execute(
-                "INSERT INTO price_snapshots(product_id, store_id, price, is_synthetic, recorded_at) VALUES (?, ?, ?, ?, ?)",
-                (product_id, store_id, price, is_synthetic, recorded_at),
+                "INSERT INTO price_snapshots(product_id, store_id, price, is_synthetic, recorded_at, matched_title) VALUES (?, ?, ?, ?, ?, ?)",
+                (product_id, store_id, price, is_synthetic, recorded_at, matched_title),
             )
         else:
             self.conn.execute(
-                "INSERT INTO price_snapshots(product_id, store_id, price, is_synthetic) VALUES (?, ?, ?, ?)",
-                (product_id, store_id, price, is_synthetic),
+                "INSERT INTO price_snapshots(product_id, store_id, price, is_synthetic, matched_title) VALUES (?, ?, ?, ?, ?)",
+                (product_id, store_id, price, is_synthetic, matched_title),
             )
 
     def commit(self):
@@ -110,9 +114,9 @@ class DB:
 
     def get_latest_prices(self):
         rows = self.conn.execute("""
-            SELECT p.name, p.category, p.brand, p.spec, p.msrp,
+            SELECT p.name, p.short_name, p.category, p.brand, p.spec, p.msrp,
                    s.name AS store, ps.price, ps.recorded_at,
-                   ps.is_synthetic
+                   ps.is_synthetic, ps.matched_title
             FROM price_snapshots ps
             JOIN products p ON ps.product_id = p.id
             JOIN stores s ON ps.store_id = s.id
@@ -127,7 +131,7 @@ class DB:
         since = (datetime.now() - timedelta(days=days)).isoformat()
         rows = self.conn.execute("""
             SELECT s.name AS store, ps.price, ps.recorded_at,
-                   ps.is_synthetic
+                   ps.is_synthetic, ps.matched_title
             FROM price_snapshots ps
             JOIN products p ON ps.product_id = p.id
             JOIN stores s ON ps.store_id = s.id
@@ -138,7 +142,7 @@ class DB:
 
     def get_all_products(self):
         rows = self.conn.execute("""
-            SELECT DISTINCT p.name, p.category, p.brand, p.spec, p.msrp
+            SELECT DISTINCT p.name, p.short_name, p.category, p.brand, p.spec, p.msrp
             FROM products p
             ORDER BY p.id
         """).fetchall()
@@ -150,9 +154,9 @@ class DB:
 
     def get_latest_by_product(self):
         rows = self.conn.execute("""
-            SELECT p.name, p.category, p.brand, p.spec, p.msrp,
+            SELECT p.name, p.short_name, p.category, p.brand, p.spec, p.msrp,
                    ps.price, s.name AS store, ps.recorded_at,
-                   ps.is_synthetic
+                   ps.is_synthetic, ps.matched_title
             FROM price_snapshots ps
             JOIN products p ON ps.product_id = p.id
             JOIN stores s ON ps.store_id = s.id
@@ -164,6 +168,6 @@ class DB:
         result = {}
         for r in rows:
             d = dict(r)
-            base = result.setdefault(d["name"], {"name": d["name"], "category": d["category"], "brand": d["brand"], "spec": d["spec"], "msrp": d["msrp"], "prices": {}})
-            base["prices"][d["store"]] = {"price": d["price"], "date": d["recorded_at"], "is_synthetic": d["is_synthetic"]}
+            base = result.setdefault(d["name"], {"name": d["name"], "short_name": d["short_name"], "category": d["category"], "brand": d["brand"], "spec": d["spec"], "msrp": d["msrp"], "prices": {}})
+            base["prices"][d["store"]] = {"price": d["price"], "date": d["recorded_at"], "is_synthetic": d["is_synthetic"], "matched_title": d["matched_title"]}
         return list(result.values())

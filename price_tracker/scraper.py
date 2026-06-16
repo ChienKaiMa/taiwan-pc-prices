@@ -33,32 +33,32 @@ STORES = [
 # from name, etc.).
 
 PRODUCTS = [
-    {"name": "Intel Core Ultra 5 245K",         "category": "CPU", "brand": "Intel",   "spec": "14C/14T 4.2-5.2GHz Arrow Lake",              "base_price": 10400, "search": "Ultra 5 245K"},
-    {"name": "Intel Core Ultra 7 265K",         "category": "CPU", "brand": "Intel",   "spec": "20C/20T 3.9-5.5GHz Arrow Lake",              "base_price": 13600, "search": "265K"},
-    {"name": "Intel Core Ultra 7 270K Plus",    "category": "CPU", "brand": "Intel",   "spec": "24C/24T 3.7-5.5GHz Arrow Lake Refresh",      "base_price": 12500, "search": "270K"},
-    {"name": "Intel Core Ultra 9 285K",         "category": "CPU", "brand": "Intel",   "spec": "24C/24T 3.7-5.7GHz Arrow Lake",              "base_price": 19800, "search": "285K"},
-    {"name": "AMD Ryzen 7 7800X3D",            "category": "CPU", "brand": "AMD",     "spec": "8C/16T 4.2-5.0GHz 3D V-Cache",              "base_price": 14750, "search": "7800X3D"},
-    {"name": "AMD Ryzen 5 7500F",              "category": "CPU", "brand": "AMD",     "spec": "6C/12T 3.7-5.0GHz Zen 4",                   "base_price": 5250,  "search": "7500F"},
-    {"name": "AMD Ryzen 7 7700",               "category": "CPU", "brand": "AMD",     "spec": "8C/16T 3.8-5.3GHz Zen 4",                   "base_price": 10400, "search": "7700"},
-    {"name": "NVIDIA RTX 5060",                "category": "GPU", "brand": "NVIDIA",  "spec": "8GB GDDR7",                                  "base_price": 10990, "search": "RTX 5060"},
-    {"name": "NVIDIA RTX 5060 Ti 8GB",         "category": "GPU", "brand": "NVIDIA",  "spec": "8GB GDDR7",                                  "base_price": 12190, "search": "5060 Ti"},
-    {"name": "NVIDIA RTX 5060 Ti 16GB",        "category": "GPU", "brand": "NVIDIA",  "spec": "16GB GDDR7",                                 "base_price": 13790, "search": "5060 Ti"},
-    {"name": "NVIDIA RTX 5070",                "category": "GPU", "brand": "NVIDIA",  "spec": "12GB GDDR7",                                 "base_price": 19990, "search": "RTX 5070"},
-    {"name": "NVIDIA RTX 5070 Ti",             "category": "GPU", "brand": "NVIDIA",  "spec": "16GB GDDR7",                                 "base_price": 26990, "search": "RTX 5070 Ti"},
-    {"name": "NVIDIA RTX 5080",                "category": "GPU", "brand": "NVIDIA",  "spec": "16GB GDDR7",                                 "base_price": 35990, "search": "RTX 5080"},
-    {"name": "NVIDIA RTX 5090",                "category": "GPU", "brand": "NVIDIA",  "spec": "32GB GDDR7",                                 "base_price": 71990, "search": "5090"},
-    {"name": "AMD RX 9070",                    "category": "GPU", "brand": "AMD",     "spec": "16GB GDDR6",                                 "base_price": 19990, "search": "RX 9070"},
-    {"name": "AMD RX 9070 XT",                 "category": "GPU", "brand": "AMD",     "spec": "16GB GDDR6",                                 "base_price": 22990, "search": "RX 9070 XT"},
-    {"name": "AMD RX 9060 XT 8GB",           "category": "GPU", "brand": "AMD",     "spec": "8GB GDDR6",                                  "base_price": 10490, "search": "9060 XT"},
-    {"name": "AMD RX 9060 XT 16GB",          "category": "GPU", "brand": "AMD",     "spec": "16GB GDDR6",                                 "base_price": 12490, "search": "9060 XT"},
-    {"name": "Corsair Vengeance DDR5-6000 32GB",   "category": "RAM", "brand": "Corsair", "spec": "32GB (2x16GB) DDR5-6000 CL30",       "base_price": 3599, "search": "Vengeance DDR5-6000"},
-    {"name": "G.Skill Trident Z5 DDR5-6400 32GB",  "category": "RAM", "brand": "G.Skill",  "spec": "32GB (2x16GB) DDR5-6400 CL32",       "base_price": 3688, "search": "Trident Z5 DDR5-6400"},
-    {"name": "Kingston Fury Beast DDR5-5600 32GB", "category": "RAM", "brand": "Kingston", "spec": "32GB (2x16GB) DDR5-5600 CL36",       "base_price": 2500, "search": "Fury Beast"},
-    {"name": "Samsung 990 Pro 1TB",            "category": "SSD", "brand": "Samsung",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 4999, "search": "990 Pro"},
-    {"name": "WD Black SN850X 1TB",            "category": "SSD", "brand": "WD",       "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 3950, "search": "SN850X"},
-    {"name": "Kingston KC3000 1TB",            "category": "SSD", "brand": "Kingston", "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 3750, "search": "KC3000"},
-    {"name": "Micron Crucial T500 1TB",        "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 4199, "search": "Crucial T500"},
-    {"name": "Micron Crucial P310 1TB",        "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 3999, "search": "P310"},
+    {"name": "Intel Core Ultra 5 245K",         "category": "CPU", "brand": "Intel",   "spec": "14C/14T 4.2-5.2GHz Arrow Lake",              "base_price": 10400, "search": "Ultra 5 245K", "short_name": "245K"},
+    {"name": "Intel Core Ultra 7 265K",         "category": "CPU", "brand": "Intel",   "spec": "20C/20T 3.9-5.5GHz Arrow Lake",              "base_price": 13600, "search": "265K",        "short_name": "265K"},
+    {"name": "Intel Core Ultra 7 270K Plus",    "category": "CPU", "brand": "Intel",   "spec": "24C/24T 3.7-5.5GHz Arrow Lake Refresh",      "base_price": 12500, "search": "270K",        "short_name": "270K"},
+    {"name": "Intel Core Ultra 9 285K",         "category": "CPU", "brand": "Intel",   "spec": "24C/24T 3.7-5.7GHz Arrow Lake",              "base_price": 19800, "search": "285K",        "short_name": "285K"},
+    {"name": "AMD Ryzen 7 7800X3D",            "category": "CPU", "brand": "AMD",     "spec": "8C/16T 4.2-5.0GHz 3D V-Cache",              "base_price": 14750, "search": "7800X3D",    "short_name": "7800X3D"},
+    {"name": "AMD Ryzen 5 7500F",              "category": "CPU", "brand": "AMD",     "spec": "6C/12T 3.7-5.0GHz Zen 4",                   "base_price": 5250,  "search": "7500F",      "short_name": "7500F"},
+    {"name": "AMD Ryzen 7 7700",               "category": "CPU", "brand": "AMD",     "spec": "8C/16T 3.8-5.3GHz Zen 4",                   "base_price": 10400, "search": "7700",       "short_name": "7700"},
+    {"name": "NVIDIA RTX 5060",                "category": "GPU", "brand": "NVIDIA",  "spec": "8GB GDDR7",                                  "base_price": 10990, "search": "RTX 5060",   "short_name": "RTX 5060"},
+    {"name": "NVIDIA RTX 5060 Ti 8GB",         "category": "GPU", "brand": "NVIDIA",  "spec": "8GB GDDR7",                                  "base_price": 12190, "search": "5060 Ti",   "short_name": "5060 Ti 8G"},
+    {"name": "NVIDIA RTX 5060 Ti 16GB",        "category": "GPU", "brand": "NVIDIA",  "spec": "16GB GDDR7",                                 "base_price": 13790, "search": "5060 Ti",   "short_name": "5060 Ti 16G"},
+    {"name": "NVIDIA RTX 5070",                "category": "GPU", "brand": "NVIDIA",  "spec": "12GB GDDR7",                                 "base_price": 19990, "search": "RTX 5070",   "short_name": "RTX 5070"},
+    {"name": "NVIDIA RTX 5070 Ti",             "category": "GPU", "brand": "NVIDIA",  "spec": "16GB GDDR7",                                 "base_price": 26990, "search": "RTX 5070 Ti", "short_name": "5070 Ti"},
+    {"name": "NVIDIA RTX 5080",                "category": "GPU", "brand": "NVIDIA",  "spec": "16GB GDDR7",                                 "base_price": 35990, "search": "RTX 5080",   "short_name": "RTX 5080"},
+    {"name": "NVIDIA RTX 5090",                "category": "GPU", "brand": "NVIDIA",  "spec": "32GB GDDR7",                                 "base_price": 71990, "search": "5090",       "short_name": "5090"},
+    {"name": "AMD RX 9070",                    "category": "GPU", "brand": "AMD",     "spec": "16GB GDDR6",                                 "base_price": 19990, "search": "RX 9070",   "short_name": "RX 9070"},
+    {"name": "AMD RX 9070 XT",                 "category": "GPU", "brand": "AMD",     "spec": "16GB GDDR6",                                 "base_price": 22990, "search": "RX 9070 XT", "short_name": "9070 XT"},
+    {"name": "AMD RX 9060 XT 8GB",           "category": "GPU", "brand": "AMD",     "spec": "8GB GDDR6",                                  "base_price": 10490, "search": "9060 XT",   "short_name": "9060 XT 8G"},
+    {"name": "AMD RX 9060 XT 16GB",          "category": "GPU", "brand": "AMD",     "spec": "16GB GDDR6",                                 "base_price": 12490, "search": "9060 XT",   "short_name": "9060 XT 16G"},
+    {"name": "Corsair Vengeance DDR5-6000 32GB",   "category": "RAM", "brand": "Corsair", "spec": "32GB (2x16GB) DDR5-6000 CL30",       "base_price": 3599, "search": "Vengeance DDR5-6000", "short_name": "Vengeance 6000"},
+    {"name": "G.Skill Trident Z5 DDR5-6400 32GB",  "category": "RAM", "brand": "G.Skill",  "spec": "32GB (2x16GB) DDR5-6400 CL32",       "base_price": 3688, "search": "Trident Z5 DDR5-6400", "short_name": "Trident Z5 6400"},
+    {"name": "Kingston Fury Beast DDR5-5600 32GB", "category": "RAM", "brand": "Kingston", "spec": "32GB (2x16GB) DDR5-5600 CL36",       "base_price": 2500, "search": "Fury Beast",  "short_name": "Fury Beast 5600"},
+    {"name": "Samsung 990 Pro 1TB",            "category": "SSD", "brand": "Samsung",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 4999, "search": "990 Pro",     "short_name": "990 Pro"},
+    {"name": "WD Black SN850X 1TB",            "category": "SSD", "brand": "WD",       "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 3950, "search": "SN850X",      "short_name": "SN850X"},
+    {"name": "Kingston KC3000 1TB",            "category": "SSD", "brand": "Kingston", "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 3750, "search": "KC3000",      "short_name": "KC3000"},
+    {"name": "Micron Crucial T500 1TB",        "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 4199, "search": "Crucial T500", "short_name": "T500"},
+    {"name": "Micron Crucial P310 1TB",        "category": "SSD", "brand": "Crucial",  "spec": "1TB NVMe M.2 PCIe 4.0", "base_price": 3999, "search": "P310",        "short_name": "P310"},
 ]
 
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -90,6 +90,7 @@ def load_products(products_path=None):
             "spec": entry.get("spec", d.get("spec", "")),
             "base_price": entry.get("base_price", d.get("base_price", 0)),
             "search": entry.get("search", d.get("search", name)),
+            "short_name": d.get("short_name", name),
         })
     return result
 
@@ -738,10 +739,20 @@ def _has_variant_suffix(text, suffix):
     return bool(re.search(pattern, text))
 
 
+# Max length for store product titles stored in the DB (truncated to keep
+# database size manageable while preserving enough "edition"/brand/model
+# keywords for verification).
+_MAX_STORE_TITLE = 120
+
+
+def _truncate_title(title):
+    return title[:_MAX_STORE_TITLE] if len(title) > _MAX_STORE_TITLE else title
+
+
 def _match_product_by_name(product_name, candidates):
     """Given a product name (e.g. 'NVIDIA RTX 5080') and a list of
     {title, price} candidates from a store, find the best match and
-    return its price, or None.
+    return (price, matched_title) or None.
 
     Strategy:
       1. Build a set of required keywords for the product.
@@ -828,7 +839,8 @@ def _match_product_by_name(product_name, candidates):
             return None
     elif best_score < 15:
         return None
-    return scored[0][1]
+    best = scored[0]
+    return (best[1], _truncate_title(best[2]["title"]))
 
 
 # ── Orchestrator ──────────────────────────────────────────────────
@@ -844,10 +856,10 @@ def scrape_real_prices(products=None):
 
     Returns:
       {
-        "原價屋 CoolPC": {product_name: price, ...},
-        "欣亞 Sinya":    {product_name: price, ...},
-        "PChome 24h":    {product_name: price, ...},
-        "Autobuy":       {product_name: price, ...},
+        "原價屋 CoolPC": {product_name: {"price": price, "title": title}, ...},
+        "欣亞 Sinya":    {product_name: {"price": price, "title": title}, ...},
+        "PChome 24h":    {product_name: {"price": price, "title": title}, ...},
+        "Autobuy":       {product_name: {"price": price, "title": title}, ...},
       }
     """
     print("=" * 55)
@@ -871,10 +883,11 @@ def scrape_real_prices(products=None):
             print("no results")
             time.sleep(0.2)
             continue
-        price = _match_product_by_name(prod["name"], items)
-        if price is not None:
-            results["欣亞 Sinya"][prod["name"]] = price
-            print(f"✓ NT${price:,}")
+        match = _match_product_by_name(prod["name"], items)
+        if match is not None:
+            price, title = match
+            results["欣亞 Sinya"][prod["name"]] = {"price": price, "title": title}
+            print(f"✓ NT${price:,}  [{title[:50]}]")
         else:
             print(f"no match ({len(items)} candidates)")
         time.sleep(0.2)
@@ -891,10 +904,11 @@ def scrape_real_prices(products=None):
         cat_items = coolpc_inventory.get(prod["category"], [])
         if not cat_items:
             continue
-        price = _match_product_by_name(prod["name"], cat_items)
-        if price is not None:
-            results["原價屋 CoolPC"][prod["name"]] = price
-            print(f"  Matched '{prod['name']}' → NT$ {price:,}")
+        match = _match_product_by_name(prod["name"], cat_items)
+        if match is not None:
+            price, title = match
+            results["原價屋 CoolPC"][prod["name"]] = {"price": price, "title": title}
+            print(f"  '{prod['name']}' → NT$ {price:,}  [{title[:50]}]")
 
     # ── 3. Autobuy: category-level fetch ──
     print("\n[Autobuy]")
@@ -913,10 +927,11 @@ def scrape_real_prices(products=None):
         cat_items = autobuy_inventory.get(prod["category"], [])
         if not cat_items:
             continue
-        price = _match_product_by_name(prod["name"], cat_items)
-        if price is not None:
-            results["Autobuy"][prod["name"]] = price
-            print(f"  Matched '{prod['name']}' → NT$ {price:,}")
+        match = _match_product_by_name(prod["name"], cat_items)
+        if match is not None:
+            price, title = match
+            results["Autobuy"][prod["name"]] = {"price": price, "title": title}
+            print(f"  '{prod['name']}' → NT$ {price:,}  [{title[:50]}]")
 
     # Summary
     print("\n" + "=" * 55)

@@ -9,19 +9,23 @@
       "原價屋 CoolPC": {
         "price": 6990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 6990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 6890,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "245K"
   },
   {
     "name": "Intel Core Ultra 7 265K",
@@ -33,19 +37,23 @@
       "原價屋 CoolPC": {
         "price": 10200,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 10200,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 9800,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "265K"
   },
   {
     "name": "Intel Core Ultra 7 270K Plus",
@@ -57,19 +65,23 @@
       "原價屋 CoolPC": {
         "price": 12500,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 12500,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 12400,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "270K"
   },
   {
     "name": "Intel Core Ultra 9 285K",
@@ -81,19 +93,23 @@
       "原價屋 CoolPC": {
         "price": 18600,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 18600,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 18200,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "285K"
   },
   {
     "name": "AMD Ryzen 7 7800X3D",
@@ -105,19 +121,23 @@
       "原價屋 CoolPC": {
         "price": 9990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 9990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 9990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "7800X3D"
   },
   {
     "name": "AMD Ryzen 5 7500F",
@@ -129,19 +149,23 @@
       "原價屋 CoolPC": {
         "price": 4790,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 4190,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 4190,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "7500F"
   },
   {
     "name": "AMD Ryzen 7 7700",
@@ -153,19 +177,23 @@
       "原價屋 CoolPC": {
         "price": 7190,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 6590,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 6590,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "7700"
   },
   {
     "name": "NVIDIA RTX 5060",
@@ -177,19 +205,23 @@
       "原價屋 CoolPC": {
         "price": 11988,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 11988,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 11990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "RTX 5060"
   },
   {
     "name": "NVIDIA RTX 5060 Ti 8GB",
@@ -201,19 +233,23 @@
       "原價屋 CoolPC": {
         "price": 14888,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 16590,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 15490,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "5060 Ti 8G"
   },
   {
     "name": "NVIDIA RTX 5060 Ti 16GB",
@@ -225,19 +261,23 @@
       "原價屋 CoolPC": {
         "price": 18490,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 20490,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 18490,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "5060 Ti 16G"
   },
   {
     "name": "NVIDIA RTX 5070",
@@ -249,19 +289,23 @@
       "原價屋 CoolPC": {
         "price": 21888,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 21888,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 22490,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "RTX 5070"
   },
   {
     "name": "NVIDIA RTX 5070 Ti",
@@ -273,19 +317,23 @@
       "原價屋 CoolPC": {
         "price": 31888,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 33990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 32990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "5070 Ti"
   },
   {
     "name": "NVIDIA RTX 5080",
@@ -297,19 +345,23 @@
       "原價屋 CoolPC": {
         "price": 44888,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 43990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 44990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "RTX 5080"
   },
   {
     "name": "NVIDIA RTX 5090",
@@ -321,19 +373,23 @@
       "原價屋 CoolPC": {
         "price": 125990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 104888,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 195000,
         "date": "2026-06-12T03:24:10.061375",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "5090"
   },
   {
     "name": "AMD RX 9070",
@@ -345,19 +401,23 @@
       "原價屋 CoolPC": {
         "price": 24590,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 24890,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 24890,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "RX 9070"
   },
   {
     "name": "AMD RX 9070 XT",
@@ -369,19 +429,23 @@
       "原價屋 CoolPC": {
         "price": 21990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 25590,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 25590,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "9070 XT"
   },
   {
     "name": "AMD RX 9060 XT 8GB",
@@ -393,19 +457,23 @@
       "原價屋 CoolPC": {
         "price": 10990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 10990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 11990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "9060 XT 8G"
   },
   {
     "name": "AMD RX 9060 XT 16GB",
@@ -417,19 +485,23 @@
       "原價屋 CoolPC": {
         "price": 15490,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 14590,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 15990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "9060 XT 16G"
   },
   {
     "name": "Corsair Vengeance DDR5-6000 32GB",
@@ -441,9 +513,11 @@
       "原價屋 CoolPC": {
         "price": 13490,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "Vengeance 6000"
   },
   {
     "name": "G.Skill Trident Z5 DDR5-6400 32GB",
@@ -455,14 +529,17 @@
       "原價屋 CoolPC": {
         "price": 13990,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 13500,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "Trident Z5 6400"
   },
   {
     "name": "Kingston Fury Beast DDR5-5600 32GB",
@@ -474,19 +551,23 @@
       "原價屋 CoolPC": {
         "price": 13800,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 13800,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 9200,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "Fury Beast 5600"
   },
   {
     "name": "Samsung 990 Pro 1TB",
@@ -498,19 +579,23 @@
       "原價屋 CoolPC": {
         "price": 7499,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 7499,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 9659,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "990 Pro"
   },
   {
     "name": "WD Black SN850X 1TB",
@@ -522,14 +607,17 @@
       "原價屋 CoolPC": {
         "price": 9999,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 9650,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "SN850X"
   },
   {
     "name": "Kingston KC3000 1TB",
@@ -541,19 +629,23 @@
       "原價屋 CoolPC": {
         "price": 7700,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 7700,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 7800,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "KC3000"
   },
   {
     "name": "Micron Crucial T500 1TB",
@@ -565,14 +657,17 @@
       "原價屋 CoolPC": {
         "price": 7199,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 7229,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "T500"
   },
   {
     "name": "Micron Crucial P310 1TB",
@@ -584,18 +679,22 @@
       "原價屋 CoolPC": {
         "price": 5100,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "欣亞 Sinya": {
         "price": 4750,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       },
       "Autobuy": {
         "price": 5130,
         "date": "2026-06-16T14:48:44.153352",
-        "is_synthetic": 0
+        "is_synthetic": 0,
+        "matched_title": ""
       }
-    }
+    },
+    "short_name": "P310"
   }
 ]
