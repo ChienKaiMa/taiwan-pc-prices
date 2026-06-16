@@ -998,24 +998,17 @@ def seed_demo_data(db, days=45, real_prices=None, products=None):
             for d in range(days, -1, -1):
                 ts = now - timedelta(days=d, hours=rng.randint(8, 20), minutes=rng.randint(0, 59))
 
-                # Determine price and whether it's synthetic
                 if has_real and d == 0:
-                    # Today + real price available → NOT synthetic
                     price = real_price
-                    is_synthetic = 0
                 elif has_real:
-                    # Past day with a real anchor → synthetic history around it
                     daily_noise = rng.gauss(0, 0.015)
                     trend = math.sin(d * 0.05) * 0.02
                     price = real_price * (1 + daily_noise + trend)
                     price = max(round(price / 100) * 100, 100)
-                    is_synthetic = 1
                 else:
-                    # No real price → fully synthetic (PChome or unmatched store)
                     price = generate_price(prod["base_price"], store_name, day_offset=d)
-                    is_synthetic = 1
 
-                db.record_price(product_id, store_id, price, ts.isoformat(), is_synthetic)
+                db.record_price(product_id, store_id, price, ts.isoformat())
                 total += 1
 
         db.commit()

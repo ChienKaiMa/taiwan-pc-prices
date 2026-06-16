@@ -57,7 +57,6 @@ class DB:
                 product_id INTEGER NOT NULL,
                 store_id INTEGER NOT NULL,
                 price INTEGER NOT NULL,
-                is_synthetic INTEGER DEFAULT 0,
                 recorded_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
                 matched_title TEXT DEFAULT '',
                 FOREIGN KEY (product_id) REFERENCES products(id),
@@ -70,7 +69,6 @@ class DB:
         self.conn.commit()
         # Migrate existing DB if columns are missing
         for col_sql in [
-            "ALTER TABLE price_snapshots ADD COLUMN is_synthetic INTEGER DEFAULT 0",
             "ALTER TABLE price_snapshots ADD COLUMN matched_title TEXT DEFAULT ''",
             "ALTER TABLE products ADD COLUMN msrp INTEGER DEFAULT 0",
             "ALTER TABLE products ADD COLUMN short_name TEXT DEFAULT ''",
@@ -97,16 +95,16 @@ class DB:
         )
         return self.conn.execute("SELECT id FROM stores WHERE name = ?", (name,)).fetchone()["id"]
 
-    def record_price(self, product_id, store_id, price, recorded_at=None, is_synthetic=0, matched_title=""):
+    def record_price(self, product_id, store_id, price, recorded_at=None, matched_title=""):
         if recorded_at:
             self.conn.execute(
-                "INSERT INTO price_snapshots(product_id, store_id, price, is_synthetic, recorded_at, matched_title) VALUES (?, ?, ?, ?, ?, ?)",
-                (product_id, store_id, price, is_synthetic, recorded_at, matched_title),
+                "INSERT INTO price_snapshots(product_id, store_id, price, recorded_at, matched_title) VALUES (?, ?, ?, ?, ?)",
+                (product_id, store_id, price, recorded_at, matched_title),
             )
         else:
             self.conn.execute(
-                "INSERT INTO price_snapshots(product_id, store_id, price, is_synthetic, matched_title) VALUES (?, ?, ?, ?, ?)",
-                (product_id, store_id, price, is_synthetic, matched_title),
+                "INSERT INTO price_snapshots(product_id, store_id, price, matched_title) VALUES (?, ?, ?, ?)",
+                (product_id, store_id, price, matched_title),
             )
 
     def commit(self):
@@ -116,7 +114,7 @@ class DB:
         rows = self.conn.execute("""
             SELECT p.name, p.short_name, p.category, p.brand, p.spec, p.msrp,
                    s.name AS store, ps.price, ps.recorded_at,
-                   ps.is_synthetic, ps.matched_title
+                   ps.matched_title
             FROM price_snapshots ps
             JOIN products p ON ps.product_id = p.id
             JOIN stores s ON ps.store_id = s.id
@@ -131,7 +129,7 @@ class DB:
         since = (datetime.now() - timedelta(days=days)).isoformat()
         rows = self.conn.execute("""
             SELECT s.name AS store, ps.price, ps.recorded_at,
-                   ps.is_synthetic, ps.matched_title
+                   ps.matched_title
             FROM price_snapshots ps
             JOIN products p ON ps.product_id = p.id
             JOIN stores s ON ps.store_id = s.id
@@ -156,7 +154,7 @@ class DB:
         rows = self.conn.execute("""
             SELECT p.name, p.short_name, p.category, p.brand, p.spec, p.msrp,
                    ps.price, s.name AS store, ps.recorded_at,
-                   ps.is_synthetic, ps.matched_title
+                   ps.matched_title
             FROM price_snapshots ps
             JOIN products p ON ps.product_id = p.id
             JOIN stores s ON ps.store_id = s.id
@@ -169,5 +167,5 @@ class DB:
         for r in rows:
             d = dict(r)
             base = result.setdefault(d["name"], {"name": d["name"], "short_name": d["short_name"], "category": d["category"], "brand": d["brand"], "spec": d["spec"], "msrp": d["msrp"], "prices": {}})
-            base["prices"][d["store"]] = {"price": d["price"], "date": d["recorded_at"], "is_synthetic": d["is_synthetic"], "matched_title": d["matched_title"]}
+            base["prices"][d["store"]] = {"price": d["price"], "date": d["recorded_at"], "matched_title": d["matched_title"]}
         return list(result.values())

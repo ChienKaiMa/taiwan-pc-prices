@@ -53,7 +53,7 @@ def generate(products=None, pre_scraped=None):
             price = match["price"]
             title = match.get("title", "")
             sid = db.upsert_store(store["name"], store.get("url", ""))
-            db.record_price(pid, sid, price, now.isoformat(), 0, title)
+            db.record_price(pid, sid, price, now.isoformat(), title)
     db.commit()
 
     # 3. Generate prices.json (same format as /api/prices) — merge with existing

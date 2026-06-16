@@ -262,7 +262,7 @@ function updateStats() {
   ALL_STORES.forEach(s => { storeCounts[s] = 0; });
   allData.forEach(p => {
     Object.entries(p.prices).forEach(([store, data]) => {
-      if (data && data.price && data.is_synthetic === 0) storeCounts[store]++;
+      if (data && data.price) storeCounts[store]++;
     });
   });
   let html = `

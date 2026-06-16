@@ -55,7 +55,7 @@ def _record_prices():
                 price = match["price"]
                 title = match.get("title", "")
                 sid = db.upsert_store(store["name"], store.get("url", ""))
-                db.record_price(pid, sid, price, now.isoformat(), 0, title)
+                db.record_price(pid, sid, price, now.isoformat(), title)
                 total += 1
         db.commit()
         print(f"[scheduler] Recorded {total} real snapshots at {now.isoformat()}")
