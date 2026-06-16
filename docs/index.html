@@ -307,7 +307,10 @@ async function loadFullHistory(bustCache = false) {
   if (!isGitHubPages) {
     try {
       const r = await fetch('/api/history?days=45');
-      if (r.ok) return await r.json();
+      if (r.ok) {
+        const data = await r.json();
+        if (Object.keys(data).length > 0) return data;
+      }
     } catch {}
   }
   const url = bustCache ? 'data/history.json?t=' + Date.now() : 'data/history.json';
