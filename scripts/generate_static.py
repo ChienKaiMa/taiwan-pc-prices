@@ -119,6 +119,7 @@ def generate(products=None, pre_scraped=None):
         except (json.JSONDecodeError, KeyError) as e:
             print(f"Warning: could not merge existing history: {e}")
 
+    new_history["_generated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
     with open(history_path, "w") as f:
         json.dump(new_history, f, ensure_ascii=False, indent=2)
 

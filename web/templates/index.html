@@ -73,9 +73,8 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
   </div>
 </header>
 <div class="container">
-  <div id="scrapeBanner" style="display:none; background:#fef3c7; border:1px solid #f59e0b; border-radius:10px; padding:.8rem 1.2rem; margin-bottom:1rem; font-size:.9rem; color:#92400e; display:flex; align-items:center; gap:.6rem;">
-    <span style="font-size:1.1rem;">⏳</span>
-    <span><strong>資料更新中</strong> — 正在爬取各商店最新價格，顯示的資料可能不是最新</span>
+  <div id="scrapeBanner" style="background:#fef3c7; border:1px solid #f59e0b; border-radius:10px; padding:.8rem 1.2rem; margin-bottom:1rem; font-size:.9rem; color:#92400e; display:flex; align-items:center; gap:.6rem;">
+    <span id="bannerText"><strong>最後更新</strong>: <span id="lastUpdate">-</span></span>
   </div>
 
   <div class="stats-grid" id="statsGrid"></div>
@@ -326,6 +325,9 @@ async function updateVolatilityCards(bustCacheOverride) {
   fullHistoryData = history;
   if (bustCacheOverride === undefined) _bustCache = false;
   if (!history) { document.getElementById('volatilityGrid').innerHTML = ''; return; }
+  if (history._generated_at) {
+    document.getElementById('lastUpdate').textContent = history._generated_at;
+  }
   const categories = [...new Set(allData.map(p => p.category))].sort();
   const prodCat = {};
   const prodMsrp = {};
@@ -580,10 +582,12 @@ async function checkScrapeStatus() {
     const r = await fetch('/api/scrape-status');
     const data = await r.json();
     const banner = document.getElementById('scrapeBanner');
+    const text = document.getElementById('bannerText');
     if (data.running) {
-      banner.style.display = 'flex';
+      text.innerHTML = '<span style="font-size:1.1rem;">⏳</span> <strong>資料更新中</strong> — 正在爬取各商店最新價格';
     } else {
-      banner.style.display = 'none';
+      const ts = document.getElementById('lastUpdate').textContent;
+      text.innerHTML = '<strong>最後更新</strong>: ' + (ts || '-');
     }
   } catch (e) {
     // ignore
