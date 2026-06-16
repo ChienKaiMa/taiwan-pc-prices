@@ -46,13 +46,8 @@ tr:hover { background: #f8f9ff; }
 .cat-SSD { background: #fef3c7; color: #b45309; }
 .lowest { background: #f0fdf4 !important; }
 tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outline-offset: -2px; }
-.match-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .8rem; margin-bottom: 1rem; }
-.match-card { background: #fff; border-radius: 10px; padding: .9rem 1rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
-.match-card .store-name { font-size: .85rem; font-weight: 600; color: #333; margin-bottom: .4rem; }
 .match-bar { height: 6px; border-radius: 3px; background: #e0e0e0; margin: .4rem 0; overflow: hidden; }
 .match-bar .real-fill { background: #16a34a; height: 100%; transition: width .5s; }
-.match-card .counts { font-size: .78rem; color: #666; }
-.match-card .counts .real { color: #16a34a; font-weight: 600; }
 .info-box { background: #fff; border-radius: 12px; padding: 0 1.2rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); overflow: hidden; transition: max-height .3s ease; }
 .info-header { display: flex; justify-content: space-between; align-items: center; padding: .9rem 0; cursor: pointer; user-select: none; }
 .info-header h3 { font-size: .9rem; color: #0f3460; }
@@ -84,8 +79,6 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
   </div>
 
   <div class="stats-grid" id="statsGrid"></div>
-
-  <div class="match-stats" id="matchStats"></div>
 
   <div class="stats-grid" id="categoryGrid"></div>
 
@@ -224,7 +217,6 @@ async function refreshData() {
     await updateVolatilityCards(true);
     updateTable();
     updateCharts();
-    updateMatchStats();
     document.getElementById('lastUpdated').textContent = '更新於 ' + new Date().toLocaleString('zh-TW');
   } catch (e) {
     console.error('refreshData failed:', e);
@@ -238,38 +230,6 @@ function toggleInfo(el) {
 }
 
 const ALL_STORES = ['原價屋 CoolPC', '欣亞 Sinya', 'Autobuy'];
-
-function updateMatchStats() {
-  const totalProducts = allData.length;
-  const storeCounts = {};
-  ALL_STORES.forEach(s => { storeCounts[s] = 0; });
-  allData.forEach(p => {
-    Object.entries(p.prices).forEach(([store, data]) => {
-      if (data && data.price && data.is_synthetic === 0) {
-        storeCounts[store]++;
-      }
-    });
-  });
-
-  let html = '';
-  ALL_STORES.forEach(store => {
-    const matched = storeCounts[store] || 0;
-    const pct = Math.round(matched / totalProducts * 100);
-    html += `
-      <div class="match-card">
-        <div class="store-name">${store}</div>
-        <div class="match-bar">
-          <div class="real-fill" style="width:${pct}%"></div>
-        </div>
-        <div class="counts">
-          <span class="real">${matched}/${totalProducts}</span> 已匹配 ·
-          <strong>${pct}%</strong> 匹配率
-        </div>
-      </div>
-    `;
-  });
-  document.getElementById('matchStats').innerHTML = html;
-}
 
 function populateSelect() {
   const sel = document.getElementById('productSelect');
@@ -298,10 +258,29 @@ function filterCategory(cat) {
 
 function updateStats() {
   const stores = new Set(allData.flatMap(p => Object.keys(p.prices))).size;
-  document.getElementById('statsGrid').innerHTML = `
+  const storeCounts = {};
+  ALL_STORES.forEach(s => { storeCounts[s] = 0; });
+  allData.forEach(p => {
+    Object.entries(p.prices).forEach(([store, data]) => {
+      if (data && data.price && data.is_synthetic === 0) storeCounts[store]++;
+    });
+  });
+  let html = `
     <div class="stat-card"><div class="label">追蹤產品</div><div class="value">${allData.length}</div><div class="sub">件零件</div></div>
     <div class="stat-card"><div class="label">商店數量</div><div class="value">${stores}</div><div class="sub">家商店</div></div>
   `;
+  ALL_STORES.forEach(store => {
+    const matched = storeCounts[store] || 0;
+    const pct = Math.round(matched / allData.length * 100);
+    html += `
+      <div class="stat-card">
+        <div class="label">${store}</div>
+        <div class="value" style="font-size:1rem">${matched}/${allData.length}</div>
+        <div class="sub"><div class="match-bar"><div class="real-fill" style="width:${pct}%"></div></div>${pct}% 匹配率</div>
+      </div>
+    `;
+  });
+  document.getElementById('statsGrid').innerHTML = html;
 }
 
 function updateCategoryGrid() {
