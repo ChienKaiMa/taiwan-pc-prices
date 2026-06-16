@@ -597,24 +597,5 @@
         "is_synthetic": 0
       }
     }
-  },
-  {
-    "name": "Micron Crucial P3 Plus 1TB",
-    "category": "SSD",
-    "brand": "Crucial",
-    "spec": "1TB NVMe M.2 PCIe 4.0",
-    "msrp": 3099,
-    "prices": {
-      "原價屋 CoolPC": {
-        "price": 5100,
-        "date": "2026-06-16T22:29:09.571776",
-        "is_synthetic": 0
-      },
-      "Autobuy": {
-        "price": 5130,
-        "date": "2026-06-16T22:29:09.571776",
-        "is_synthetic": 0
-      }
-    }
   }
 ]
