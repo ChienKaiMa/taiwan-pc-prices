@@ -27,6 +27,10 @@ header p { opacity: .8; font-size: .95rem; margin-bottom: .6rem; }
 .controls select, .controls input { padding: .5rem .8rem; border: 1px solid #d0d5dd; border-radius: 8px; font-size: .9rem; background: #fff; }
 .controls button { padding: .5rem 1.2rem; border: none; border-radius: 8px; background: #0f3460; color: #fff; font-weight: 600; cursor: pointer; }
 .controls button:hover { background: #1a4a7a; }
+.category-filters { display: flex; gap: .4rem; }
+.cat-btn { padding: .4rem .8rem !important; border: 1px solid #d0d5dd !important; border-radius: 8px !important; background: #fff !important; color: #444 !important; font-weight: 500 !important; font-size: .85rem !important; cursor: pointer; transition: background .15s, color .15s; }
+.cat-btn:hover { background: #f0f2f5 !important; }
+.cat-btn.active { background: #0f3460 !important; color: #fff !important; border-color: #0f3460 !important; }
 .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
 .chart-box { background: #fff; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
 .chart-box h3 { font-size: 1rem; margin-bottom: 1rem; color: #333; }
@@ -141,6 +145,14 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
   </div>
 
   <div class="controls">
+    <label>分類</label>
+    <div class="category-filters">
+      <button class="cat-btn active" data-cat="" onclick="setCategoryFilter('')">全部</button>
+      <button class="cat-btn" data-cat="CPU" onclick="setCategoryFilter('CPU')">處理器</button>
+      <button class="cat-btn" data-cat="GPU" onclick="setCategoryFilter('GPU')">顯示卡</button>
+      <button class="cat-btn" data-cat="RAM" onclick="setCategoryFilter('RAM')">記憶體</button>
+      <button class="cat-btn" data-cat="SSD" onclick="setCategoryFilter('SSD')">固態硬碟</button>
+    </div>
     <label for="productSelect">產品</label>
     <select id="productSelect" onchange="selectProduct(this.value)"></select>
     <label for="daysSelect">天數</label>
@@ -151,7 +163,6 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
       <option value="45">45 天</option>
     </select>
     <button onclick="refreshData()">🔄 重新整理</button>
-    <span id="lastUpdated" style="margin-left:auto;font-size:.8rem;color:#999;"></span>
   </div>
 
   <div class="chart-row">
@@ -171,6 +182,7 @@ let compareChart = null, historyChart = null;
 let allData = [];
 let selectedProduct = null;
 let fullHistoryData = null;
+let currentCategory = '';
 
 const isGitHubPages = window.location.hostname.includes('github.io');
 
@@ -216,7 +228,6 @@ async function refreshData() {
     await updateVolatilityCards(true);
     updateTable();
     updateCharts();
-    document.getElementById('lastUpdated').textContent = '更新於 ' + new Date().toLocaleString('zh-TW');
   } catch (e) {
     console.error('refreshData failed:', e);
   }
@@ -253,6 +264,23 @@ function filterCategory(cat) {
   const minPrice = Math.min(...allPrices);
   const cheapest = items.find(p => Object.values(p.prices).some(v => v.price === minPrice));
   if (cheapest) selectProduct(cheapest.name);
+}
+
+function setCategoryFilter(cat) {
+  currentCategory = cat;
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cat === cat);
+  });
+  updateTable();
+  if (cat) {
+    const items = allData.filter(p => p.category === cat);
+    if (items.length > 0) {
+      const first = document.getElementById('productSelect').querySelector(`option[value="${items[0].name}"]`);
+      if (first) selectProduct(items[0].name);
+    }
+  } else {
+    if (allData.length > 0) selectProduct(allData[0].name);
+  }
 }
 
 function updateStats() {
@@ -292,8 +320,8 @@ function updateCategoryGrid() {
     const minPrice = allPrices.length ? Math.min(...allPrices) : 0;
     const cheapestItem = minPrice ? items.find(p => Object.values(p.prices).some(v => v && v.price === minPrice)) : null;
     const label = categoryLabels[cat] || cat;
-    html += `
-      <div class="stat-card" style="cursor:pointer" onclick="filterCategory('${cat}')">
+      html += `
+      <div class="stat-card" style="cursor:pointer" onclick="setCategoryFilter('${cat}')">
         <div class="label">最便宜 ${label}</div>
         <div class="value">${minPrice ? 'NT$ ' + minPrice.toLocaleString() : '-'}</div>
         <div class="sub">${cheapestItem ? cheapestItem.name : ''}</div>
@@ -444,7 +472,8 @@ function updateTable() {
   let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>規格</th><th title="CPU/GPU 為官方建議售價；RAM/SSD 為市場參考價">建議售價*</th><th title="歷史最低價格（根據已記錄的資料）">歷史低價</th><th>開始追蹤</th>`;
   ALL_STORES.forEach(s => html += `<th>${s}</th>`);
   html += `</tr></thead><tbody>`;
-  allData.forEach(p => {
+  const filtered = currentCategory ? allData.filter(p => p.category === currentCategory) : allData;
+  filtered.forEach(p => {
     const vals = Object.entries(p.prices).filter(([,v]) => v && v.price);
     const prices = vals.map(([,v]) => v.price);
     const minPrice = prices.length ? Math.min(...prices) : 0;
