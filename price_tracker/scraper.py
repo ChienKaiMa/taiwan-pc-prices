@@ -736,6 +736,7 @@ def _match_product_by_name(product_name, candidates):
       5. Penalize VRAM mismatch (e.g. 8GB vs 16GB).
     """
     norm_name = _normalize(product_name)
+    target_words = set(norm_name.split())
 
     # Extract VRAM from product name
     target_vram = _extract_vram_gb(product_name)
@@ -771,14 +772,14 @@ def _match_product_by_name(product_name, candidates):
             if bw.lower() in c_norm:
                 bundle_penalty += 50
 
-        # Penalise variant mismatch: if the candidate has a variant suffix
-        # that the target product name does NOT have, it's a different product
+        # Penalise variant mismatch (word-boundary match, not substring):
+        # if one side has a tier suffix the other lacks, it's the wrong product.
         variant_penalty = 0
         for vs in variant_suffixes:
-            in_target = vs in norm_name
-            in_candidate = vs in c_norm
-            if in_candidate and not in_target:
-                variant_penalty += 60  # heavy: wrong product tier
+            in_target = vs in target_words
+            in_candidate = vs in c_words
+            if in_candidate != in_target:
+                variant_penalty += 60  # wrong product tier
 
         # Penalise VRAM mismatch (e.g. 8GB vs 16GB)
         vram_penalty = 0
