@@ -18,6 +18,9 @@ python track.py
 # Or test-scrape specific products:
 python track.py --scrape "RTX 5070"
 
+# Verify matches and check for anomalies:
+python track.py --verify
+
 # Start web server with live dashboard:
 python track.py --server
 ```
@@ -45,6 +48,14 @@ The GitHub Action runs every 6 hours. Prices update ~4x daily with random jitter
 | 欣亞 Sinya | ✓ (83%) |
 | Autobuy | ✓ (88%) |
 | PChome 24h | ✗ (Cloudflare blocked) |
+
+## Verification
+
+```bash
+python track.py --verify
+```
+
+Checks match rates, flags prices below 75% of MSRP (expected for old-gen CPUs), detects single-record price outliers from history, and shows the store's actual product name (`matched_title`) per product as proof of correct matching.
 
 ## Dashboard Features
 
