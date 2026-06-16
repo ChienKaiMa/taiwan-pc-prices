@@ -547,7 +547,7 @@ function updateCompareChart(prodData) {
           }
         },
         scales: {
-          y: { beginAtZero: false, ticks: { callback: v => 'NT$ ' + Number(v).toLocaleString() } }
+          y: { beginAtZero: false, grace: '5%', ticks: { callback: v => 'NT$ ' + Number(v).toLocaleString() } }
         }
       }
     });
