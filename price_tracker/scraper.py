@@ -722,6 +722,20 @@ def _extract_vram_gb(name):
     return None
 
 
+def _has_variant_suffix(text, suffix):
+    """True if `suffix` appears as a standalone word or concatenated with
+    model numbers (e.g. '5070ti'), but NOT embedded inside other English
+    words (e.g. 'ti' inside 'edition').
+
+    Uses a regex that requires the suffix to be preceded by a non-lowercase-letter
+    (or start-of-string) and followed by a non-lowercase-letter (or end-of-string).
+    This allows concatenations like ``5070ti`` (digit before) while rejecting
+    ``edition`` (letter before).
+    """
+    pattern = r'(?:^|(?<=[^a-z]))' + re.escape(suffix) + r'(?=[^a-z]|$)'
+    return bool(re.search(pattern, text))
+
+
 def _match_product_by_name(product_name, candidates):
     """Given a product name (e.g. 'NVIDIA RTX 5080') and a list of
     {title, price} candidates from a store, find the best match and
@@ -772,12 +786,14 @@ def _match_product_by_name(product_name, candidates):
             if bw.lower() in c_norm:
                 bundle_penalty += 50
 
-        # Penalise variant mismatch (word-boundary match, not substring):
-        # if one side has a tier suffix the other lacks, it's the wrong product.
+        # Penalise variant mismatch: if one side has a tier suffix the other
+        # lacks, it's the wrong product.  Uses _has_variant_suffix on the
+        # candidate side (handles concatenation like '5070ti') while the
+        # target side uses word-set membership (target names always well-spaced).
         variant_penalty = 0
         for vs in variant_suffixes:
             in_target = vs in target_words
-            in_candidate = vs in c_words
+            in_candidate = _has_variant_suffix(c_norm, vs)
             if in_candidate != in_target:
                 variant_penalty += 60  # wrong product tier
 
