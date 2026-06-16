@@ -388,7 +388,7 @@
     "category": "RAM",
     "brand": "Corsair",
     "spec": "32GB (2x16GB) DDR5-6000 CL30",
-    "msrp": 13490,
+    "msrp": 0,
     "prices": {
       "原價屋 CoolPC": {
         "price": 13490,
@@ -402,7 +402,7 @@
     "category": "RAM",
     "brand": "G.Skill",
     "spec": "32GB (2x16GB) DDR5-6400 CL32",
-    "msrp": 13500,
+    "msrp": 0,
     "prices": {
       "原價屋 CoolPC": {
         "price": 13990,
@@ -421,7 +421,7 @@
     "category": "RAM",
     "brand": "Kingston",
     "spec": "32GB (2x16GB) DDR5-5600 CL36",
-    "msrp": 13800,
+    "msrp": 2500,
     "prices": {
       "原價屋 CoolPC": {
         "price": 13800,
@@ -445,7 +445,7 @@
     "category": "SSD",
     "brand": "Samsung",
     "spec": "1TB NVMe M.2 PCIe 4.0",
-    "msrp": 9659,
+    "msrp": 4999,
     "prices": {
       "原價屋 CoolPC": {
         "price": 7499,
@@ -469,7 +469,7 @@
     "category": "SSD",
     "brand": "WD",
     "spec": "1TB NVMe M.2 PCIe 4.0",
-    "msrp": 9999,
+    "msrp": 3950,
     "prices": {
       "原價屋 CoolPC": {
         "price": 9999,
@@ -488,7 +488,7 @@
     "category": "SSD",
     "brand": "Kingston",
     "spec": "1TB NVMe M.2 PCIe 4.0",
-    "msrp": 7880,
+    "msrp": 3750,
     "prices": {
       "原價屋 CoolPC": {
         "price": 7700,
@@ -512,7 +512,7 @@
     "category": "SSD",
     "brand": "Crucial",
     "spec": "1TB NVMe M.2 PCIe 4.0",
-    "msrp": 7199,
+    "msrp": 4199,
     "prices": {
       "原價屋 CoolPC": {
         "price": 7199,
@@ -531,7 +531,7 @@
     "category": "SSD",
     "brand": "Crucial",
     "spec": "1TB NVMe M.2 PCIe 4.0",
-    "msrp": 2299,
+    "msrp": 3099,
     "prices": {
       "原價屋 CoolPC": {
         "price": 5100,
@@ -541,25 +541,6 @@
       "Autobuy": {
         "price": 5130,
         "date": "2026-06-16T21:17:43.034176",
-        "is_synthetic": 0
-      }
-    }
-  },
-  {
-    "name": "Crucial P3 Plus 1TB",
-    "category": "SSD",
-    "brand": "Crucial",
-    "spec": "1TB NVMe M.2 PCIe 4.0",
-    "msrp": 2299,
-    "prices": {
-      "原價屋 CoolPC": {
-        "price": 5100,
-        "date": "2026-06-16T07:36:53.486080",
-        "is_synthetic": 0
-      },
-      "Autobuy": {
-        "price": 4599,
-        "date": "2026-06-16T07:36:53.486080",
         "is_synthetic": 0
       }
     }
