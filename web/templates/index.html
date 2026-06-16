@@ -87,6 +87,8 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
 
   <div class="match-stats" id="matchStats"></div>
 
+  <div class="stats-grid" id="categoryGrid"></div>
+
   <div class="stats-grid" id="volatilityGrid"></div>
 
   <div class="info-box" id="infoBox">
@@ -218,6 +220,7 @@ async function refreshData() {
     console.log('Loaded', allData.length, 'products');
     populateSelect();
     updateStats();
+    updateCategoryGrid();
     await updateVolatilityCards(true);
     updateTable();
     updateCharts();
@@ -295,14 +298,16 @@ function filterCategory(cat) {
 
 function updateStats() {
   const stores = new Set(allData.flatMap(p => Object.keys(p.prices))).size;
-  const categories = [...new Set(allData.map(p => p.category))].sort();
-  const categoryLabels = { CPU: '處理器', GPU: '顯示卡', RAM: '記憶體', SSD: '固態硬碟' };
-
-  let html = `
+  document.getElementById('statsGrid').innerHTML = `
     <div class="stat-card"><div class="label">追蹤產品</div><div class="value">${allData.length}</div><div class="sub">件零件</div></div>
     <div class="stat-card"><div class="label">商店數量</div><div class="value">${stores}</div><div class="sub">家商店</div></div>
   `;
+}
 
+function updateCategoryGrid() {
+  const categories = [...new Set(allData.map(p => p.category))].sort();
+  const categoryLabels = { CPU: '處理器', GPU: '顯示卡', RAM: '記憶體', SSD: '固態硬碟' };
+  let html = '';
   categories.forEach(cat => {
     const items = allData.filter(p => p.category === cat);
     const allPrices = items.flatMap(p => Object.values(p.prices).filter(v => v && v.price).map(v => v.price));
@@ -317,8 +322,7 @@ function updateStats() {
       </div>
     `;
   });
-
-  document.getElementById('statsGrid').innerHTML = html;
+  document.getElementById('categoryGrid').innerHTML = html;
 }
 
 async function loadFullHistory(bustCache = false) {
