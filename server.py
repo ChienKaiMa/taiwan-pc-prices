@@ -4,7 +4,7 @@ import mimetypes
 import threading
 import random
 import time
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
@@ -111,7 +111,8 @@ class PriceServer(BaseHTTPRequestHandler):
                     h = _db.get_price_history(p["name"], days)
                     if h:
                         result[p["name"]] = h
-                result["_generated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+                tw_tz = timezone(timedelta(hours=8))
+                result["_generated_at"] = datetime.now(tw_tz).strftime("%Y-%m-%d %H:%M +0800")
                 self._send_json(result)
         elif path == "/api/products":
             self._send_json(_db.get_all_products())

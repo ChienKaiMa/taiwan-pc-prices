@@ -5,7 +5,7 @@ import json
 import os
 import shutil
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime, timezone, timedelta
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -119,7 +119,8 @@ def generate(products=None, pre_scraped=None):
         except (json.JSONDecodeError, KeyError) as e:
             print(f"Warning: could not merge existing history: {e}")
 
-    new_history["_generated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+    tw_tz = timezone(timedelta(hours=8))
+    new_history["_generated_at"] = datetime.now(tw_tz).strftime("%Y-%m-%d %H:%M +0800")
     with open(history_path, "w") as f:
         json.dump(new_history, f, ensure_ascii=False, indent=2)
 
