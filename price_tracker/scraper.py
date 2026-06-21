@@ -770,7 +770,7 @@ def _match_product_by_name(product_name, candidates):
 
     # Extract meaningful keywords from the product name
     stopwords = {"nvidia", "amd", "intel", "corsair", "g.skill", "kingston",
-                 "samsung", "wd", "crucial", "ryzen", "core", "series"}
+                 "samsung", "wd", "crucial", "micron", "ryzen", "core", "series"}
 
     name_words = [w for w in norm_name.split() if w not in stopwords and len(w) > 1]
 
