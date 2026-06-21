@@ -82,6 +82,7 @@ track.py ──► scrape_real_prices() ──► generate_static.py ──► d
 - **Sinya 5060 Ti 8GB→16GB cross-match**: Before VRAM penalty was added, the 5060 Ti 16GB product matched the 8GB card at Sinya (NT$16,590 instead of NT$20,490).
 - **June 11 data**: All removed (92 entries) — systematic suspicious prices from initial scraper testing.
 - **`"pc"` word boundary**: Bundle/pre-built filtering must use `\bpc\b` regex to avoid `PCIe`/`PCle` false positives.
+- **Autobuy SSD category includes external drives**: Category 5541 returns both internal NVMe and external USB SSDs. Brand names (e.g. `"micron"`) must be in stopwords so external SSDs (e.g. "Micron Crucial X9 1TB") don't match internal NVMe products (e.g. "Micron Crucial T500 1TB") via shared brand keywords + capacity. Fixed by adding `"micron"` to stopwords in `_match_product_by_name`.
 - **`seed_demo_data()`**: Dead code, never called. Generates synthetic historical prices around real anchors.
 
 ## RAM/SSD Base Prices
