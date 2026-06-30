@@ -34,6 +34,7 @@ STORES = [
 
 PRODUCTS = [
     {"name": "Intel Core Ultra 5 245K",         "category": "CPU", "brand": "Intel",   "spec": "14C/14T 4.2-5.2GHz Arrow Lake",              "base_price": 10400, "search": "Ultra 5 245K", "short_name": "245K"},
+    {"name": "Intel Core Ultra 5 250K Plus",    "category": "CPU", "brand": "Intel",   "spec": "18C/18T 4.2-5.3GHz Arrow Lake Refresh",      "base_price": 8800,  "search": "250K",        "short_name": "250K"},
     {"name": "Intel Core Ultra 7 265K",         "category": "CPU", "brand": "Intel",   "spec": "20C/20T 3.9-5.5GHz Arrow Lake",              "base_price": 13600, "search": "265K",        "short_name": "265K"},
     {"name": "Intel Core Ultra 7 270K Plus",    "category": "CPU", "brand": "Intel",   "spec": "24C/24T 3.7-5.5GHz Arrow Lake Refresh",      "base_price": 12500, "search": "270K",        "short_name": "270K"},
     {"name": "Intel Core Ultra 9 285K",         "category": "CPU", "brand": "Intel",   "spec": "24C/24T 3.7-5.7GHz Arrow Lake",              "base_price": 19800, "search": "285K",        "short_name": "285K"},

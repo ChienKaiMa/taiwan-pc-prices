@@ -1,5 +1,6 @@
 [
   {"name": "Intel Core Ultra 5 245K",         "category": "CPU"},
+  {"name": "Intel Core Ultra 5 250K Plus",    "category": "CPU"},
   {"name": "Intel Core Ultra 7 265K",         "category": "CPU"},
   {"name": "Intel Core Ultra 7 270K Plus",    "category": "CPU"},
   {"name": "Intel Core Ultra 9 285K",         "category": "CPU"},
