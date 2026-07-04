@@ -8,6 +8,8 @@ from datetime import datetime, timedelta
 
 import requests
 
+from price_tracker.sunfar_scraper import sunfar_fetch
+
 # ── Store definitions ──────────────────────────────────────────────
 # PChome 24h is excluded because it uses Cloudflare anti-bot protection
 # and lacks a public API or category-page listing — scraping individual
@@ -16,6 +18,7 @@ STORES = [
     {"name": "原價屋 CoolPC", "url": "https://www.coolpc.com.tw"},
     {"name": "欣亞 Sinya", "url": "https://www.sinya.com.tw"},
     {"name": "Autobuy", "url": "https://www.autobuy.tw"},
+    {"name": "Sunfar (isunfar.com.tw)", "url": "https://www.isunfar.com.tw"},
 ]
 
 # ── Product list ──────────────────────────────────────────────────
@@ -116,6 +119,7 @@ STORE_PRICE_FACTOR = {
     "欣亞 Sinya": 1.02,
     "Autobuy": 0.98,
     "PChome 24h": 1.05,
+    "Sunfar (isunfar.com.tw)": 1.0,
 }
 
 BIGGO_STORE_MAP = {
@@ -860,7 +864,7 @@ def _match_product_by_name(product_name, candidates):
 # ── Orchestrator ──────────────────────────────────────────────────
 
 def scrape_real_prices(products=None):
-    """Scrape prices from Sinya, CoolPC, and Autobuy.
+    """Scrape prices from Sinya, CoolPC, Autobuy, and Sunfar.
 
     BigGo is no longer usable (Cloudflare).  PChome is also Cloudflare-blocked
     and will remain synthetic for now.
@@ -870,14 +874,15 @@ def scrape_real_prices(products=None):
 
     Returns:
       {
-        "原價屋 CoolPC": {product_name: {"price": price, "title": title}, ...},
-        "欣亞 Sinya":    {product_name: {"price": price, "title": title}, ...},
-        "PChome 24h":    {product_name: {"price": price, "title": title}, ...},
-        "Autobuy":       {product_name: {"price": price, "title": title}, ...},
+        "原價屋 CoolPC":         {product_name: {"price": price, "title": title}, ...},
+        "欣亞 Sinya":            {product_name: {"price": price, "title": title}, ...},
+        "PChome 24h":            {product_name: {"price": price, "title": title}, ...},
+        "Autobuy":               {product_name: {"price": price, "title": title}, ...},
+        "Sunfar (isunfar.com.tw)": {product_name: {"price": price, "title": title}, ...},
       }
     """
     print("=" * 55)
-    print("  Scraping real prices (Sinya + CoolPC + Autobuy)")
+    print("  Scraping real prices (Sinya + CoolPC + Autobuy + Sunfar)")
     print("=" * 55)
 
     results = {
@@ -885,6 +890,7 @@ def scrape_real_prices(products=None):
         "欣亞 Sinya": {},
         "PChome 24h": {},
         "Autobuy": {},
+        "Sunfar (isunfar.com.tw)": {},
     }
 
     # ── 1. Sinya: per-product API search ──
@@ -947,9 +953,26 @@ def scrape_real_prices(products=None):
             results["Autobuy"][prod["name"]] = {"price": price, "title": title}
             print(f"  '{prod['name']}' → NT$ {price:,}  [{title[:50]}]")
 
+    # ── 4. Sunfar: per-product search ──
+    print("\n[Sunfar]  Searching all products...")
+    for prod in (products or PRODUCTS):
+        kw = prod.get("search", prod["name"])
+        print(f"  Searching '{kw}'...", end=" ", flush=True)
+        items = sunfar_fetch(kw)
+        if not items:
+            print("no results")
+            continue
+        match = _match_product_by_name(prod["name"], items)
+        if match is not None:
+            price, title = match
+            results["Sunfar (isunfar.com.tw)"][prod["name"]] = {"price": price, "title": title}
+            print(f"✓ NT${price:,}  [{title[:50]}]")
+        else:
+            print(f"no match ({len(items)} candidates)")
+
     # Summary
     print("\n" + "=" * 55)
-    active_stores = ["原價屋 CoolPC", "欣亞 Sinya", "Autobuy"]
+    active_stores = ["原價屋 CoolPC", "欣亞 Sinya", "Autobuy", "Sunfar (isunfar.com.tw)"]
     total_real = 0
     total_possible = len(PRODUCTS) * len(active_stores)
     for store_name in active_stores + ["PChome 24h"]:

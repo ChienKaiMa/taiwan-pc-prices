@@ -41,7 +41,7 @@ def verify_data():
     sn_map = {p["name"]: p.get("short_name", p["name"]) for p in prices}
 
     # --- Match rates ---
-    stores = ["原價屋 CoolPC", "欣亞 Sinya", "Autobuy"]
+    stores = ["原價屋 CoolPC", "欣亞 Sinya", "Autobuy", "Sunfar (isunfar.com.tw)"]
     total = len(prices) * len(stores)
     matched = 0
     for p in prices:
@@ -129,7 +129,7 @@ def main():
     print("\n--- Scraping ---")
     results = scrape_real_prices(products)
     matched = sum(1 for store_prices in results.values() for v in store_prices.values())
-    total = len(products) * 3  # 3 active stores
+    total = len(products) * 4  # 4 active stores
     print(f"\nMatched {matched}/{total} across stores\n")
 
     # 3. Print per-product summary
@@ -138,7 +138,7 @@ def main():
         name = prod["name"]
         sn = prod.get("short_name", "")
         prices = []
-        for store in ["原價屋 CoolPC", "欣亞 Sinya", "Autobuy"]:
+        for store in ["原價屋 CoolPC", "欣亞 Sinya", "Autobuy", "Sunfar (isunfar.com.tw)"]:
             match = results.get(store, {}).get(name)
             if match:
                 title = match.get("title", "")
