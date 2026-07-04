@@ -39,7 +39,9 @@ header p { opacity: .8; font-size: .95rem; margin-bottom: .6rem; }
 .table-wrap { overflow-x: auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
 table { width: 100%; border-collapse: collapse; font-size: .9rem; }
 th { background: #f8f9fa; padding: .8rem .6rem; text-align: left; font-weight: 600; color: #555; border-bottom: 2px solid #e0e0e0; }
+th.store-col { width: 12%; min-width: 130px; text-align: center; font-size: .8rem; }
 td { padding: .7rem .6rem; border-bottom: 1px solid #f0f0f0; }
+td.store-col { text-align: center; }
 tr:hover { background: #f8f9ff; }
 .price { font-weight: 600; }
 .price-min { color: #16a34a; }
@@ -472,7 +474,7 @@ function getCurrentLow(productName) {
 
 function updateTable() {
   let html = `<table><thead><tr><th>類別</th><th>產品名稱</th><th>規格</th><th title="CPU/GPU 為官方建議售價；RAM/SSD 為市場參考價">建議售價*</th><th title="歷史最低價格（根據已記錄的資料）">歷史低價</th><th>開始追蹤</th>`;
-  ALL_STORES.forEach(s => html += `<th>${s}</th>`);
+  ALL_STORES.forEach((s, i) => html += `<th data-col="${6 + i}" class="store-col">${s}</th>`);
   html += `</tr></thead><tbody>`;
   const filtered = currentCategory ? allData.filter(p => p.category === currentCategory) : allData;
   filtered.forEach(p => {
@@ -489,9 +491,9 @@ function updateTable() {
     html += `<td style="font-size:.8rem;color:#888">${firstDate || '-'}</td>`;
     ALL_STORES.forEach(s => {
       const entry = p.prices[s];
-      if (!entry || !entry.price) { html += `<td>-</td>`; return; }
+      if (!entry || !entry.price) { html += `<td class="store-col">-</td>`; return; }
       const cls = entry.price === minPrice ? 'price price-min' : 'price';
-      html += `<td class="${cls}">NT$ ${entry.price.toLocaleString()}</td>`;
+      html += `<td class="${cls} store-col">NT$ ${entry.price.toLocaleString()}</td>`;
     });
     html += `</tr>`;
   });
