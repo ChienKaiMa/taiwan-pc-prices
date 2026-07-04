@@ -1,6 +1,6 @@
-"""Sunfar (isunfar.com.tw) price scraper.
+"""順發 Sunfar (isunfar.com.tw) price scraper.
 
-Standalone module — not yet integrated into the main pipeline.
+Integrated into the main pipeline via sunfar_fetch().
 Use `python -m price_tracker.sunfar_scraper` to run a test against all products.
 """
 
@@ -43,7 +43,10 @@ def _get_session():
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         s = requests.Session()
         s.verify = False
-        s.get(_BASE_URL, headers=_HEADERS, timeout=20)
+        try:
+            s.get(_BASE_URL, headers=_HEADERS, timeout=15)
+        except Exception:
+            pass  # proceed without homepage cookies
         _SESSION = s
     return _SESSION
 
@@ -72,9 +75,9 @@ def sunfar_fetch(keyword, max_retries=2):
 
     def _do_search(search_kw):
         """Internal fetch with a given keyword, returns items or None."""
-        sess = _get_session()
         for attempt in range(max_retries):
             try:
+                sess = _get_session()
                 resp = sess.get(
                     _SEARCH_URL,
                     headers=_HEADERS,

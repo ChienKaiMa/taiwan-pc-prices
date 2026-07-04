@@ -41,7 +41,7 @@ def verify_data():
     sn_map = {p["name"]: p.get("short_name", p["name"]) for p in prices}
 
     # --- Match rates ---
-    stores = ["原價屋 CoolPC", "欣亞 Sinya", "Autobuy", "Sunfar (isunfar.com.tw)"]
+    stores = ["原價屋 CoolPC", "欣亞 Sinya", "Autobuy", "順發 Sunfar"]
     total = len(prices) * len(stores)
     matched = 0
     for p in prices:
@@ -138,7 +138,7 @@ def main():
         name = prod["name"]
         sn = prod.get("short_name", "")
         prices = []
-        for store in ["原價屋 CoolPC", "欣亞 Sinya", "Autobuy", "Sunfar (isunfar.com.tw)"]:
+        for store in ["原價屋 CoolPC", "欣亞 Sinya", "Autobuy", "順發 Sunfar"]:
             match = results.get(store, {}).get(name)
             if match:
                 title = match.get("title", "")
