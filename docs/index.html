@@ -18,6 +18,7 @@ header p { opacity: .8; font-size: .95rem; margin-bottom: .6rem; }
 .header-actions a:hover { background: rgba(255,255,255,.1); }
 .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
 .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+#statsGrid { grid-template-columns: repeat(6, 1fr); }
 .stat-card { background: #fff; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
 .stat-card .label { font-size: .85rem; color: #666; margin-bottom: .3rem; }
 .stat-card .value { font-size: 1.6rem; font-weight: 700; color: #0f3460; }
@@ -65,7 +66,7 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
 .info-body-inner ul { margin: .3rem 0 .3rem 1.2rem; }
 .info-body-inner li { margin: .2rem 0; }
 .info-body-inner .reason-title { font-weight: 700; color: #0f3460; margin-top: .6rem; }
-@media (max-width: 900px) { .chart-row { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .chart-row { grid-template-columns: 1fr; } #statsGrid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); } }
 </style>
 </head>
 <body>
