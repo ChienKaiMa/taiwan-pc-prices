@@ -38,9 +38,9 @@ PRODUCTS = [
     {"name": "Intel Core Ultra 7 265K",         "category": "CPU", "brand": "Intel",   "spec": "20C/20T 3.9-5.5GHz Arrow Lake",              "base_price": 13600, "search": "265K",        "short_name": "265K"},
     {"name": "Intel Core Ultra 7 270K Plus",    "category": "CPU", "brand": "Intel",   "spec": "24C/24T 3.7-5.5GHz Arrow Lake Refresh",      "base_price": 12500, "search": "270K",        "short_name": "270K"},
     {"name": "Intel Core Ultra 9 285K",         "category": "CPU", "brand": "Intel",   "spec": "24C/24T 3.7-5.7GHz Arrow Lake",              "base_price": 19800, "search": "285K",        "short_name": "285K"},
-    {"name": "AMD Ryzen 7 7800X3D",            "category": "CPU", "brand": "AMD",     "spec": "8C/16T 4.2-5.0GHz 3D V-Cache",              "base_price": 14750, "search": "7800X3D",    "short_name": "7800X3D"},
     {"name": "AMD Ryzen 5 7500F",              "category": "CPU", "brand": "AMD",     "spec": "6C/12T 3.7-5.0GHz Zen 4",                   "base_price": 5250,  "search": "7500F",      "short_name": "7500F"},
     {"name": "AMD Ryzen 7 7700",               "category": "CPU", "brand": "AMD",     "spec": "8C/16T 3.8-5.3GHz Zen 4",                   "base_price": 10400, "search": "7700",       "short_name": "7700"},
+    {"name": "AMD Ryzen 7 7800X3D",            "category": "CPU", "brand": "AMD",     "spec": "8C/16T 4.2-5.0GHz 3D V-Cache",              "base_price": 14750, "search": "7800X3D",    "short_name": "7800X3D"},
     {"name": "AMD Ryzen 5 9600X",              "category": "CPU", "brand": "AMD",     "spec": "6C/12T 3.9-5.4GHz Zen 5",                   "base_price": 9550,  "search": "9600X",      "short_name": "9600X"},
     {"name": "NVIDIA RTX 5060",                "category": "GPU", "brand": "NVIDIA",  "spec": "8GB GDDR7",                                  "base_price": 10990, "search": "RTX 5060",   "short_name": "RTX 5060"},
     {"name": "NVIDIA RTX 5060 Ti 8GB",         "category": "GPU", "brand": "NVIDIA",  "spec": "8GB GDDR7",                                  "base_price": 12190, "search": "5060 Ti",   "short_name": "5060 Ti 8G"},
@@ -717,11 +717,11 @@ def _extract_vram_gb(name):
     Handles patterns like '8GB', '16GB', '8G', 'O8G', 'O16G', '-8GB',
     and also looks for combined tokens like 'rtx5060ti-o8g'.
     """
-    m = re.search(r'(?<!\d)(\d+)\s*(?:gb|g)\b', name, re.IGNORECASE)
+    m = re.search(r'(?<!\d)(\d+)\s*(?:gb|g)\b', name, re.IGNORECASE | re.ASCII)
     if m:
         return int(m.group(1))
     # Also check patterns like "o8g", "o16g" (ASUS naming)
-    m = re.search(r'[oO](\d+)[gG]\b', name)
+    m = re.search(r'[oO](\d+)[gG]\b', name, re.ASCII)
     if m:
         return int(m.group(1))
     return None
@@ -776,6 +776,18 @@ def _match_product_by_name(product_name, candidates):
 
     name_words = [w for w in norm_name.split() if w not in stopwords and len(w) > 1]
 
+    # Expand name_words with common formatting variants so e.g. "32GB" matches
+    # "32G" in a store title and "DDR5-5600" matches "DDR5 5600" (no hyphen).
+    extra_words = []
+    for w in name_words:
+        if "-" in w:
+            extra_words.append(w.replace("-", " "))
+        if w.endswith("gb"):
+            extra_words.append(w[:-2] + "g")  # 32gb → 32g
+        elif w.endswith("g") and any(c.isdigit() for c in w):
+            extra_words.append(w + "gb")  # 32g → 32gb
+    name_words += extra_words
+
     # Known variant suffixes that define a *different* product tier.
     # These should never match unless the target product name also contains them.
     variant_suffixes = {"kf", "xt", "gre", "xtx", "super", "ultra", "lite", "max", "ti", "ks"}
@@ -797,7 +809,7 @@ def _match_product_by_name(product_name, candidates):
 
         # Penalize bundles
         bundle_penalty = 0
-        for bw in ["搭機", "套裝", "主機", "裝機配", "送", "救贖", "福利"]:
+        for bw in ["搭機", "套裝", "主機", "裝機配", "送", "救贖", "福利", "電競電腦", "筆電"]:
             if bw.lower() in c_norm:
                 bundle_penalty += 50
 
