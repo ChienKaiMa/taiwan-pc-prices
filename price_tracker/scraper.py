@@ -41,6 +41,7 @@ PRODUCTS = [
     {"name": "AMD Ryzen 7 7800X3D",            "category": "CPU", "brand": "AMD",     "spec": "8C/16T 4.2-5.0GHz 3D V-Cache",              "base_price": 14750, "search": "7800X3D",    "short_name": "7800X3D"},
     {"name": "AMD Ryzen 5 7500F",              "category": "CPU", "brand": "AMD",     "spec": "6C/12T 3.7-5.0GHz Zen 4",                   "base_price": 5250,  "search": "7500F",      "short_name": "7500F"},
     {"name": "AMD Ryzen 7 7700",               "category": "CPU", "brand": "AMD",     "spec": "8C/16T 3.8-5.3GHz Zen 4",                   "base_price": 10400, "search": "7700",       "short_name": "7700"},
+    {"name": "AMD Ryzen 5 9600X",              "category": "CPU", "brand": "AMD",     "spec": "6C/12T 3.9-5.4GHz Zen 5",                   "base_price": 9550,  "search": "9600X",      "short_name": "9600X"},
     {"name": "NVIDIA RTX 5060",                "category": "GPU", "brand": "NVIDIA",  "spec": "8GB GDDR7",                                  "base_price": 10990, "search": "RTX 5060",   "short_name": "RTX 5060"},
     {"name": "NVIDIA RTX 5060 Ti 8GB",         "category": "GPU", "brand": "NVIDIA",  "spec": "8GB GDDR7",                                  "base_price": 12190, "search": "5060 Ti",   "short_name": "5060 Ti 8G"},
     {"name": "NVIDIA RTX 5060 Ti 16GB",        "category": "GPU", "brand": "NVIDIA",  "spec": "16GB GDDR7",                                 "base_price": 13790, "search": "5060 Ti",   "short_name": "5060 Ti 16G"},

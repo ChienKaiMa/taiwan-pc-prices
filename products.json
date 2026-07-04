@@ -7,6 +7,7 @@
   {"name": "AMD Ryzen 7 7800X3D",            "category": "CPU"},
   {"name": "AMD Ryzen 5 7500F",              "category": "CPU"},
   {"name": "AMD Ryzen 7 7700",               "category": "CPU"},
+  {"name": "AMD Ryzen 5 9600X",              "category": "CPU"},
   {"name": "NVIDIA RTX 5060",                "category": "GPU"},
   {"name": "NVIDIA RTX 5060 Ti 8GB",         "category": "GPU"},
   {"name": "NVIDIA RTX 5060 Ti 16GB",        "category": "GPU"},
