@@ -400,9 +400,11 @@ function updateBuildGrid() {
   document.getElementById('buildGrid').innerHTML = `
     <div class="stat-card">
       <div class="label">${MID_RANGE_BUILD.name} 最低組合價</div>
-      <div style="font-size:.72rem;color:#888;margin-bottom:.3rem;line-height:1.4">${MID_RANGE_BUILD.criteria}</div>
       <div class="value">NT$ ${total.toLocaleString()}</div>
-      <div class="sub" style="margin-top:.4rem">${breakdown}</div>
+      <div class="sub" style="margin-top:.4rem">
+        <div style="font-size:.72rem;color:#888;margin-bottom:.3rem;line-height:1.4">${MID_RANGE_BUILD.criteria}</div>
+        ${breakdown}
+      </div>
     </div>
   `;
 }
