@@ -731,6 +731,16 @@ def _extract_vram_gb(name):
     return None
 
 
+def _extract_ddr_gen(name):
+    """Extract DDR generation (4, 5, etc.) from a product/candidate name.
+    Returns an int or None if not found.
+    """
+    m = re.search(r'\bDDR(\d)\b', name, re.IGNORECASE)
+    if m:
+        return int(m.group(1))
+    return None
+
+
 def _has_variant_suffix(text, suffix):
     """True if `suffix` appears as a standalone word or concatenated with
     model numbers (e.g. '5070ti'), but NOT embedded inside other English
@@ -781,11 +791,14 @@ def _match_product_by_name(product_name, candidates):
     name_words = [w for w in norm_name.split() if w not in stopwords and len(w) > 1]
 
     # Expand name_words with common formatting variants so e.g. "32GB" matches
-    # "32G" in a store title and "DDR5-5600" matches "DDR5 5600" (no hyphen).
+    # "32G" in a store title and "DDR5-5600" matches "DDR5" + "5600" separately
+    # (store titles may have different speed suffixes like DDR5-6400).
     extra_words = []
     for w in name_words:
         if "-" in w:
-            extra_words.append(w.replace("-", " "))
+            for sub in w.split("-"):
+                if len(sub) > 1:
+                    extra_words.append(sub)
         if w.endswith("gb"):
             extra_words.append(w[:-2] + "g")  # 32gb → 32g
         elif w.endswith("g") and any(c.isdigit() for c in w):
@@ -811,10 +824,11 @@ def _match_product_by_name(product_name, candidates):
         if matches < min_required:
             continue
 
-        # Penalize bundles
+        # Penalize bundles (use raw title — _normalize strips 【】containing keywords)
         bundle_penalty = 0
-        for bw in ["搭機", "套裝", "主機", "裝機配", "送", "救贖", "福利", "電競電腦", "筆電"]:
-            if bw.lower() in c_norm:
+        raw_lower = c["title"].lower()
+        for bw in ["搭機", "搭板", "套裝", "主機", "裝機配", "送", "救贖", "福利", "電競電腦", "筆電"]:
+            if bw.lower() in raw_lower:
                 bundle_penalty += 50
 
         # Penalise variant mismatch: if one side has a tier suffix the other
@@ -835,7 +849,15 @@ def _match_product_by_name(product_name, candidates):
             if candidate_vram is not None and candidate_vram != target_vram:
                 vram_penalty = 80  # heavy: wrong VRAM capacity
 
-        score = matches * 10 - bundle_penalty - variant_penalty - vram_penalty
+        # Penalise DDR generation mismatch (e.g. DDR4 vs DDR5)
+        ddr_penalty = 0
+        target_ddr = _extract_ddr_gen(product_name)
+        if target_ddr is not None:
+            candidate_ddr = _extract_ddr_gen(c["title"])
+            if candidate_ddr is not None and candidate_ddr != target_ddr:
+                ddr_penalty = 80  # heavy: wrong memory generation
+
+        score = matches * 10 - bundle_penalty - variant_penalty - vram_penalty - ddr_penalty
         # Bonus for exact name match or very high overlap
         if norm_name in c_norm or product_name.lower() in c_norm:
             score += 100
@@ -868,6 +890,12 @@ def scrape_real_prices(products=None):
 
     BigGo is no longer usable (Cloudflare).  PChome is also Cloudflare-blocked
     and will remain synthetic for now.
+
+    Matcher improvements (July 2026):
+      - DDR generation mismatch penalty (e.g. DDR4 vs DDR5)
+      - Bundle keywords checked against raw title (not _normalize, which strips 【】)
+      - Hyphen expansion now splits into separate keywords (e.g. "ddr5-5600" → "ddr5", "5600")
+      - "搭板" added to bundle keywords
 
     Args:
         products: optional list of product dicts (defaults to PRODUCTS).
