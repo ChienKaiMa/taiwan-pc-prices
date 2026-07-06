@@ -249,15 +249,34 @@ function toggleInfo(el) {
 
 const ALL_STORES = ['原價屋 CoolPC', '欣亞 Sinya', 'Autobuy', '順發 Sunfar'];
 
+function bestPrice(allData, name) {
+  const prod = allData.find(p => p.name === name);
+  if (!prod) return null;
+  const entries = Object.entries(prod.prices).filter(([,v]) => v && v.price);
+  if (!entries.length) return null;
+  const [store, data] = entries.reduce((a, b) => a[1].price < b[1].price ? a : b);
+  return { name, price: data.price, store, category: prod.category, short: prod.short_name };
+}
+
+function cheapestMatching(allData, names) {
+  let best = null;
+  for (const name of names) {
+    const r = bestPrice(allData, name);
+    if (r && (!best || r.price < best.price)) best = r;
+  }
+  return best;
+}
+
 const MID_RANGE_BUILD = {
   name: '中階遊戲機',
-  note: '選取各類別中階定位產品，每項取全商店最低價組合',
-  components: [
-    { name: 'AMD Ryzen 5 9600X', role: 'CPU', short: 'R5 9600X' },
-    { name: 'NVIDIA RTX 5060 Ti 8GB', role: '顯示卡', short: '5060 Ti 8G' },
-    { name: 'Kingston Fury Beast DDR5-5600 32GB', role: '記憶體', short: 'Fury Beast DDR5' },
-    { name: 'Kingston KC3000 1TB', role: 'SSD', short: 'KC3000 1TB' },
-  ]
+  criteria: 'CPU: 6核 AMD 或 Core Ultra 5 中最便宜 ｜ GPU: $14K~25K 中最便宜 ｜ RAM: 32GB DDR5 中最便宜 ｜ SSD: 1TB NVMe PCIe4 中最便宜',
+  selector: function(allData) {
+    const cpu = cheapestMatching(allData, ['AMD Ryzen 5 9600X', 'Intel Core Ultra 5 245K', 'Intel Core Ultra 5 250K Plus']);
+    const gpu = cheapestMatching(allData, ['NVIDIA RTX 5060 Ti 8GB', 'AMD RX 9060 XT 16GB']);
+    const ram = cheapestMatching(allData, ['Corsair Vengeance DDR5-6000 32GB', 'G.Skill Trident Z5 DDR5-6400 32GB', 'Kingston Fury Beast DDR5-5600 32GB']);
+    const ssd = cheapestMatching(allData, ['Micron Crucial T500 1TB', 'Kingston KC3000 1TB', 'WD Black SN850X 1TB', 'Samsung 990 Pro 1TB']);
+    return [cpu, gpu, ram, ssd].filter(Boolean);
+  }
 };
 
 function populateSelect() {
@@ -370,25 +389,18 @@ const CATEGORY_LABELS = { CPU: '處理器', GPU: '顯示卡', RAM: '記憶體', 
 const VOLATILITY_THRESHOLD = 500;
 
 function updateBuildGrid() {
-  let total = 0;
-  const parts = [];
-  for (const comp of MID_RANGE_BUILD.components) {
-    const prod = allData.find(p => p.name === comp.name);
-    if (!prod) { parts.push({ ...comp, price: null, store: null }); continue; }
-    const entries = Object.entries(prod.prices).filter(([,v]) => v && v.price);
-    if (!entries.length) { parts.push({ ...comp, price: null, store: null }); continue; }
-    const [store, data] = entries.reduce((a, b) => a[1].price < b[1].price ? a : b);
-    total += data.price;
-    parts.push({ ...comp, price: data.price, store });
-  }
+  const parts = MID_RANGE_BUILD.selector(allData);
+  if (!parts.length) { document.getElementById('buildGrid').innerHTML = ''; return; }
+  const total = parts.reduce((s, p) => s + p.price, 0);
+  const roleLabels = { CPU: '處理器', GPU: '顯示卡', RAM: '記憶體', SSD: 'SSD' };
   const breakdown = parts.map(p => {
-    if (!p.price) return `<div style="font-size:.75rem;color:#999">${p.role}: ${p.short} — 無資料</div>`;
-    return `<div style="font-size:.75rem;color:#555">${p.role}: ${p.short} — <strong>NT$ ${p.price.toLocaleString()}</strong> (${p.store})</div>`;
+    const label = roleLabels[p.category] || p.category;
+    return `<div style="font-size:.75rem;color:#555;display:flex;flex-wrap:wrap;gap:0 .3rem"><span style="color:#888">${label}・</span><span>${p.short || p.name}</span><span style="margin-left:auto"><strong>NT$ ${p.price.toLocaleString()}</strong> @ ${p.store}</span></div>`;
   }).join('');
   document.getElementById('buildGrid').innerHTML = `
     <div class="stat-card">
       <div class="label">${MID_RANGE_BUILD.name} 最低組合價</div>
-      <div style="font-size:.75rem;color:#888;margin-bottom:.3rem">${MID_RANGE_BUILD.note}</div>
+      <div style="font-size:.72rem;color:#888;margin-bottom:.3rem;line-height:1.4">${MID_RANGE_BUILD.criteria}</div>
       <div class="value">NT$ ${total.toLocaleString()}</div>
       <div class="sub" style="margin-top:.4rem">${breakdown}</div>
     </div>
