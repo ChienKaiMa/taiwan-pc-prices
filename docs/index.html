@@ -19,7 +19,7 @@ header p { opacity: .8; font-size: .95rem; margin-bottom: .6rem; }
 .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
 .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
 #statsGrid { grid-template-columns: repeat(6, 1fr); }
-#buildGrid { grid-template-columns: minmax(auto, 520px); }
+#buildGrid { grid-template-columns: minmax(auto, 580px); }
 .stat-card { background: #fff; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
 .stat-card .label { font-size: .85rem; color: #666; margin-bottom: .3rem; }
 .stat-card .value { font-size: 1.6rem; font-weight: 700; color: #0f3460; }
@@ -411,18 +411,20 @@ function updateBuildGrid() {
   if (!parts.length) { document.getElementById('buildGrid').innerHTML = ''; return; }
   const total = parts.reduce((s, p) => s + p.price, 0);
   const roleLabels = { CPU: '處理器', GPU: '顯示卡', RAM: '記憶體', SSD: 'SSD' };
-  const breakdown = parts.map(p => {
-    const label = roleLabels[p.category] || p.category;
-    return `<div style="margin-bottom:.6rem">
-      <div style="font-size:.75rem;color:#555;line-height:1.4">${label}：${p.criteria}</div>
-      <div style="font-size:.82rem;color:#333;padding-left:.5rem;border-left:2px solid #ccc;margin-top:.15rem">${p.name}  ·  <strong>NT$ ${p.price.toLocaleString()}</strong>  @  ${p.store}</div>
-    </div>`;
-  }).join('');
+  const breakdown = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">` +
+    parts.map(p => {
+      const label = roleLabels[p.category] || p.category;
+      return `<div>
+        <div style="font-size:.75rem;color:#555;line-height:1.4">${label}：${p.criteria}</div>
+        <div style="font-size:.82rem;color:#333;margin-top:.15rem">${p.name}  ·  <strong>NT$ ${p.price.toLocaleString()}</strong>  @  ${p.store}</div>
+      </div>`;
+    }).join('') +
+    `</div>`;
   document.getElementById('buildGrid').innerHTML = `
     <div class="stat-card">
       <div class="label">${MID_RANGE_BUILD.name} 最低組合價</div>
       <div class="value">NT$ ${total.toLocaleString()}</div>
-      <div class="sub" style="margin-top:.4rem">${breakdown}</div>
+      <div class="sub" style="margin-top:.6rem">${breakdown}</div>
     </div>
   `;
 }
