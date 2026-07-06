@@ -272,9 +272,10 @@ const MID_RANGE_BUILD = {
   name: '中階遊戲機',
   selector: function(allData) {
     const cpu = cheapestMatching(allData, [
-      { name: 'AMD Ryzen 5 9600X', criteria: '6核 AMD' },
-      { name: 'Intel Core Ultra 5 245K', criteria: 'Core Ultra 5' },
-      { name: 'Intel Core Ultra 5 250K Plus', criteria: 'Core Ultra 5' },
+      { name: 'AMD Ryzen 5 7500F', criteria: '6核 AMD 或 6 P-core Intel 中最便宜' },
+      { name: 'AMD Ryzen 5 9600X', criteria: '6核 AMD 或 6 P-core Intel 中最便宜' },
+      { name: 'Intel Core Ultra 5 245K', criteria: '6核 AMD 或 6 P-core Intel 中最便宜' },
+      { name: 'Intel Core Ultra 5 250K Plus', criteria: '6核 AMD 或 6 P-core Intel 中最便宜' },
     ]);
     const gpu = cheapestMatching(allData, [
       { name: 'NVIDIA RTX 5060 Ti 8GB', criteria: '$14K~25K' },
