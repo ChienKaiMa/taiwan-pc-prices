@@ -75,6 +75,8 @@ def verify_data():
 
     # --- History outliers: single anomalous price surrounded by stable prices ---
     for prod_name, records in history.items():
+        if not isinstance(records, list):
+            continue
         sn = sn_map.get(prod_name, prod_name)
         if len(records) < 3:
             continue

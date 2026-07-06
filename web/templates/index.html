@@ -288,10 +288,10 @@ const MID_RANGE_BUILD = {
       { name: 'Kingston Fury Beast DDR5-5600 32GB', criteria: '32GB DDR5 中最便宜' },
     ]);
     const ssd = cheapestMatching(allData, [
-      { name: 'Micron Crucial T500 1TB', criteria: '1TB NVMe PCIe4 中最便宜' },
-      { name: 'Kingston KC3000 1TB', criteria: '1TB NVMe PCIe4 中最便宜' },
-      { name: 'WD Black SN850X 1TB', criteria: '1TB NVMe PCIe4 中最便宜' },
-      { name: 'Samsung 990 Pro 1TB', criteria: '1TB NVMe PCIe4 中最便宜' },
+      { name: 'Micron Crucial T500 1TB', criteria: '1TB NVMe PCIe4 TLC 中最便宜' },
+      { name: 'Kingston KC3000 1TB', criteria: '1TB NVMe PCIe4 TLC 中最便宜' },
+      { name: 'WD Black SN850X 1TB', criteria: '1TB NVMe PCIe4 TLC 中最便宜' },
+      { name: 'Samsung 990 Pro 1TB', criteria: '1TB NVMe PCIe4 TLC 中最便宜' },
     ]);
     return [cpu, gpu, ram, ssd].filter(Boolean);
   }
