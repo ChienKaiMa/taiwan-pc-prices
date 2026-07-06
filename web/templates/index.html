@@ -251,6 +251,7 @@ const ALL_STORES = ['原價屋 CoolPC', '欣亞 Sinya', 'Autobuy', '順發 Sunfa
 
 const MID_RANGE_BUILD = {
   name: '中階遊戲機',
+  note: '選取各類別中階定位產品，每項取全商店最低價組合',
   components: [
     { name: 'AMD Ryzen 5 9600X', role: 'CPU', short: 'R5 9600X' },
     { name: 'NVIDIA RTX 5060 Ti 8GB', role: '顯示卡', short: '5060 Ti 8G' },
@@ -387,6 +388,7 @@ function updateBuildGrid() {
   document.getElementById('buildGrid').innerHTML = `
     <div class="stat-card">
       <div class="label">${MID_RANGE_BUILD.name} 最低組合價</div>
+      <div style="font-size:.75rem;color:#888;margin-bottom:.3rem">${MID_RANGE_BUILD.note}</div>
       <div class="value">NT$ ${total.toLocaleString()}</div>
       <div class="sub" style="margin-top:.4rem">${breakdown}</div>
     </div>
