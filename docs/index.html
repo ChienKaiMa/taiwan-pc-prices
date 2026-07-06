@@ -86,6 +86,8 @@ tr.selected { background: #eef2ff !important; outline: 2px solid #0f3460; outlin
 
   <div class="stats-grid" id="statsGrid"></div>
 
+  <div class="stats-grid" id="buildGrid"></div>
+
   <div class="stats-grid" id="categoryGrid"></div>
 
   <div class="stats-grid" id="volatilityGrid"></div>
@@ -229,6 +231,7 @@ async function refreshData() {
     console.log('Loaded', allData.length, 'products');
     populateSelect();
     updateStats();
+    updateBuildGrid();
     updateCategoryGrid();
     await updateVolatilityCards(true);
     updateTable();
@@ -245,6 +248,16 @@ function toggleInfo(el) {
 }
 
 const ALL_STORES = ['原價屋 CoolPC', '欣亞 Sinya', 'Autobuy', '順發 Sunfar'];
+
+const MID_RANGE_BUILD = {
+  name: '中階遊戲機',
+  components: [
+    { name: 'AMD Ryzen 5 9600X', role: 'CPU', short: 'R5 9600X' },
+    { name: 'NVIDIA RTX 5060 Ti 8GB', role: '顯示卡', short: '5060 Ti 8G' },
+    { name: 'Kingston Fury Beast DDR5-5600 32GB', role: '記憶體', short: 'Fury Beast DDR5' },
+    { name: 'Kingston KC3000 1TB', role: 'SSD', short: 'KC3000 1TB' },
+  ]
+};
 
 function populateSelect() {
   const sel = document.getElementById('productSelect');
@@ -354,6 +367,31 @@ async function loadFullHistory(bustCache = false) {
 
 const CATEGORY_LABELS = { CPU: '處理器', GPU: '顯示卡', RAM: '記憶體', SSD: '固態硬碟' };
 const VOLATILITY_THRESHOLD = 500;
+
+function updateBuildGrid() {
+  let total = 0;
+  const parts = [];
+  for (const comp of MID_RANGE_BUILD.components) {
+    const prod = allData.find(p => p.name === comp.name);
+    if (!prod) { parts.push({ ...comp, price: null, store: null }); continue; }
+    const entries = Object.entries(prod.prices).filter(([,v]) => v && v.price);
+    if (!entries.length) { parts.push({ ...comp, price: null, store: null }); continue; }
+    const [store, data] = entries.reduce((a, b) => a[1].price < b[1].price ? a : b);
+    total += data.price;
+    parts.push({ ...comp, price: data.price, store });
+  }
+  const breakdown = parts.map(p => {
+    if (!p.price) return `<div style="font-size:.75rem;color:#999">${p.role}: ${p.short} — 無資料</div>`;
+    return `<div style="font-size:.75rem;color:#555">${p.role}: ${p.short} — <strong>NT$ ${p.price.toLocaleString()}</strong> (${p.store})</div>`;
+  }).join('');
+  document.getElementById('buildGrid').innerHTML = `
+    <div class="stat-card">
+      <div class="label">${MID_RANGE_BUILD.name} 最低組合價</div>
+      <div class="value">NT$ ${total.toLocaleString()}</div>
+      <div class="sub" style="margin-top:.4rem">${breakdown}</div>
+    </div>
+  `;
+}
 
 async function updateVolatilityCards(bustCacheOverride) {
   const bust = bustCacheOverride !== undefined ? bustCacheOverride : _bustCache;
