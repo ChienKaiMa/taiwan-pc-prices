@@ -66,6 +66,13 @@ def generate(products=None, pre_scraped=None):
         try:
             with open(prices_path) as f:
                 existing = json.load(f)
+            # Determine which stores had at least one match in the current
+            # scrape — old data for those stores is stale (store was searched
+            # but had no match for this product).  Only preserve old entries
+            # for stores that weren't scraped at all (e.g. PChome 24h).
+            scraped_stores = set()
+            for p in latest:
+                scraped_stores.update(p.get("prices", {}).keys())
             merged = {p["name"]: p for p in latest}
             for old_p in existing:
                 name = old_p["name"]
@@ -73,6 +80,8 @@ def generate(products=None, pre_scraped=None):
                     merged[name] = old_p
                     continue
                 for store, entry in old_p.get("prices", {}).items():
+                    if store in scraped_stores:
+                        continue  # store was re-scraped; old data is stale
                     if store not in merged[name].get("prices", {}):
                         merged[name].setdefault("prices", {})[store] = entry
             latest = list(merged.values())

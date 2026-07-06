@@ -741,6 +741,24 @@ def _extract_ddr_gen(name):
     return None
 
 
+def _extract_storage_capacity(name):
+    """Extract storage capacity in TB from a product/candidate name.
+    Returns an int (number of TB) or None if not found.
+    Handles patterns like '1TB', '2TB', '4TB', '500GB'.
+    """
+    m = re.search(r'(\d+)\s*TB\b', name, re.IGNORECASE)
+    if m:
+        return int(m.group(1))
+    m = re.search(r'(\d+)\s*GB\b', name, re.IGNORECASE)
+    if m:
+        gb = int(m.group(1))
+        # Convert to TB: 500GB → 0 (not really TB, but we need fractional)
+        # We'll just return None for sub-TB capacities since no SSD product
+        # in our list is < 1TB
+        return None
+    return None
+
+
 def _has_variant_suffix(text, suffix):
     """True if `suffix` appears as a standalone word or concatenated with
     model numbers (e.g. '5070ti'), but NOT embedded inside other English
@@ -849,6 +867,14 @@ def _match_product_by_name(product_name, candidates):
             if candidate_vram is not None and candidate_vram != target_vram:
                 vram_penalty = 80  # heavy: wrong VRAM capacity
 
+        # Penalise storage capacity mismatch (e.g. 1TB vs 2TB for SSDs)
+        cap_penalty = 0
+        target_cap = _extract_storage_capacity(product_name)
+        if target_cap is not None:
+            candidate_cap = _extract_storage_capacity(c["title"])
+            if candidate_cap is not None and candidate_cap != target_cap:
+                cap_penalty = 80  # heavy: wrong storage capacity
+
         # Penalise DDR generation mismatch (e.g. DDR4 vs DDR5)
         ddr_penalty = 0
         target_ddr = _extract_ddr_gen(product_name)
@@ -857,7 +883,7 @@ def _match_product_by_name(product_name, candidates):
             if candidate_ddr is not None and candidate_ddr != target_ddr:
                 ddr_penalty = 80  # heavy: wrong memory generation
 
-        score = matches * 10 - bundle_penalty - variant_penalty - vram_penalty - ddr_penalty
+        score = matches * 10 - bundle_penalty - variant_penalty - vram_penalty - ddr_penalty - cap_penalty
         # Bonus for exact name match or very high overlap
         if norm_name in c_norm or product_name.lower() in c_norm:
             score += 100
