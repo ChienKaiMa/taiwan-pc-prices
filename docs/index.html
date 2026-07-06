@@ -282,15 +282,15 @@ const MID_RANGE_BUILD = {
       { name: 'AMD RX 9060 XT 16GB', criteria: 'NT$14K~25K 中階顯卡中最便宜' },
     ]);
     const ram = cheapestMatching(allData, [
-      { name: 'Corsair Vengeance DDR5-6000 32GB', criteria: '32GB DDR5' },
-      { name: 'G.Skill Trident Z5 DDR5-6400 32GB', criteria: '32GB DDR5' },
-      { name: 'Kingston Fury Beast DDR5-5600 32GB', criteria: '32GB DDR5' },
+      { name: 'Corsair Vengeance DDR5-6000 32GB', criteria: '32GB DDR5 中最便宜' },
+      { name: 'G.Skill Trident Z5 DDR5-6400 32GB', criteria: '32GB DDR5 中最便宜' },
+      { name: 'Kingston Fury Beast DDR5-5600 32GB', criteria: '32GB DDR5 中最便宜' },
     ]);
     const ssd = cheapestMatching(allData, [
-      { name: 'Micron Crucial T500 1TB', criteria: '1TB PCIe4' },
-      { name: 'Kingston KC3000 1TB', criteria: '1TB PCIe4' },
-      { name: 'WD Black SN850X 1TB', criteria: '1TB PCIe4' },
-      { name: 'Samsung 990 Pro 1TB', criteria: '1TB PCIe4' },
+      { name: 'Micron Crucial T500 1TB', criteria: '1TB NVMe PCIe4 中最便宜' },
+      { name: 'Kingston KC3000 1TB', criteria: '1TB NVMe PCIe4 中最便宜' },
+      { name: 'WD Black SN850X 1TB', criteria: '1TB NVMe PCIe4 中最便宜' },
+      { name: 'Samsung 990 Pro 1TB', criteria: '1TB NVMe PCIe4 中最便宜' },
     ]);
     return [cpu, gpu, ram, ssd].filter(Boolean);
   }
