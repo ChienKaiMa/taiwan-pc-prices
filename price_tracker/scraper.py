@@ -761,6 +761,22 @@ def _extract_storage_capacity(name):
     return None
 
 
+def _extract_gpu_model(name):
+    """Extract GPU model number (e.g. 5060, 5070, 9070) from a product name.
+    Returns a 4-digit int or None if not found.
+    Handles both spaced ('RTX 5070 Ti') and concatenated ('RTX5060TI') formats.
+    """
+    # Try word-bounded first (spaced titles like "RTX 5070 Ti")
+    m = re.search(r'\b(\d{4})\b', name)
+    if m:
+        return int(m.group(1))
+    # Try concatenated format (e.g. "RTX5060TI", "RX9070XT")
+    m = re.search(r'(\d{4})', name)
+    if m:
+        return int(m.group(1))
+    return None
+
+
 def _has_variant_suffix(text, suffix):
     """True if `suffix` appears as a standalone word or concatenated with
     model numbers (e.g. '5070ti'), but NOT embedded inside other English
@@ -909,7 +925,16 @@ def _match_product_by_name(product_name, candidates, product=None):
                 if not any(bk in c_norm for bk in brand_kws):
                     brand_penalty = 120  # very heavy: wrong brand
 
-        score = matches * 10 - bundle_penalty - variant_penalty - vram_penalty - ddr_penalty - cap_penalty - brand_penalty
+        # Penalise GPU model number mismatch (e.g. 5070 vs 5060)
+        model_penalty = 0
+        if product and product["category"] == "GPU":
+            target_model = _extract_gpu_model(product_name)
+            candidate_model = _extract_gpu_model(c["title"])
+            if target_model is not None and candidate_model is not None:
+                if target_model != candidate_model:
+                    model_penalty = 200  # very heavy: wrong GPU model
+
+        score = matches * 10 - bundle_penalty - variant_penalty - vram_penalty - ddr_penalty - cap_penalty - brand_penalty - model_penalty
         # Bonus for exact name match — use word boundaries to prevent
         # e.g. "265K" from matching inside "265KF"
         if re.search(r'\b' + re.escape(norm_name) + r'\b', c_norm) or \
