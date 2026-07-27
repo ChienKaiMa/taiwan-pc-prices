@@ -244,8 +244,10 @@ def _is_bundle(title_lower):
     simple_kw = [
         "送", "搭機", "套裝", "主機", "組合", "加送", "贈", "加購",
         "救贖", "原價", "福利", "整組", "全套", "套餐", "配",
-        "筆電", "laptop", "notebook", "工作站", "電競電腦", "迷你電腦",
+        "筆電", "筆記型", "laptop", "notebook", "工作站", "電競電腦", "迷你電腦",
         "準系統", "品牌電腦", "捷元", "限量優惠組", "優惠組",
+        "已售完",  # sold-out items should not be matched
+        "限任搭",  # bundle-only promotions
         "+",          # combo deals (e.g. "265K+技嘉 B860...")
         "專案",       # bundle projects (e.g. "U版專案")
         "欣亞",       # Sinya pre-built PCs
@@ -783,7 +785,7 @@ def _truncate_title(title):
     return title[:_MAX_STORE_TITLE] if len(title) > _MAX_STORE_TITLE else title
 
 
-def _match_product_by_name(product_name, candidates):
+def _match_product_by_name(product_name, candidates, product=None):
     """Given a product name (e.g. 'NVIDIA RTX 5080') and a list of
     {title, price} candidates from a store, find the best match and
     return (price, matched_title) or None.
@@ -827,6 +829,20 @@ def _match_product_by_name(product_name, candidates):
     # These should never match unless the target product name also contains them.
     variant_suffixes = {"kf", "xt", "gre", "xtx", "super", "ultra", "lite", "max", "ti", "ks"}
 
+    # Brand keywords for RAM/SSD matching — prevents cross-brand false matches
+    # (e.g. TEAM T-CREATE matching Corsair Vengeance because both are DDR5-6000).
+    _BRAND_KEYWORDS = {
+        "Corsair": ["corsair", "海盜"],
+        "G.Skill": ["g.skill", "gskill", "芝奇"],
+        "Kingston": ["kingston", "金士頓"],
+        "Samsung": ["samsung", "三星"],
+        "WD": ["western digital"],
+        "Crucial": ["crucial", "美光"],
+        "ADATA": ["adata", "威剛"],
+        "Transcend": ["transcend", "創見"],
+        "TEAM": ["team", "十銓"],
+    }
+
     # For each candidate, compute a match score
     scored = []
     for c in candidates:
@@ -845,7 +861,8 @@ def _match_product_by_name(product_name, candidates):
         # Penalize bundles (use raw title — _normalize strips 【】containing keywords)
         bundle_penalty = 0
         raw_lower = c["title"].lower()
-        for bw in ["搭機", "搭板", "套裝", "主機", "裝機配", "送", "救贖", "福利", "電競電腦", "筆電"]:
+        for bw in ["搭機", "搭板", "套裝", "主機", "裝機配", "送", "救贖", "福利",
+                    "電競電腦", "筆電", "筆記型", "已售完", "限任搭"]:
             if bw.lower() in raw_lower:
                 bundle_penalty += 50
 
@@ -883,9 +900,20 @@ def _match_product_by_name(product_name, candidates):
             if candidate_ddr is not None and candidate_ddr != target_ddr:
                 ddr_penalty = 80  # heavy: wrong memory generation
 
-        score = matches * 10 - bundle_penalty - variant_penalty - vram_penalty - ddr_penalty - cap_penalty
-        # Bonus for exact name match or very high overlap
-        if norm_name in c_norm or product_name.lower() in c_norm:
+        # Penalise brand mismatch for RAM/SSD (e.g. TEAM vs Corsair)
+        brand_penalty = 0
+        if product and product["category"] in ("RAM", "SSD"):
+            target_brand = product.get("brand", "")
+            if target_brand:
+                brand_kws = _BRAND_KEYWORDS.get(target_brand, [target_brand.lower()])
+                if not any(bk in c_norm for bk in brand_kws):
+                    brand_penalty = 120  # very heavy: wrong brand
+
+        score = matches * 10 - bundle_penalty - variant_penalty - vram_penalty - ddr_penalty - cap_penalty - brand_penalty
+        # Bonus for exact name match — use word boundaries to prevent
+        # e.g. "265K" from matching inside "265KF"
+        if re.search(r'\b' + re.escape(norm_name) + r'\b', c_norm) or \
+           re.search(r'\b' + re.escape(product_name.lower()) + r'\b', c_norm):
             score += 100
 
         scored.append((score, c["price"], c))
@@ -957,7 +985,7 @@ def scrape_real_prices(products=None):
             print("no results")
             time.sleep(0.2)
             continue
-        match = _match_product_by_name(prod["name"], items)
+        match = _match_product_by_name(prod["name"], items, product=prod)
         if match is not None:
             price, title = match
             results["欣亞 Sinya"][prod["name"]] = {"price": price, "title": title}
@@ -978,7 +1006,7 @@ def scrape_real_prices(products=None):
         cat_items = coolpc_inventory.get(prod["category"], [])
         if not cat_items:
             continue
-        match = _match_product_by_name(prod["name"], cat_items)
+        match = _match_product_by_name(prod["name"], cat_items, product=prod)
         if match is not None:
             price, title = match
             results["原價屋 CoolPC"][prod["name"]] = {"price": price, "title": title}
@@ -1001,7 +1029,7 @@ def scrape_real_prices(products=None):
         cat_items = autobuy_inventory.get(prod["category"], [])
         if not cat_items:
             continue
-        match = _match_product_by_name(prod["name"], cat_items)
+        match = _match_product_by_name(prod["name"], cat_items, product=prod)
         if match is not None:
             price, title = match
             results["Autobuy"][prod["name"]] = {"price": price, "title": title}
@@ -1016,7 +1044,7 @@ def scrape_real_prices(products=None):
         if not items:
             print("no results")
             continue
-        match = _match_product_by_name(prod["name"], items)
+        match = _match_product_by_name(prod["name"], items, product=prod)
         if match is not None:
             price, title = match
             results["順發 Sunfar"][prod["name"]] = {"price": price, "title": title}
