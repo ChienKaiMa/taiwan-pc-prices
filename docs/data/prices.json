@@ -9,7 +9,7 @@
     "prices": {
       "Autobuy": {
         "price": 6990,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "Intel Core Ultra 5 245K 14核14緒 另加NPU 的 AI 處理器(Core Ultra 200S)《4.2Ghz/LGA1851/不含風扇》(代理商貨)"
       }
     }
@@ -24,17 +24,22 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 8250,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛Intel Core Ultra 5 250K Plus｝【18核】4.2G(↑5.3G) /30M /內顯Xe-core /無風扇【代理盒裝】"
+      },
+      "欣亞 Sinya": {
+        "price": 8250,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "Intel Core Ultra 5 250K Plus【18核18緒】"
       },
       "Autobuy": {
         "price": 8100,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "【搭板】Intel Core Ultra 5 250K Plus 18核18緒 另加NPU 的 AI 處理器(Core Ultra 200S)《4.2Ghz/LGA1851/不含風扇》(代理商貨)"
       },
       "順發 Sunfar": {
         "price": 8250,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "INTEL Ultra5-250K Plus/18核18緒/4.2G/1851/無風扇"
       }
     }
@@ -47,9 +52,14 @@
     "spec": "20C/20T 3.9-5.5GHz Arrow Lake",
     "msrp": 13600,
     "prices": {
+      "欣亞 Sinya": {
+        "price": 10300,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "Intel【20核】Core Ultra 7 265K"
+      },
       "Autobuy": {
         "price": 9700,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "【搭板】Intel Core Ultra 7 265K 20核20緒 另加NPU 的 AI 處理器(Core Ultra 200S)《3.9Ghz/LGA1851/不含風扇》(代理商貨)"
       }
     }
@@ -64,17 +74,22 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 12200,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛Intel Core Ultra 7 270K Plus｝【24核】3.7G(↑5.4G) /36M /內顯Xe-core /無風扇【代理盒裝】"
+      },
+      "欣亞 Sinya": {
+        "price": 12200,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "Intel Core Ultra 7 270K Plus"
       },
       "Autobuy": {
         "price": 11888,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "【搭板】Intel Core Ultra 7 270K Plus 24核24緒 另加NPU 的 AI 處理器(Core Ultra 200S)《3.7Ghz/LGA1851/不含風扇》(代理商貨)"
       },
       "順發 Sunfar": {
         "price": 12200,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "INTEL Ultra7-270K Plus/24核24緒/3.7G/1851/無風扇"
       }
     }
@@ -89,12 +104,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 21500,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛Intel Core Ultra 9 285K｝【24核】3.7G(↑5.7G) /36M /內顯Xe-core /無風扇【代理盒裝】"
+      },
+      "欣亞 Sinya": {
+        "price": 21500,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "Intel【24核】Core Ultra 9 285K"
       },
       "Autobuy": {
         "price": 21800,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "Intel Core Ultra 9 285K 24核24緒 另加NPU 的 AI 處理器(Core Ultra 200S)《3.7Ghz/LGA1851/不含風扇》(代理商貨)"
       }
     }
@@ -109,17 +129,22 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 4890,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛AMD R5 7500F MPK｝(含風扇)【6核/12緒】3.7G(↑5.0G)代理商三年保"
+      },
+      "欣亞 Sinya": {
+        "price": 4590,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "【任搭主板】AMD【6核】Ryzen5 7500F"
       },
       "Autobuy": {
         "price": 4590,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "【搭板】AMD Ryzen 5 7500F MPK 6核/12緒 處理器《3.7GHz/38M/65W/AM5/無內顯》"
       },
       "順發 Sunfar": {
         "price": 4890,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "AMD R5 7500F MPK 3.7GHz 6核12緒/無內顯"
       }
     }
@@ -134,17 +159,22 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 7290,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛AMD R7 7700 MPK｝(代理含風扇)【8核/16緒】3.8G(↑5.3G)65W /具內顯 /代理商三年保"
+      },
+      "欣亞 Sinya": {
+        "price": 6840,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "【任搭主板】AMD【8核】Ryzen7 7700"
       },
       "Autobuy": {
         "price": 6840,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "【搭板】AMD Ryzen 7 7700 MPK SR1 8核/16緒 處理器《3.8GHz/40M/65W/AM5》(代理商貨)"
       },
       "順發 Sunfar": {
         "price": 7190,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "AMD R7-7700MPK 3.8GHz 8核16緒(有內顯) 裸裝有風扇3年保"
       }
     }
@@ -159,17 +189,22 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 10290,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛AMD R7 7800X3D Tray盤｝【8核/16緒】4.2G(↑5.0G)96M/120W/具內顯三年保"
+      },
+      "欣亞 Sinya": {
+        "price": 10290,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "AMD【8核16緒】Ryzen7 7800X3D Tray"
       },
       "Autobuy": {
         "price": 10290,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "AMD Ryzen 7 7800X3D Tray盤 8核/16緒 處理器《4.2GHz/104M/120W/AM5》"
       },
       "順發 Sunfar": {
         "price": 10290,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "AMD R7 7800X3D Tray 4.2GHz 8核16緒/含內顯/單顆塑盒裝"
       }
     }
@@ -184,17 +219,22 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 8150,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛AMD R5 9600X｝代理盒裝【6核/12緒】3.9G(↑5.4G)65W /具RDNA內顯"
+      },
+      "欣亞 Sinya": {
+        "price": 7550,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "【任搭主板】AMD【6核】Ryzen5 9600X"
       },
       "Autobuy": {
         "price": 7550,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "【搭板】AMD Ryzen 5 9600X 6核/12緒 處理器《3.9GHz/38M/65W/AM5》"
       },
       "順發 Sunfar": {
         "price": 8150,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "AMD R5-9600X 3.9GHz 6核12緒/內顯/無風扇"
       }
     }
@@ -209,12 +249,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 15488,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛INNO3D RTX5060 8GB TWIN X2 V2｝2497MHz/23cm/註四年/雙風扇"
+      },
+      "欣亞 Sinya": {
+        "price": 41899,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "【萬聖狂潮】 R5 7500F / RTX 5060"
       },
       "順發 Sunfar": {
         "price": 15990,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "MSI RTX5060 8G VENTUS 2X OC顯示卡-上網註冊4年保固"
       }
     }
@@ -229,12 +274,12 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 18488,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛INNO3D RTX5060Ti 8GB TWIN X2｝2572MHz/25cm/註四年/雙風扇"
       },
       "順發 Sunfar": {
         "price": 18990,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "MSI RTX5060Ti 8G SHADOW 2X OC PLUS-上網註冊升級4年保固"
       }
     }
@@ -249,12 +294,12 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 24488,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛INNO3D RTX5060Ti 16GB TWIN X2｝2572MHz/25cm/註四年/雙風扇"
       },
       "順發 Sunfar": {
         "price": 25590,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "MSI RTX5060Ti 16G SHADOW 2X OC PLUS 顯示卡-上網註冊4年保固"
       }
     }
@@ -269,12 +314,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 30590,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛微星 RTX5070 12G VENTUS 2X OC｝2557MHz/24cm/雙風扇/註四年"
+      },
+      "欣亞 Sinya": {
+        "price": 69899,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "【萬聖狂潮】 U5 250K PLUS / RTX 5070"
       },
       "順發 Sunfar": {
         "price": 29990,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "MSI RTX5070 12G SHADOW 2X OC 顯示-上網註冊4年保固"
       }
     }
@@ -289,12 +339,12 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 46490,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛ZOTAC RTX5070Ti 16GB 天啟 OC｝2572MHz/36cm/三風扇/免註冊五年保 [獨家版]"
       },
       "順發 Sunfar": {
         "price": 45490,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "索泰 RTX5070TI SOLID CORE OC -16G顯卡-上網註冊5年保固"
       }
     }
@@ -308,9 +358,9 @@
     "msrp": 35990,
     "prices": {
       "欣亞 Sinya": {
-        "price": 53990,
-        "date": "2026-10-29T12:15:53.306476",
-        "matched_title": "【組裝價】PNY RTX 5080 16GB ARGB OC Triple Fan (std:2775MHz/三風扇/獨家五年保)-(VCG508016TFXXPB1-O)"
+        "price": 57990,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "微星 RTX 5080 16G COD MW4 EDITION OC"
       }
     }
   },
@@ -324,7 +374,7 @@
     "prices": {
       "欣亞 Sinya": {
         "price": 104888,
-        "date": "2026-10-29T12:15:53.306476",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "映眾 INNO3D RTX 5090 32GB GDDR7 iCHILL FROSTBITE"
       }
     }
@@ -339,8 +389,13 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 24590,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛華擎 RX9070 Challenger 16GB｝2520MHz/29cm/三風扇/五年保"
+      },
+      "欣亞 Sinya": {
+        "price": 24990,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "【組裝價】技嘉 Radeon RX 9070 GAMING OC 16G"
       }
     }
   },
@@ -354,12 +409,12 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 29890,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛華擎 RX9070XT Challenger 16GB｝2970MHz/29cm/三風扇/註五年保"
       },
       "Autobuy": {
         "price": 30990,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "SAPPHIRE 藍寶石 PULSE 脈動 RX 9070 XT GAMING 16GB 顯示卡(3+2年保)"
       }
     }
@@ -374,12 +429,12 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 14890,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛技嘉 RX9060XT GAMING OC 8G｝3320MHz/28cm/三風扇/註冊五年保"
       },
       "Autobuy": {
         "price": 14890,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "ASRock 華擎 RX 9060 XT Challenger 8GB OC 顯示卡"
       }
     }
@@ -394,17 +449,22 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 19490,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛華擎 RX9060XT Challenger 16GB OC｝3290MHz/25cm/雙風扇/註冊四年保"
+      },
+      "欣亞 Sinya": {
+        "price": 16490,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "藍寶石 PURE 極地 RX 9060 XT 16GB D6 OC"
       },
       "Autobuy": {
         "price": 20490,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "SAPPHIRE 藍寶石 PULSE 脈動 RX 9060 XT GAMING OC 16GB 顯示卡(3+2年保)"
       },
       "順發 Sunfar": {
         "price": 20490,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "SAPPHIRE PULSE 脈動RX9060XT 16G D6 OC"
       }
     }
@@ -419,7 +479,7 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 18190,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "海盜船 VENGEANCE 32G(16G*2)DDR5-6000/CL36 灰｛CMK32GX5M2E6000Z36｝"
       }
     }
@@ -434,7 +494,7 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 19800,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "芝奇 焰鋒戟RGB 32GB(雙通16GB*2)D5-6400/CL30黑｛F5-6400J3039G16GX2-TZ5NR｝"
       }
     }
@@ -449,12 +509,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 18300,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛金士頓 32GB(雙通16GB*2) DDR5-5600/CL36 FURY Beast｝黑"
+      },
+      "欣亞 Sinya": {
+        "price": 17500,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "金士頓 Fury Beast (獸獵者) DDR5-6400 32GB(16GB*2)-黑(CL32)(KF564C32BBEK2-32)"
       },
       "Autobuy": {
         "price": 35000,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "Kingston 金士頓 FURY Beast 獸獵者 DDR5-5600 32G*2 CL36 桌上型超頻記憶體(支援XMP3.0、EXPO)《白》(KF556C36BWEK2-64)"
       }
     }
@@ -469,12 +534,12 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 9659,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "三星 Samsung｛990 PRO 1TB｝/Gen4 PCIe 4.0/讀7450/寫6900/TLC【五年保】"
       },
       "Autobuy": {
         "price": 9659,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "Samsung 三星 990 PRO 1TB PCIe 4.0 NVMe M.2 SSD固態硬碟(讀:7450M/寫:6900M) 台灣代理商貨"
       }
     }
@@ -509,12 +574,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 6488,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "｛金士頓 KC3000 1TB｝/Gen4 PCIe 4.0/讀7000/寫6000/TLC【五年保】"
+      },
+      "欣亞 Sinya": {
+        "price": 6488,
+        "date": "2026-10-30T04:08:34.445798",
+        "matched_title": "金士頓 Kingston KC3000 1TB"
       },
       "Autobuy": {
         "price": 6650,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "Kingston 金士頓 KC3000 1TB PCIe 4.0 NVMe M.2 SSD(讀:7000M/寫:6000M) SKC3000S/1024G"
       }
     }
@@ -529,17 +599,17 @@
     "prices": {
       "原價屋 CoolPC": {
         "price": 7229,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "美光 Micron Crucial｛T500 1TB｝含散熱片/Gen4/讀7300/寫6800/3D TLC【五年保】"
       },
       "Autobuy": {
         "price": 7229,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "Micron 美光 Crucial T500 1TB M.2 PCIe 4.0 SSD固態硬碟(讀:7300M/寫:6800M)"
       },
       "順發 Sunfar": {
         "price": 7229,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "美光  T500 1TB PCIe Gen4 5年保SSD"
       }
     }
@@ -554,17 +624,17 @@
     "prices": {
       "欣亞 Sinya": {
         "price": 4750,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "美光 Crucial P310 1TB"
       },
       "Autobuy": {
         "price": 5700,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "Micron 美光 Crucial P310 1TB Gen4 2280 M.2 SSD(讀:7100M/寫:6000M)"
       },
       "順發 Sunfar": {
         "price": 4750,
-        "date": "2026-10-29T22:31:04.579537",
+        "date": "2026-10-30T04:08:34.445798",
         "matched_title": "美光  P310 1TB PCIe Gen4 五年保SSD"
       }
     }
